@@ -12,13 +12,13 @@ namespace Hated.Core.Domain
         public DateTime ChangedAt { get; protected set; }
         public DateTime CreatedAt { get; protected set; }
 
-        public User(string email, string username, string password, string salt)
+        public User(string email, string username, string password)
         {
             Id = new Guid();
             SetEmail(email);
             SetUsername(username);
             SetPassword(password);
-            Salt = salt;
+            Salt = Guid.NewGuid().ToString();
             CreatedAt = DateTime.UtcNow;
         }
 

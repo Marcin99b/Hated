@@ -12,19 +12,21 @@ namespace Hated.Tests.Domain
             string beforeText = "before";
             string afterText = "after";
 
-            var post = new Post(new User(), "test");
-            var comment = new Comment(new User(), beforeText);
+            var user = new User("test@test.com", "test", "secret");
+
+            var post = new Post(user, "test");
+            var comment = new Comment(user, beforeText);
 
             post.AddComment(comment);
 
             //Check did post was created and put to list (ienumerable)
-            Assert.Equal(post.Comments.Single(x => x.Id == comment.Id).Content, beforeText);
+            Assert.Equal(beforeText, post.Comments.Single(x => x.Id == comment.Id).Content);
 
             comment.SetContent(afterText);
             post.UpdateComment(comment);
 
             //Did list (ienumerable) was updated, after update post
-            Assert.Equal(post.Comments.Single(x => x.Id == comment.Id).Content, afterText);
+            Assert.Equal(afterText, post.Comments.Single(x => x.Id == comment.Id).Content);
         }
     }
 }

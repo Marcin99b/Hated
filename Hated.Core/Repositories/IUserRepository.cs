@@ -5,7 +5,7 @@ using Hated.Core.Domain;
 
 namespace Hated.Core.Repositories
 {
-    interface IUserRepository
+    public interface IUserRepository : IRepository
     {
         Task<User> GetAsync(Guid id);
 
@@ -17,6 +17,6 @@ namespace Hated.Core.Repositories
 
         Task UpdateAsync(User user);
 
-        Task RemoveAsync(Guid id);
+        Task RemoveAsync(User user);
     }
 }
