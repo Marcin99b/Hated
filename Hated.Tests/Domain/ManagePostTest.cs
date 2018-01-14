@@ -14,7 +14,7 @@ namespace Hated.Tests.Domain
 
             var user = new User("test@test.com", "test", "secret");
 
-            var post = new Post(user, "test");
+            var post = new Post(user.Id, "test");
             var comment = new Comment(user, beforeText);
 
             post.AddComment(comment);

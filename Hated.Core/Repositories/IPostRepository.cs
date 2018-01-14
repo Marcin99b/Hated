@@ -5,7 +5,7 @@ using Hated.Core.Domain;
 
 namespace Hated.Core.Repositories
 {
-    interface IPostRepository : IRepository
+    public interface IPostRepository : IRepository
     {
         Task<Post> GetAsync(Guid id);
 

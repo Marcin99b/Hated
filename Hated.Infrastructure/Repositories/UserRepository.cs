@@ -9,6 +9,7 @@ namespace Hated.Infrastructure.Repositories
 {
     public class UserRepository : IUserRepository
     {
+        //TODO this must be empty, defined data is exist only for tests
         private static readonly ISet<User> _users = new HashSet<User>
         {
             new User("user1@email.com", "user1", "secret"),
