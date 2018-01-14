@@ -62,15 +62,15 @@ namespace Hated.Infrastructure.Services
         
 
         //Update
-        public async Task UpdateAsync(UserDto newUser)
+        public async Task UpdateAsync(UserDto updatedUser)
         {
-            var user = await _userRepository.GetAsync(newUser.Id);
+            var user = await _userRepository.GetAsync(updatedUser.Id);
             if (user == null)
             {
-                throw new Exception($"User with id: {newUser.Id} isn't exist");
+                throw new Exception($"User with id: {updatedUser.Id} isn't exist");
             }
-            user.SetEmail(newUser.Email);
-            user.SetUsername(newUser.Username);
+            user.SetEmail(updatedUser.Email);
+            user.SetUsername(updatedUser.Username);
             await _userRepository.UpdateAsync(user);
         }
 
