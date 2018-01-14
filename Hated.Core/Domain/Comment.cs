@@ -10,10 +10,10 @@ namespace Hated.Core.Domain
         public DateTime ChangedAt { get; protected set; }
         public DateTime CreatedAt { get; protected set; }
 
-        public Comment(User user, string content)
+        public Comment(Guid userId, string content)
         {
             Id = Guid.NewGuid();
-            UserId = user.Id;
+            UserId = userId;
             SetContent(content);
             CreatedAt = DateTime.UtcNow;
         }

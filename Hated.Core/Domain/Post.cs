@@ -35,12 +35,16 @@ namespace Hated.Core.Domain
             CreatedAt = DateTime.UtcNow;
         }
 
+        public Comment GetComment(Guid commentId)
+            => Comments.SingleOrDefault(x => x.Id == commentId);
+
+
         public void UpdateComment(Comment comment)
         {
             _comments.Where(x => x.Id == comment.Id).Select(x => comment).ToHashSet();
             CreatedAt = DateTime.UtcNow;
         }
-
+        
         public void DeleteComment(Comment comment)
         {
             _comments.Remove(comment);

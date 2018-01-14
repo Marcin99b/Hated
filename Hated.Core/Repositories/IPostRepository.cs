@@ -16,6 +16,5 @@ namespace Hated.Core.Repositories
         Task UpdateAsync(Post post);
 
         Task RemoveAsync(Post post);
-
     }
 }
