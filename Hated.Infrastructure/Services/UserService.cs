@@ -25,7 +25,7 @@ namespace Hated.Infrastructure.Services
         {
             var user = new User(email, username, password);
 
-            if (_userRepository.GetAsync(user.Id).Result != null)
+            if (_userRepository.GetAsync(user.Email).Result != null)
             {
                 throw new Exception($"User with email: {user.Email} is exist");
             }
