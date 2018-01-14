@@ -14,7 +14,7 @@ namespace Hated.Core.Domain
 
         public User(string email, string username, string password)
         {
-            Id = new Guid();
+            Id = Guid.NewGuid();
             SetEmail(email);
             SetUsername(username);
             SetPassword(password);
