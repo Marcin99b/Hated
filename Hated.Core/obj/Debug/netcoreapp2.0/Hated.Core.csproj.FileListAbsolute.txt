@@ -1,0 +1,9 @@
+C:\Users\Marcin\Desktop\C#\Hated\Hated.Core\bin\Debug\netcoreapp2.0\Hated.Core.deps.json
+C:\Users\Marcin\Desktop\C#\Hated\Hated.Core\bin\Debug\netcoreapp2.0\Hated.Core.dll
+C:\Users\Marcin\Desktop\C#\Hated\Hated.Core\bin\Debug\netcoreapp2.0\Hated.Core.pdb
+C:\Users\Marcin\Desktop\C#\Hated\Hated.Core\obj\Debug\netcoreapp2.0\Hated.Core.csproj.CoreCompileInputs.cache
+C:\Users\Marcin\Desktop\C#\Hated\Hated.Core\obj\Debug\netcoreapp2.0\Hated.Core.AssemblyInfoInputs.cache
+C:\Users\Marcin\Desktop\C#\Hated\Hated.Core\obj\Debug\netcoreapp2.0\Hated.Core.AssemblyInfo.cs
+C:\Users\Marcin\Desktop\C#\Hated\Hated.Core\obj\Debug\netcoreapp2.0\Hated.Core.dll
+C:\Users\Marcin\Desktop\C#\Hated\Hated.Core\obj\Debug\netcoreapp2.0\Hated.Core.pdb
+C:\Users\Marcin\Desktop\C#\Hated\Hated.Core\obj\Debug\netcoreapp2.0\Hated.Core.csprojResolveAssemblyReference.cache

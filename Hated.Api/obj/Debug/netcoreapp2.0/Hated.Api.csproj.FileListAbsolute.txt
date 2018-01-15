@@ -1,0 +1,15 @@
+C:\Users\Marcin\Desktop\C#\Hated\Hated.Api\bin\Debug\netcoreapp2.0\Hated.Api.deps.json
+C:\Users\Marcin\Desktop\C#\Hated\Hated.Api\bin\Debug\netcoreapp2.0\Hated.Api.runtimeconfig.json
+C:\Users\Marcin\Desktop\C#\Hated\Hated.Api\bin\Debug\netcoreapp2.0\Hated.Api.runtimeconfig.dev.json
+C:\Users\Marcin\Desktop\C#\Hated\Hated.Api\bin\Debug\netcoreapp2.0\Hated.Api.dll
+C:\Users\Marcin\Desktop\C#\Hated\Hated.Api\obj\Debug\netcoreapp2.0\Hated.Api.csprojResolveAssemblyReference.cache
+C:\Users\Marcin\Desktop\C#\Hated\Hated.Api\obj\Debug\netcoreapp2.0\Hated.Api.csproj.CoreCompileInputs.cache
+C:\Users\Marcin\Desktop\C#\Hated\Hated.Api\obj\Debug\netcoreapp2.0\Hated.Api.AssemblyInfoInputs.cache
+C:\Users\Marcin\Desktop\C#\Hated\Hated.Api\obj\Debug\netcoreapp2.0\Hated.Api.AssemblyInfo.cs
+C:\Users\Marcin\Desktop\C#\Hated\Hated.Api\bin\Debug\netcoreapp2.0\Hated.Api.pdb
+C:\Users\Marcin\Desktop\C#\Hated\Hated.Api\obj\Debug\netcoreapp2.0\Hated.Api.dll
+C:\Users\Marcin\Desktop\C#\Hated\Hated.Api\obj\Debug\netcoreapp2.0\Hated.Api.pdb
+C:\Users\Marcin\Desktop\C#\Hated\Hated.Api\bin\Debug\netcoreapp2.0\Hated.Core.dll
+C:\Users\Marcin\Desktop\C#\Hated\Hated.Api\bin\Debug\netcoreapp2.0\Hated.Infrastructure.dll
+C:\Users\Marcin\Desktop\C#\Hated\Hated.Api\bin\Debug\netcoreapp2.0\Hated.Infrastructure.pdb
+C:\Users\Marcin\Desktop\C#\Hated\Hated.Api\bin\Debug\netcoreapp2.0\Hated.Core.pdb
