@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hated.Tests", "Hated.Tests\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hated.Infrastructure", "Hated.Infrastructure\Hated.Infrastructure.csproj", "{23C7C041-6AD1-4520-B813-B3747FFE86E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hated.Api", "Hated.Api\Hated.Api.csproj", "{2FAD8A5C-AC86-464A-80B3-54B0EACCE522}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hated.Api", "Hated.Api\Hated.Api.csproj", "{2FAD8A5C-AC86-464A-80B3-54B0EACCE522}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hates.Tests.EndToEnd", "Hates.Tests.EndToEnd\Hates.Tests.EndToEnd.csproj", "{F340B8BB-BCB8-474B-82F8-F39F91AA15AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{2FAD8A5C-AC86-464A-80B3-54B0EACCE522}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FAD8A5C-AC86-464A-80B3-54B0EACCE522}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FAD8A5C-AC86-464A-80B3-54B0EACCE522}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F340B8BB-BCB8-474B-82F8-F39F91AA15AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F340B8BB-BCB8-474B-82F8-F39F91AA15AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F340B8BB-BCB8-474B-82F8-F39F91AA15AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F340B8BB-BCB8-474B-82F8-F39F91AA15AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
