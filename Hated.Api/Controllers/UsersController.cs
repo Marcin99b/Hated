@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Hated.Infrastructure.Commands.Users;
+using Hated.Infrastructure.DTO;
 using Hated.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -48,6 +49,22 @@ namespace Hated.Api.Controllers
             await _userService.RegisterAsync(newUser.Email, newUser.Username, newUser.Password);
             return Created($"api/users/{newUser.Email}", null);
             
+        }
+
+        //PUT api/users
+        [HttpPut]
+        public async Task<IActionResult> UpdateAsync([FromBody]UserDto updatedUser)
+        {
+            await _userService.UpdateAsync(updatedUser);
+            return Ok();
+        }
+
+        //DELETE api/users
+        [HttpDelete("{userId}")]
+        public async Task<IActionResult> DeleteAsync(Guid userId)
+        {
+            await _userService.DeleteAsync(userId);
+            return Ok();
         }
     }
 }
