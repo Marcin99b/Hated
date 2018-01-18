@@ -7,7 +7,7 @@ namespace Hated.Infrastructure.Services
 {
     public interface IPostService
     {
-        Task AddAsync(Guid userId, string content);
+        Task<Guid> AddAsync(Guid userId, string content);
         Task<PostDto> GetAsync(Guid id);
         Task<IEnumerable<PostDto>> GetAllAsync();
         Task UpdateAsync(PostDto updatedPost);

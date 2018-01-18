@@ -21,8 +21,12 @@ namespace Hated.Infrastructure.Services
         }
 
         //Create
-        public async Task AddAsync(Guid userId, string content)
-            => await _postRepository.AddAsync(new Post(userId, content));
+        public async Task<Guid> AddAsync(Guid userId, string content)
+        {
+            var post = new Post(userId, content);
+            await _postRepository.AddAsync(post);
+            return post.Id;
+        }
         
         //Read
         public async Task<PostDto> GetAsync(Guid id)
