@@ -16,6 +16,14 @@ namespace Hated.Api.Controllers
             _userService = userService;
         }
 
+        //POST api/users
+        [HttpPost]
+        public async Task<IActionResult> AddAsync([FromBody]CreateUser newUser)
+        {
+            await _userService.RegisterAsync(newUser.Email, newUser.Username, newUser.Password);
+            return Created($"api/users/{newUser.Email}", null);
+
+        }
 
         // GET api/users/email@email.com
         [HttpGet("{email}")]
@@ -41,16 +49,7 @@ namespace Hated.Api.Controllers
 
             return Json(users);
         }
-
-        //POST api/users
-        [HttpPost]
-        public async Task<IActionResult> AddAsync([FromBody]CreateUser newUser)
-        {
-            await _userService.RegisterAsync(newUser.Email, newUser.Username, newUser.Password);
-            return Created($"api/users/{newUser.Email}", null);
-            
-        }
-
+        
         //PUT api/users
         [HttpPut]
         public async Task<IActionResult> UpdateAsync([FromBody]UserDto updatedUser)
