@@ -16,6 +16,7 @@ namespace Hated.Api.Controllers
             _userService = userService;
         }
 
+        //Create
         //POST api/users
         [HttpPost]
         public async Task<IActionResult> AddAsync([FromBody]CreateUser newUser)
@@ -25,6 +26,7 @@ namespace Hated.Api.Controllers
 
         }
 
+        //Read
         // GET api/users/email@email.com
         [HttpGet("{email}")]
         public async Task<IActionResult> GetAsync(string email)
@@ -50,6 +52,7 @@ namespace Hated.Api.Controllers
             return Json(users);
         }
         
+        //Update
         //PUT api/users
         [HttpPut]
         public async Task<IActionResult> UpdateAsync([FromBody]UserDto updatedUser)
@@ -58,7 +61,8 @@ namespace Hated.Api.Controllers
             return Ok();
         }
 
-        //DELETE api/users
+        //Delete
+        //DELETE api/users/guid
         [HttpDelete("{userId}")]
         public async Task<IActionResult> DeleteAsync(Guid userId)
         {
