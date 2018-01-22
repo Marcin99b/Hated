@@ -7,7 +7,7 @@ namespace Hated.Infrastructure.Services
 {
     public interface IPostCommentService
     {
-        Task AddAsync(Guid userId, Guid postId, string content);
+        Task<Guid> AddAsync(Guid userId, Guid postId, string content);
         Task<CommentDto> GetAsync(Guid id);
         Task<IEnumerable<CommentDto>> GetAllFromPostAsync(Guid postId);
         Task<IEnumerable<CommentDto>> GetAllAsync();

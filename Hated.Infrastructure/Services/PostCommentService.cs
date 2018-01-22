@@ -20,12 +20,13 @@ namespace Hated.Infrastructure.Services
             _mapper = mapper;
         }
 
-        public async Task AddAsync(Guid userId, Guid postId, string content)
+        public async Task<Guid> AddAsync(Guid userId, Guid postId, string content)
         {
             var post = await _postRepository.GetAsync(postId);
             var comment = new Comment(userId, content);
             post.AddComment(comment);
             await _postRepository.UpdateAsync(post);
+            return comment.Id;
         }
 
         public async Task<CommentDto> GetAsync(Guid id)
