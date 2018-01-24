@@ -11,7 +11,7 @@ using Xunit;
 
 namespace Hates.Tests.EndToEnd
 {
-    public class CrudUserTest : ServerConfigAndRun
+    public class CrudUserTest : BaseMethodsToTests
     {
         [Fact]
         public async Task ValidUserShouldBeReturned()
@@ -80,23 +80,6 @@ namespace Hates.Tests.EndToEnd
             
         }
 
-        private async Task<HttpResponseMessage> CreateNewUser(string email)
-        {
-            var payload = GetPayload(new CreateUser
-            {
-                Email = email,
-                Username = "testuser",
-                Password = "secret"
-            });
-            return await Client.PostAsync("api/users", payload);
-        }
-
-        private async Task<UserDto> GetUserAsync(string email)
-        {
-            var response = await Client.GetAsync($"api/users/{email}");
-            var responseString = await response.Content.ReadAsStringAsync();
-
-            return JsonConvert.DeserializeObject<UserDto>(responseString);
-        }
+        
     }
 }
