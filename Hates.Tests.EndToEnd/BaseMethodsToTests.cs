@@ -1,6 +1,8 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Hated.Infrastructure.Commands.Posts;
 using Hated.Infrastructure.Commands.Users;
 using Hated.Infrastructure.DTO;
 using Newtonsoft.Json;
@@ -16,13 +18,14 @@ namespace Hates.Tests.EndToEnd
             return new StringContent(json, Encoding.UTF8, "application/json");
         }
 
-        //User are intergal object of all tests, because most what we testing, do created user
-        protected async Task<HttpResponseMessage> CreateNewUser(string email)
+        //User
+        protected async Task<HttpResponseMessage> CreateNewUser(string email, string username = null)
         {
+            username = username ?? "testuser";
             var payload = GetPayload(new CreateUser
             {
                 Email = email,
-                Username = "testuser",
+                Username = username,
                 Password = "secret"
             });
             return await Client.PostAsync("api/users", payload);
@@ -34,6 +37,33 @@ namespace Hates.Tests.EndToEnd
             var responseString = await response.Content.ReadAsStringAsync();
 
             return JsonConvert.DeserializeObject<UserDto>(responseString);
+        }
+
+        protected async Task<UserDto> CreateAndGetRandomUser()
+        {
+            string emailTestedUser = Guid.NewGuid().ToString();
+            await CreateNewUser(emailTestedUser);
+            return await GetUserAsync(emailTestedUser);
+        }
+
+        //Post
+        protected async Task<HttpResponseMessage> CreateNewPost(Guid userId, string content = null)
+        {
+            content = content ?? "testcontent";
+            var payload = GetPayload(new CreatePost
+            {
+                UserId = userId,
+                Content = content
+            });
+            return await Client.PostAsync("api/posts", payload);
+        }
+
+        protected async Task<PostDto> GetPostAsync(string location)
+        {
+            var response = await Client.GetAsync(location);
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            return JsonConvert.DeserializeObject<PostDto>(responseString);
         }
     }
 }
