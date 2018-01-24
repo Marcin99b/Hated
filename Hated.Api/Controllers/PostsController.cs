@@ -19,7 +19,7 @@ namespace Hated.Api.Controllers
         //Create
         //POST api/posts
         [HttpPost]
-        public async Task<IActionResult> AddAsync([FromBody] CreatePost newPost)
+        public async Task<IActionResult> AddAsync([FromBody]CreatePost newPost)
         {
             var postId = await _postService.AddAsync(newPost.UserId, newPost.Content);
             return Created($"api/posts/{postId}", null);
@@ -27,13 +27,13 @@ namespace Hated.Api.Controllers
 
         //Read
         //GET api/posts/guid
-        [HttpGet("postId")]
+        [HttpGet("{postId}")]
         public async Task<IActionResult> GetAsync(Guid postId)
         {
             var post = await _postService.GetAsync(postId);
             if (post == null)
             {
-                return NotFound();
+               return NotFound();
             }
 
             return Json(post);
