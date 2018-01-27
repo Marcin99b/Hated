@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Hated.Infrastructure.Commands.Comment;
 using Hated.Infrastructure.DTO;
 using Hated.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -15,11 +16,11 @@ namespace Hated.Api.Controllers
             _postCommentService = postCommentService;
         }
         //Create
-        //POST api/comment/post/guid - post
-        [HttpPost("post/{postId}")]
-        public async Task<IActionResult> AddAsync(Guid postId, [FromBody]CommentDto newComment)
+        //POST api/comments
+        [HttpPost]
+        public async Task<IActionResult> AddAsync([FromBody]CreateComment newComment)
         {
-            var commentId = await _postCommentService.AddAsync(newComment.UserId, postId, newComment.Content);
+            var commentId = await _postCommentService.AddAsync(newComment.UserId, newComment.PostId, newComment.Content);
             return Created($"api/comments/{commentId}", null);
         }
 
@@ -36,8 +37,7 @@ namespace Hated.Api.Controllers
 
             return Json(comment);
         }
-
-        //Read
+        
         //GET api/comments/post/guid
         [HttpGet("post/{postId}")]
         public async Task<IActionResult> GetAllAsyncFromPostAsync(Guid postId)
@@ -72,8 +72,8 @@ namespace Hated.Api.Controllers
         }
 
         //Delete
-        //DELETE api/comments/post/guid
-        [HttpDelete("{postId}/{commentId}")]
+        //DELETE api/comments/post/guid/comment/guid
+        [HttpDelete("post/{postId}/comment/{commentId}")]
         public async Task<IActionResult> DeleteAsync(Guid postId, Guid commentId)
         {
             await _postCommentService.DeleteAsync(postId, commentId);

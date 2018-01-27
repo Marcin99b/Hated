@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Hated.Infrastructure.Commands.Comment;
 using Hated.Infrastructure.Commands.Posts;
 using Hated.Infrastructure.Commands.Users;
 using Hated.Infrastructure.DTO;
@@ -18,6 +19,7 @@ namespace Hates.Tests.EndToEnd
             return new StringContent(json, Encoding.UTF8, "application/json");
         }
 
+        #region User
         //User
         protected async Task<HttpResponseMessage> CreateNewUser(string email, string username = null)
         {
@@ -45,7 +47,9 @@ namespace Hates.Tests.EndToEnd
             await CreateNewUser(emailTestedUser);
             return await GetUserAsync(emailTestedUser);
         }
+        #endregion
 
+        #region Post
         //Post
         protected async Task<HttpResponseMessage> CreateNewPost(Guid userId, string content = null)
         {
@@ -65,5 +69,43 @@ namespace Hates.Tests.EndToEnd
 
             return JsonConvert.DeserializeObject<PostDto>(responseString);
         }
+
+        protected async Task<PostDto> CreateAndGetRandomPost()
+        {
+            var user = await CreateAndGetRandomUser();
+            var responsePost = await CreateNewPost(user.Id);
+            return await GetPostAsync(responsePost.Headers.Location.ToString());
+        }
+        #endregion
+
+        #region Comment
+        //Comment
+        protected async Task<HttpResponseMessage> CreateNewComment(Guid userId, Guid postId, string content)
+        {
+            var payload = GetPayload(new CreateComment
+            {
+                UserId = userId,
+                PostId = postId,
+                Content = content
+            });
+            return await Client.PostAsync("api/comments", payload);
+        }
+
+        protected async Task<CommentDto> GetCommentAsync(string location)
+        {
+            var response = await Client.GetAsync(location);
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            return JsonConvert.DeserializeObject<CommentDto>(responseString);
+        }
+
+        protected async Task<CommentDto> CreateAndGetRandomComment(PostDto post)
+        {
+            var user = await CreateAndGetRandomUser();
+            var responseComment = await CreateNewComment(user.Id, post.Id, Guid.NewGuid().ToString());
+            return await GetCommentAsync(responseComment.Headers.Location.ToString());
+        }
+
+        #endregion
     }
 }
