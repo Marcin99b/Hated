@@ -5,9 +5,10 @@ using Hated.Infrastructure.DTO;
 
 namespace Hated.Infrastructure.Services
 {
-    public interface IUserService
+    public interface IUserService : IService
     {
         Task RegisterAsync(string email, string username, string password);
+        Task LoginAsync(string email, string password);
         Task<UserDto> GetAsync(Guid id);
         Task<UserDto> GetAsync(string email);
         Task<IEnumerable<UserDto>> GetAllAsync();

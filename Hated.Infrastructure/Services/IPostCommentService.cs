@@ -5,7 +5,7 @@ using Hated.Infrastructure.DTO;
 
 namespace Hated.Infrastructure.Services
 {
-    public interface IPostCommentService
+    public interface IPostCommentService : IService
     {
         Task<Guid> AddAsync(Guid userId, Guid postId, string content);
         Task<CommentDto> GetAsync(Guid id);

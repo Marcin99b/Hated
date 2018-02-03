@@ -5,7 +5,7 @@ using Hated.Infrastructure.DTO;
 
 namespace Hated.Infrastructure.Services
 {
-    public interface IPostService
+    public interface IPostService : IService
     {
         Task<Guid> AddAsync(Guid userId, string content);
         Task<PostDto> GetAsync(Guid id);
