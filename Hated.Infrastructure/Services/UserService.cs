@@ -12,19 +12,40 @@ namespace Hated.Infrastructure.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IEncrypter _encrypter;
         private readonly IMapper _mapper;
 
-        public UserService(IUserRepository userRepository, IMapper mapper)
+        public UserService(IUserRepository userRepository, IEncrypter encrypter, IMapper mapper)
         {
             _userRepository = userRepository;
+            _encrypter = encrypter;
             _mapper = mapper;
         }
 
         //Create
         public async Task RegisterAsync(string email, string username, string password)
         {
-            var user = new User(email, username, password);
+            var salt = _encrypter.GetSalt(password);
+            var hash = _encrypter.GetHash(password, salt);
+            var user = new User(email, username, hash, salt);
             await _userRepository.AddAsync(user);
+        }
+
+        //Login
+        public async Task LoginAsync(string email, string password)
+        {
+            var user = await _userRepository.GetAsync(email);
+            if (user == null)
+            {
+                throw new Exception("Email or password are invalid");
+            }
+            var salt = _encrypter.GetSalt(password);
+            var hash = _encrypter.GetHash(password, salt);
+            if (user.Password == hash)
+            {
+                return;
+            }
+            throw new Exception("Email or password are invalid");
         }
 
         //Read
