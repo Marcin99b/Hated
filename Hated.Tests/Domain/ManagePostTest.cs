@@ -12,7 +12,7 @@ namespace Hated.Tests.Domain
             string beforeText = "before";
             string afterText = "after";
 
-            var user = new User("test@test.com", "test", "secret");
+            var user = new User("test@test.com", "test", "secret", "salt");
 
             var post = new Post(user.Id, "test");
             var comment = new Comment(user.Id, beforeText);
