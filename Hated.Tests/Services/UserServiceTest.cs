@@ -14,8 +14,9 @@ namespace Hated.Tests.Services
         public async Task RegisteredUserShouldInvokeAddAsyncMethod()
         {
             var userRepositoryMock = new Mock<IUserRepository>();
+            var encrypter = new Mock<IEncrypter>();
             var mapperMock = new Mock<IMapper>();
-            var userService = new UserService(userRepositoryMock.Object, mapperMock.Object);
+            var userService = new UserService(userRepositoryMock.Object, encrypter.Object, mapperMock.Object);
             
             await userService.RegisterAsync("test@email.com", "user", "secret");
 
