@@ -10,7 +10,10 @@ namespace Hated.Infrastructure.Repositories
     public class UserRepository : IUserRepository
     {
         //TODO this must be empty, defined data is exist only for tests
-        private static readonly ISet<User> _users = new HashSet<User>();
+        private static readonly ISet<User> _users = new HashSet<User>
+        {
+            new User("user@email.com", "user", "pass", "salt")
+        };
 
         public async Task<User> GetAsync(Guid id)
             => await Task.FromResult(_users.SingleOrDefault(x => x.Id == id));
