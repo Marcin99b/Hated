@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Text;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Hated.Infrastructure.Extensions;
 using Hated.Infrastructure.IoC;
+using Hated.Infrastructure.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 
 namespace Hated.Api
 {
@@ -15,7 +19,7 @@ namespace Hated.Api
     {
         public IConfigurationRoot Configuration { get; }
         private IContainer ApplicationContainer { get; set; }
-
+        
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -29,16 +33,18 @@ namespace Hated.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            var jwtSettings = Configuration.GetSettings<JwtSettings>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
-                        ValidIssuer = "http://localhost",
+                        ValidIssuer = jwtSettings.Issuer,
                         ValidateAudience = false,
-                        //IssuerSigningKey = 
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key))
                     };
                 });
+            services.AddAuthorization(x => x.AddPolicy("admin", policy => policy.RequireRole("admin")));
             services.AddMvc();
 
             var builder = new ContainerBuilder();

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Hated.Infrastructure.Commands.Users;
 using Hated.Infrastructure.DTO;
 using Hated.Infrastructure.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hated.Api.Controllers
@@ -25,9 +26,10 @@ namespace Hated.Api.Controllers
             return Created($"api/users/{newUser.Email}", null);
 
         }
-
+        
         //Read
         // GET api/users/email@email.com
+        [Authorize]
         [HttpGet("{email}")]
         public async Task<IActionResult> GetAsync(string email)
         {
