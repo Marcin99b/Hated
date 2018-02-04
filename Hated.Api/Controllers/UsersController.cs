@@ -29,7 +29,6 @@ namespace Hated.Api.Controllers
         
         //Read
         // GET api/users/email@email.com
-        [Authorize]
         [HttpGet("{email}")]
         public async Task<IActionResult> GetAsync(string email)
         {
