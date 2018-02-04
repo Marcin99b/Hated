@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Hated.Api
 {
@@ -39,13 +39,18 @@ namespace Hated.Api
                 {
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
-                        ValidIssuer = jwtSettings.Issuer,
+                        //ValidIssuer = jwtSettings.Issuer,
                         ValidateAudience = false,
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key))
                     };
                 });
             services.AddAuthorization(x => x.AddPolicy("admin", policy => policy.RequireRole("admin")));
             services.AddMvc();
+            services.AddSwaggerGen(x => x.SwaggerDoc("v1", new Info
+            {
+                Title = "Hated.Api",
+                Version = "v1"
+            }));
 
             var builder = new ContainerBuilder();
             builder.Populate(services);
@@ -64,6 +69,8 @@ namespace Hated.Api
             }
             app.UseAuthentication();
             app.UseMvc();
+            app.UseSwagger();
+            app.UseSwaggerUI(x => x.SwaggerEndpoint("/swagger/v1/swagger.json", "Hated.Api"));
             appLifeTime.ApplicationStopped.Register(() => ApplicationContainer.Dispose());
         }
     }
