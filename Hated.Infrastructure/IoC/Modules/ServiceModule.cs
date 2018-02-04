@@ -20,6 +20,10 @@ namespace Hated.Infrastructure.IoC.Modules
             builder.RegisterType<Encrypter>()
                 .As<IEncrypter>()
                 .SingleInstance();
+
+            builder.RegisterType<JwtHandler>()
+                .As<IJwtHandler>()
+                .SingleInstance();
         }
     }
 }
