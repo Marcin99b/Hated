@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Hated.Infrastructure.DTO;
 using Newtonsoft.Json;
 using Xunit;
 
-namespace Hates.Tests.EndToEnd
+namespace Hated.Tests.EndToEnd
 {
     public class CrudUserTest : BaseMethodsToTests
     {
@@ -40,29 +41,24 @@ namespace Hates.Tests.EndToEnd
         [Fact]
         public async Task UpdatedUserShouldBeUpdated()
         {
-            var user = await CreateAndGetRandomUser();
             string usernameAfterUpdate = Guid.NewGuid().ToString();
-            user.Username = usernameAfterUpdate;
+            testUserGenerate.Username = usernameAfterUpdate;
             
-            var payload = GetPayload(user);
+            var payload = GetPayload(testUserGenerate);
             var response = await Client.PutAsync("api/users", payload);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-            var updatedUser = await GetUserAsync(user.Email);
+            var updatedUser = await GetUserAsync(testUserGenerate.Email);
             Assert.Equal(usernameAfterUpdate, updatedUser.Username);
         }
 
         [Fact]
         public async Task DeletedUserShouldBeDelete()
         {
-            var user = await CreateAndGetRandomUser();
-            
-            var responseDeleted = await Client.DeleteAsync($"api/users/{user.Id}");
+            var responseDeleted = await Client.DeleteAsync($"api/users/{testUserGenerate.Id}");
 
             Assert.Equal(HttpStatusCode.OK, responseDeleted.StatusCode);
             
         }
-
-        
     }
 }

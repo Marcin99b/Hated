@@ -3,35 +3,32 @@ using System.Net;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Hates.Tests.EndToEnd
+namespace Hated.Tests.EndToEnd
 {
     public class CrudPostTest : BaseMethodsToTests
     {
         [Fact]
         public async Task CreatedPostShouldBeCreated()
         {
-            var user = await CreateAndGetRandomUser();
-            var response = await CreateNewPost(user.Id);
+            var response = await CreateNewPost(testUserGenerate.Id);
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
         }
 
         [Fact]
         public async Task CreatedPostShouldBeValid()
         {
-            var user = await CreateAndGetRandomUser();
             string content = Guid.NewGuid().ToString();
-            var response = await CreateNewPost(user.Id, content);
+            var response = await CreateNewPost(testUserGenerate.Id, content);
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
             var post = await GetPostAsync(response.Headers.Location.ToString());
-            Assert.Equal(user.Id, post.UserId);
+            Assert.Equal(testUserGenerate.Id, post.UserId);
             Assert.Equal(content, post.Content);
         }
 
         [Fact]
         public async Task UpdatedPostShouldBeUpdated()
         {
-            var user = await CreateAndGetRandomUser();
-            var response = await CreateNewPost(user.Id);
+            var response = await CreateNewPost(testUserGenerate.Id);
             var post = await GetPostAsync(response.Headers.Location.ToString());
             string updatedPostContent = Guid.NewGuid().ToString();
             post.Content = updatedPostContent;
@@ -45,8 +42,7 @@ namespace Hates.Tests.EndToEnd
         [Fact]
         public async Task DeletedPostShouldBeDeleted()
         {
-            var user = await CreateAndGetRandomUser();
-            var response = await CreateNewPost(user.Id);
+            var response = await CreateNewPost(testUserGenerate.Id);
             var responseDeleted = await Client.DeleteAsync(response.Headers.Location.ToString());
             Assert.Equal(HttpStatusCode.OK, responseDeleted.StatusCode);
         }

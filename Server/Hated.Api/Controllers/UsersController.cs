@@ -55,6 +55,7 @@ namespace Hated.Api.Controllers
         
         //Update
         //PUT api/users
+        [Authorize]
         [HttpPut]
         public async Task<IActionResult> UpdateAsync([FromBody]UserDto updatedUser)
         {
@@ -64,6 +65,7 @@ namespace Hated.Api.Controllers
 
         //Delete
         //DELETE api/users/guid
+        [Authorize]
         [HttpDelete("{userId}")]
         public async Task<IActionResult> DeleteAsync(Guid userId)
         {

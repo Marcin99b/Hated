@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Hated.Infrastructure.Commands.Posts;
 using Hated.Infrastructure.DTO;
 using Hated.Infrastructure.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hated.Api.Controllers
@@ -18,6 +19,7 @@ namespace Hated.Api.Controllers
 
         //Create
         //POST api/posts
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> AddAsync([FromBody]CreatePost newPost)
         {
@@ -54,6 +56,7 @@ namespace Hated.Api.Controllers
 
         //Update
         //PUT api/posts
+        [Authorize]
         [HttpPut]
         public async Task<IActionResult> UpdateAsync([FromBody]PostDto updatedPost)
         {
@@ -63,6 +66,7 @@ namespace Hated.Api.Controllers
 
         //Delete
         //DELETE api/posts/guid
+        [Authorize]
         [HttpDelete("{postId}")]
         public async Task<IActionResult> DeleteAsync(Guid postId)
         {

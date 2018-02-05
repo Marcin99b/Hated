@@ -24,7 +24,7 @@ namespace Hated.Api
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
@@ -39,7 +39,7 @@ namespace Hated.Api
                 {
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
-                        //ValidIssuer = jwtSettings.Issuer,
+                        ValidIssuer = jwtSettings.Issuer,
                         ValidateAudience = false,
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key))
                     };

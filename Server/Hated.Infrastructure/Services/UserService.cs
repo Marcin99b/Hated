@@ -39,7 +39,7 @@ namespace Hated.Infrastructure.Services
             {
                 throw new Exception("Email or password are invalid");
             }
-            var salt = _encrypter.GetSalt(password);
+            var salt = user.Salt;
             var hash = _encrypter.GetHash(password, salt);
             if (user.Password == hash)
             {

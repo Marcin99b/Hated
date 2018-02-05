@@ -3,7 +3,7 @@ using Hated.Api;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 
-namespace Hates.Tests.EndToEnd
+namespace Hated.Tests.EndToEnd
 {
     public class ServerConfigAndRun
     {
