@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hated.Infrastructure", "Hat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hated.Api", "Hated.Api\Hated.Api.csproj", "{2FAD8A5C-AC86-464A-80B3-54B0EACCE522}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hates.Tests.EndToEnd", "Hates.Tests.EndToEnd\Hates.Tests.EndToEnd.csproj", "{F340B8BB-BCB8-474B-82F8-F39F91AA15AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hated.Tests.EndToEnd", "Hated.Tests.EndToEnd\Hated.Tests.EndToEnd.csproj", "{9D6D6C5A-7A7C-4883-AB88-0A53E6044F61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{2FAD8A5C-AC86-464A-80B3-54B0EACCE522}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FAD8A5C-AC86-464A-80B3-54B0EACCE522}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FAD8A5C-AC86-464A-80B3-54B0EACCE522}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F340B8BB-BCB8-474B-82F8-F39F91AA15AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F340B8BB-BCB8-474B-82F8-F39F91AA15AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F340B8BB-BCB8-474B-82F8-F39F91AA15AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F340B8BB-BCB8-474B-82F8-F39F91AA15AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D6D6C5A-7A7C-4883-AB88-0A53E6044F61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D6D6C5A-7A7C-4883-AB88-0A53E6044F61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D6D6C5A-7A7C-4883-AB88-0A53E6044F61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D6D6C5A-7A7C-4883-AB88-0A53E6044F61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
