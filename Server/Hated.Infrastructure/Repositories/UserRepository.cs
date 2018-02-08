@@ -1,46 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Hated.Core.Domain;
 using Hated.Core.Repositories;
+using MongoDB.Driver;
 
 namespace Hated.Infrastructure.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        //TODO this must be empty, defined data is exist only for tests
-        private static readonly ISet<User> _users = new HashSet<User>
+        private readonly IMongoDatabase _mongoDatabase;
+
+        private IMongoCollection<User> _users => _mongoDatabase.GetCollection<User>("Users");
+
+        public UserRepository(IMongoDatabase mongoDatabase)
         {
-            new User("user@email.com", "user", "pass", "salt")
-        };
+            _mongoDatabase = mongoDatabase;
+        }
 
         public async Task<User> GetAsync(Guid id)
-            => await Task.FromResult(_users.SingleOrDefault(x => x.Id == id));
+            => await Task.FromResult(_users.AsQueryable().SingleOrDefault(x => x.Id == id));
 
         public async Task<User> GetAsync(string email)
-            => await Task.FromResult(_users.Single(x => x.Email == email));
+            => await Task.FromResult(_users.AsQueryable().SingleOrDefault(x => x.Email == email));
 
         public async Task<IEnumerable<User>> GetAllAsync()
-            => await Task.FromResult(_users);
+            => await _users.AsQueryable().ToListAsync();
 
         public async Task AddAsync(User user)
-        {
-            _users.Add(user);
-            await Task.CompletedTask;
-        }
+            => await _users.InsertOneAsync(user);
 
         public async Task UpdateAsync(User user)
-        {
-            _users.Where(x => x.Id == user.Id).Select(x => user).ToHashSet();
-            await Task.CompletedTask;
-        }
+            => await _users.ReplaceOneAsync(x => x.Id == user.Id, user);
 
         public async Task RemoveAsync(User user)
-        {
-            _users.Remove(user);
-            await Task.CompletedTask;
-        }
+            => await Task.FromResult(_users.DeleteOne(x => x.Id == user.Id));
+
     }
 }
 
