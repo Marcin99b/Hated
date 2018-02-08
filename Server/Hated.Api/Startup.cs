@@ -4,6 +4,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Hated.Infrastructure.Extensions;
 using Hated.Infrastructure.IoC;
+using Hated.Infrastructure.Mongo;
 using Hated.Infrastructure.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -67,6 +68,7 @@ namespace Hated.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+            MongoConfigurator.Initialize();
             app.UseAuthentication();
             app.UseMvc();
             app.UseSwagger();

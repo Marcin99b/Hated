@@ -18,7 +18,7 @@ namespace Hated.Infrastructure.IoC
         {
             builder.RegisterInstance(AutoMapperConfig.Initialize())
                 .SingleInstance();
-            builder.RegisterModule<RepositoryModule>();
+            builder.RegisterModule<MongoRepositoryModule>();
             builder.RegisterModule<ServiceModule>();
             builder.RegisterModule(new SettingsModule(_configuration));
         }
