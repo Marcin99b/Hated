@@ -34,6 +34,12 @@ namespace Hated.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAnyOrgin", 
+                    x => x.AllowAnyOrigin());
+            });
+
             var jwtSettings = Configuration.GetSettings<JwtSettings>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -69,6 +75,7 @@ namespace Hated.Api
                 app.UseDeveloperExceptionPage();
             }
             MongoConfigurator.Initialize();
+            app.UseCors("AllowAnyOrgin");
             app.UseAuthentication();
             app.UseMvc();
             app.UseSwagger();
