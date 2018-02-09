@@ -9,6 +9,5 @@ namespace Hated.Infrastructure.DTO
         public Guid UserId { get; set; }
         public string Content { get; set; }
         public IEnumerable<CommentDto> Comments { get; set; }
-
     }
 }

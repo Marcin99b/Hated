@@ -4,35 +4,33 @@ using System.Linq;
 using System.Threading.Tasks;
 using Hated.Core.Domain;
 using Hated.Core.Repositories;
+using MongoDB.Driver;
 
 namespace Hated.Infrastructure.Repositories
 {
     public class PostRepository : IPostRepository
     {
-        private static readonly ISet<Post> _posts = new HashSet<Post>();
+        private readonly IMongoDatabase _mongoDatabase;
+        private IMongoCollection<Post> _posts => _mongoDatabase.GetCollection<Post>("Posts");
+
+        public PostRepository(IMongoDatabase mongoDatabase)
+        {
+            _mongoDatabase = mongoDatabase;
+        }
 
         public async Task<Post> GetAsync(Guid id)
-            => await Task.FromResult(_posts.SingleOrDefault(x => x.Id == id));
+            => await Task.FromResult(_posts.AsQueryable().SingleOrDefault(x => x.Id == id));
 
         public async Task<IEnumerable<Post>> GetAllAsync()
-            => await Task.FromResult(_posts);
+            => await _posts.AsQueryable().ToListAsync();
 
         public async Task AddAsync(Post post)
-        {
-            _posts.Add(post);
-            await Task.CompletedTask;
-        }
+            => await _posts.InsertOneAsync(post);
 
         public async Task UpdateAsync(Post post)
-        {
-            _posts.Where(x => x.Id == post.Id).Select(x => post).ToHashSet();
-            await Task.CompletedTask;
-        }
+            => await _posts.ReplaceOneAsync(x => x.Id == post.Id, post);
 
         public async Task RemoveAsync(Post post)
-        {
-            _posts.Remove(post);
-            await Task.CompletedTask;
-        }
+            => await _posts.DeleteOneAsync(x => x.Id == post.Id);
     }
 }

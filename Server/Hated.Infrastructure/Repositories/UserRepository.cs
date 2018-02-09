@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Hated.Core.Domain;
 using Hated.Core.Repositories;
@@ -12,7 +11,6 @@ namespace Hated.Infrastructure.Repositories
     public class UserRepository : IUserRepository
     {
         private readonly IMongoDatabase _mongoDatabase;
-
         private IMongoCollection<User> _users => _mongoDatabase.GetCollection<User>("Users");
 
         public UserRepository(IMongoDatabase mongoDatabase)
@@ -36,7 +34,7 @@ namespace Hated.Infrastructure.Repositories
             => await _users.ReplaceOneAsync(x => x.Id == user.Id, user);
 
         public async Task RemoveAsync(User user)
-            => await Task.FromResult(_users.DeleteOne(x => x.Id == user.Id));
+            => await _users.DeleteOneAsync(x => x.Id == user.Id);
 
     }
 }

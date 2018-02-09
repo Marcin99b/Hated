@@ -6,12 +6,16 @@ namespace Hated.Core.Domain
 {
     public class Post
     {
-        private readonly ISet<Comment> _comments = new HashSet<Comment>();
+        private ISet<Comment> _comments = new HashSet<Comment>();
 
         public Guid Id { get; protected set; }
         public Guid UserId { get; protected set; }
         public string Content { get; protected set; }
-        public IEnumerable<Comment> Comments => _comments;
+        public IEnumerable<Comment> Comments
+        {
+            get => _comments;
+            set => _comments = new HashSet<Comment>(value);
+        }
         public DateTime ChangedAt { get; protected set; }
         public DateTime CreatedAt { get; protected set; }
 
