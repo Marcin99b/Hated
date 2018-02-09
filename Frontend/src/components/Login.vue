@@ -8,12 +8,15 @@
       <label for="password">Hasło</label>
       <input name="password" autocomplete="current-password" v-model="user.password" type="password">
     </div>
-    <router-link to="/register">
+    <div class="login-form__field">
+      <router-link to="/register">
       Nie masz konta?
-    </router-link>
-    <button>
-      Zaloguj się
-    </button>
+      </router-link></div>
+    <div class="login-form__field">
+      <button type="submit">
+        Zaloguj się
+      </button>
+    </div>
   </form>
 </template>
 
@@ -24,8 +27,8 @@ export default {
   data() {
     return {
       user: {
-        email: 'test@user@test',
-        password: 'secret',
+        email: 'usertest@abcd.abcd',
+        password: 'testowehaslo',
       },
     };
   },
@@ -46,7 +49,21 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .login-form{
-  width: 60vw;
+  width: 50vw;
   height: 50vh;
+  background-color: var(--main-color);
+  margin: 15vh auto 0 auto;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  box-shadow: 2px 2px 5px gray;
+}
+.login-form__field{
+  margin: 1vh 0;
+}
+.login-form__field input{
+  border:0;
 }
 </style>
