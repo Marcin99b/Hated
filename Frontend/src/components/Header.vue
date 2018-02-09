@@ -48,11 +48,11 @@ export default {
 .header__user{
   position: absolute;
   top: 0;
-  right: 0;
+  right: 1vw;
   width: 8vw;
   height: 100%;
-  font-size: 2rem;
-  display:flex;
+  font-size: 1.7rem;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -61,10 +61,11 @@ export default {
   cursor: pointer;
   background-color: white;
   color: var(--main-color);
+  border: 0.5vw solid var(--main-color);
 }
 @media (max-width: 1024px){
   .header__user{
-    right: 3vw;
+    right: 5vw;
   }
 }
 </style>
