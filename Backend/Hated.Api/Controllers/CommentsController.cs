@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Hated.Infrastructure.Commands.Comment;
 using Hated.Infrastructure.DTO;
+using Hated.Infrastructure.Extensions;
 using Hated.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,10 @@ namespace Hated.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> AddAsync([FromBody]CreateComment newComment)
         {
+            if (!newComment.UserId.IsAuthorOrAdmin(User))
+            {
+                Unauthorized();
+            }
             var commentId = await _postCommentService.AddAsync(newComment.UserId, newComment.PostId, newComment.Content);
             return Created($"comments/{commentId}", null);
         }
@@ -70,6 +75,10 @@ namespace Hated.Api.Controllers
         [HttpPut("post/{postId}")]
         public async Task<IActionResult> UpdateAsync(Guid postId, [FromBody] CommentDto updatedComment)
         {
+            if (!updatedComment.UserId.IsAuthorOrAdmin(User))
+            {
+                Unauthorized();
+            }
             await _postCommentService.UpdateAsync(postId, updatedComment);
             return Ok();
         }
@@ -80,6 +89,11 @@ namespace Hated.Api.Controllers
         [HttpDelete("post/{postId}/comment/{commentId}")]
         public async Task<IActionResult> DeleteAsync(Guid postId, Guid commentId)
         {
+            var comment = await _postCommentService.GetAsync(commentId);
+            if (!comment.UserId.IsAuthorOrAdmin(User))
+            {
+                Unauthorized();
+            }
             await _postCommentService.DeleteAsync(postId, commentId);
             return Ok();
         }

@@ -34,7 +34,8 @@ namespace Hated.Api.Controllers
         {
             //If not throw exception, login and password are correct
             await _userService.LoginAsync(loginUser.Email, loginUser.Password);
-            var token = _jwtHandler.CreateToken(loginUser.Email, "user");
+            var user = await _userService.GetAsync(loginUser.Email);
+            var token = _jwtHandler.CreateToken(user.Id, "user");
             return Json(token);
         }
     }
