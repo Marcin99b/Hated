@@ -18,17 +18,17 @@ namespace Hated.Api.Controllers
         }
 
         //Create
-        //POST api/posts
+        //POST posts
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> AddAsync([FromBody]CreatePost newPost)
         {
             var postId = await _postService.AddAsync(newPost.UserId, newPost.Content);
-            return Created($"api/posts/{postId}", null);
+            return Created($"posts/{postId}", null);
         }
 
         //Read
-        //GET api/posts/guid
+        //GET posts/guid
         [HttpGet("{postId}")]
         public async Task<IActionResult> GetAsync(Guid postId)
         {
@@ -41,7 +41,7 @@ namespace Hated.Api.Controllers
             return Json(post);
         }
 
-        //GET api/posts
+        //GET posts
         [HttpGet]
         public async Task<IActionResult> GetAllAsync()
         {
@@ -55,7 +55,7 @@ namespace Hated.Api.Controllers
         }
 
         //Update
-        //PUT api/posts
+        //PUT posts
         [Authorize]
         [HttpPut]
         public async Task<IActionResult> UpdateAsync([FromBody]PostDto updatedPost)
@@ -65,7 +65,7 @@ namespace Hated.Api.Controllers
         }
 
         //Delete
-        //DELETE api/posts/guid
+        //DELETE posts/guid
         [Authorize]
         [HttpDelete("{postId}")]
         public async Task<IActionResult> DeleteAsync(Guid postId)

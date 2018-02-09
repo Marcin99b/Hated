@@ -33,7 +33,7 @@ namespace Hated.Tests.EndToEnd
             string updatedPostContent = Guid.NewGuid().ToString();
             post.Content = updatedPostContent;
             var payload = GetPayload(post);
-            await Client.PutAsync("api/posts", payload);
+            await Client.PutAsync("posts", payload);
             var updatedPost = await GetPostAsync(response.Headers.Location.ToString());
             Assert.Equal(updatedPostContent, updatedPost.Content);
 

@@ -17,17 +17,17 @@ namespace Hated.Api.Controllers
             _postCommentService = postCommentService;
         }
         //Create
-        //POST api/comments
+        //POST comments
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> AddAsync([FromBody]CreateComment newComment)
         {
             var commentId = await _postCommentService.AddAsync(newComment.UserId, newComment.PostId, newComment.Content);
-            return Created($"api/comments/{commentId}", null);
+            return Created($"comments/{commentId}", null);
         }
 
         //Read
-        //GET api/comments/guid
+        //GET comments/guid
         [HttpGet("{commentId}")]
         public async Task<IActionResult> GetAsync(Guid commentId)
         {
@@ -40,7 +40,7 @@ namespace Hated.Api.Controllers
             return Json(comment);
         }
         
-        //GET api/comments/post/guid
+        //GET comments/post/guid
         [HttpGet("post/{postId}")]
         public async Task<IActionResult> GetAllAsyncFromPostAsync(Guid postId)
         {
@@ -52,7 +52,7 @@ namespace Hated.Api.Controllers
             return Json(comments);
         }
 
-        //GET api/comments
+        //GET comments
         [HttpGet]
         public async Task<IActionResult> GetAllAsync()
         {
@@ -65,7 +65,7 @@ namespace Hated.Api.Controllers
         }
 
         //Update
-        //PUT api/comments/post/guid
+        //PUT comments/post/guid
         [Authorize]
         [HttpPut("post/{postId}")]
         public async Task<IActionResult> UpdateAsync(Guid postId, [FromBody] CommentDto updatedComment)
@@ -75,7 +75,7 @@ namespace Hated.Api.Controllers
         }
 
         //Delete
-        //DELETE api/comments/post/guid/comment/guid
+        //DELETE comments/post/guid/comment/guid
         [Authorize]
         [HttpDelete("post/{postId}/comment/{commentId}")]
         public async Task<IActionResult> DeleteAsync(Guid postId, Guid commentId)

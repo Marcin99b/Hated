@@ -52,12 +52,12 @@ namespace Hated.Tests.EndToEnd
                 Password = password
             });
             
-            return await Client.PostAsync("api/users", payload);
+            return await Client.PostAsync("account/register", payload);
         }
 
         protected async Task<UserDto> GetUserAsync(string email)
         {
-            var response = await Client.GetAsync($"api/users/{email}");
+            var response = await Client.GetAsync($"users/{email}");
             var responseString = await response.Content.ReadAsStringAsync();
 
             return JsonConvert.DeserializeObject<UserDto>(responseString);
@@ -68,7 +68,7 @@ namespace Hated.Tests.EndToEnd
         //Account
         protected async Task<JwtDto> GetTokenByLoginUserAsync(string email, string password)
         {
-            var response = await Client.PostAsync("api/account/login", GetPayload(new LoginUser
+            var response = await Client.PostAsync("account/login", GetPayload(new LoginUser
             {
                 Email = email,
                 Password = password
@@ -96,7 +96,7 @@ namespace Hated.Tests.EndToEnd
                 UserId = userId,
                 Content = content
             });
-            return await Client.PostAsync("api/posts", payload);
+            return await Client.PostAsync("posts", payload);
         }
 
         protected async Task<PostDto> GetPostAsync(string location)
@@ -124,7 +124,7 @@ namespace Hated.Tests.EndToEnd
                 PostId = postId,
                 Content = content
             });
-            return await Client.PostAsync("api/comments", payload);
+            return await Client.PostAsync("comments", payload);
         }
 
         protected async Task<CommentDto> GetCommentAsync(string location)
