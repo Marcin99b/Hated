@@ -36,8 +36,14 @@ namespace Hated.Api
         {
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowAnyOrgin", 
-                    x => x.AllowAnyOrigin());
+                options.AddPolicy("AllowAny",
+                    x =>
+                    {
+                        x.AllowAnyOrigin();
+                        x.AllowAnyMethod();
+                        x.AllowAnyHeader();
+                        x.AllowCredentials();
+                    });
             });
 
             var jwtSettings = Configuration.GetSettings<JwtSettings>();
@@ -76,7 +82,7 @@ namespace Hated.Api
                 app.UseDeveloperExceptionPage();
             }
             MongoConfigurator.Initialize();
-            app.UseCors("AllowAnyOrgin");
+            app.UseCors("AllowAny");
             app.UseAuthentication();
             app.UseMvc();
             app.UseSwagger();
