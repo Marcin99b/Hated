@@ -40,19 +40,18 @@ namespace Hated.Api.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> LoginAsync([FromBody]LoginUser loginUser)
         {
-            var token = new JwtDto();
             try
             {
                 await _userService.LoginAsync(loginUser.Email, loginUser.Password);
                 var user = await _userService.GetAsync(loginUser.Email);
-                token = _jwtHandler.CreateToken(user.Id, "user");
-                
+                var token = _jwtHandler.CreateToken(user.Id, "user");
+                return Json(token);
             }
             catch (Exception e)
             {
                 BadRequest(e);
             }
-            return Json(token);
+            return NoContent();
         }
     }
 }

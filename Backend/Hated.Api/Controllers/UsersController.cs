@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -27,7 +28,15 @@ namespace Hated.Api.Controllers
         [HttpGet("{email}")]
         public async Task<IActionResult> GetAsync(string email)
         {
-            var user = await _userService.GetAsync(email);
+            var user = new UserDto();
+            try
+            {
+                user = await _userService.GetAsync(email);
+            }
+            catch (Exception e)
+            {
+                BadRequest(e);
+            }
             if (user == null)
             {
                 return NotFound();
@@ -39,7 +48,16 @@ namespace Hated.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllAsync()
         {
-            var users = await _userService.GetAllAsync();
+
+            IEnumerable<UserDto> users = null;
+            try
+            {
+                users = await _userService.GetAllAsync();
+            }
+            catch (Exception e)
+            {
+                BadRequest(e);
+            }
             if (users == null)
             {
                 return NotFound();
@@ -58,7 +76,16 @@ namespace Hated.Api.Controllers
             {
                 Unauthorized();
             }
-            await _userService.UpdateAsync(updatedUser);
+
+            try
+            {
+                await _userService.UpdateAsync(updatedUser);
+            }
+            catch (Exception e)
+            {
+                BadRequest(e);
+            }
+
             return Ok();
         }
 
