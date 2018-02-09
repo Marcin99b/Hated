@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IdentityModel.Tokens.Jwt;
 using System.Threading.Tasks;
 using Hated.Infrastructure.Commands.Users;
 using Hated.Infrastructure.DTO;
@@ -16,19 +18,9 @@ namespace Hated.Api.Controllers
         {
             _userService = userService;
         }
-
-        //Create
-        //POST api/users
-        [HttpPost]
-        public async Task<IActionResult> AddAsync([FromBody]CreateUser newUser)
-        {
-            await _userService.RegisterAsync(newUser.Email, newUser.Username, newUser.Password);
-            return Created($"api/users/{newUser.Email}", null);
-
-        }
         
         //Read
-        // GET api/users/email@email.com
+        // GET users/email@email.com
         [HttpGet("{email}")]
         public async Task<IActionResult> GetAsync(string email)
         {
@@ -40,7 +32,7 @@ namespace Hated.Api.Controllers
             return Json(user);
         }
 
-        // GET api/users
+        // GET users
         [HttpGet]
         public async Task<IActionResult> GetAllAsync()
         {
@@ -54,17 +46,18 @@ namespace Hated.Api.Controllers
         }
         
         //Update
-        //PUT api/users
+        //PUT users
         [Authorize]
         [HttpPut]
         public async Task<IActionResult> UpdateAsync([FromBody]UserDto updatedUser)
         {
+            //var x = JwtSecurityTokenHandler.;
             await _userService.UpdateAsync(updatedUser);
             return Ok();
         }
 
         //Delete
-        //DELETE api/users/guid
+        //DELETE users/guid
         [Authorize]
         [HttpDelete("{userId}")]
         public async Task<IActionResult> DeleteAsync(Guid userId)

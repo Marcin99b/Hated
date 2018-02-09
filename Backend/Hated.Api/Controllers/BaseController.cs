@@ -3,7 +3,7 @@
 namespace Hated.Api.Controllers
 {
     [Produces("application/json")]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public abstract class BaseController : Controller
     {
         protected BaseController()

@@ -15,7 +15,7 @@ namespace Hated.Tests.EndToEnd
         [Fact]
         public async Task GetAllUsersShouldReturnListOfUsers()
         {
-            var response = await Client.GetAsync("api/users");
+            var response = await Client.GetAsync("users");
             var responseString = await response.Content.ReadAsStringAsync();
 
             var users = JsonConvert.DeserializeObject<IEnumerable<UserDto>>(responseString);
@@ -31,7 +31,7 @@ namespace Hated.Tests.EndToEnd
             var response = await CreateNewUser(emailTestedUser);
 
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
-            Assert.Equal($"api/users/{emailTestedUser}", response.Headers.Location.ToString());
+            Assert.Equal($"users/{emailTestedUser}", response.Headers.Location.ToString());
             
             var createdUser = await GetUserAsync(emailTestedUser);
 
@@ -45,7 +45,7 @@ namespace Hated.Tests.EndToEnd
             testUserGenerate.Username = usernameAfterUpdate;
             
             var payload = GetPayload(testUserGenerate);
-            var response = await Client.PutAsync("api/users", payload);
+            var response = await Client.PutAsync("users", payload);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
             var updatedUser = await GetUserAsync(testUserGenerate.Email);
@@ -55,7 +55,7 @@ namespace Hated.Tests.EndToEnd
         [Fact]
         public async Task DeletedUserShouldBeDelete()
         {
-            var responseDeleted = await Client.DeleteAsync($"api/users/{testUserGenerate.Id}");
+            var responseDeleted = await Client.DeleteAsync($"users/{testUserGenerate.Id}");
 
             Assert.Equal(HttpStatusCode.OK, responseDeleted.StatusCode);
             
