@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Hated.Api.Controllers
 {
-	[EnableCors("AllowAny")]
     [Produces("application/json")]
     [Route("[controller]")]
     [EnableCors("AllowAny")]
