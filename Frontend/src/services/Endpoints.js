@@ -1,7 +1,7 @@
 import Api from './Api';
 
 export default {
-  users() {
-    return Api().get('/api/users');
+  logIn(user) {
+    return Api().post('/users', user);
   },
 };

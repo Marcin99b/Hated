@@ -1,9 +1,13 @@
 <template>
   <header class="header">
+    <div class="header__heading">
+      <h1>Hated</h1>
+      <h2>Hejtuj jak chcesz</h2>
+    </div>
     <img class="header__image" src="http://via.placeholder.com/200x150" alt="Logo">
     <div class="header__user">
-      <span v-if="!isTouchDevice">Login</span>
-      <span v-else class="fa fa-sign-in"></span>
+      <router-link to="/login" tag="span" v-if="!isTouchDevice">Login</router-link>
+      <router-link to="/login" tag="span" v-else class="fa fa-sign-in"></router-link>
     </div>
   </header>
 </template>
@@ -36,6 +40,7 @@ export default {
   flex-direction:row;
   background-color: var(--main-color);
   color: white;
+  box-shadow: 2px 2px 5px gray;
 }
 .header__image{
   position: absolute;
@@ -63,9 +68,31 @@ export default {
   color: var(--main-color);
   border: 0.5vw solid var(--main-color);
 }
+.header__heading{
+  position: absolute;
+  top:0;
+  left: 4vw;
+  height: 100%;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.header__heading h1{
+  font-size: 2rem;
+}
+.header__heading h2{
+  font-size: 1rem;
+}
 @media (max-width: 1024px){
   .header__user{
-    right: 5vw;
+    width: 20vw;
+  }
+  .header__heading h1{
+    font-size: 1.5rem;
+  }
+  .header__heading h2{
+    font-size: 1rem;
   }
 }
 </style>
