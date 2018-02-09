@@ -35,7 +35,7 @@ namespace Hated.Api.Controllers
             }
             catch (Exception e)
             {
-                BadRequest(e);
+                BadRequest(e.Message);
             }
             if (user == null)
             {
@@ -60,7 +60,7 @@ namespace Hated.Api.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(e);
+                return BadRequest(e.Message);
             }
 
         }
@@ -82,7 +82,7 @@ namespace Hated.Api.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(e);
+                return BadRequest(e.Message);
             }
         }
 
@@ -103,7 +103,7 @@ namespace Hated.Api.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(e);
+                return BadRequest(e.Message);
             }
         }
     }
