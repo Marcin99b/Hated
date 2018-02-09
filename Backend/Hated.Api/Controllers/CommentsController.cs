@@ -27,8 +27,15 @@ namespace Hated.Api.Controllers
             {
                 Unauthorized();
             }
-            var commentId = await _postCommentService.AddAsync(newComment.UserId, newComment.PostId, newComment.Content);
-            return Created($"comments/{commentId}", null);
+            try
+            {
+                var commentId = await _postCommentService.AddAsync(newComment.UserId, newComment.PostId, newComment.Content);
+                return Created($"comments/{commentId}", null);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
 
         //Read
@@ -36,37 +43,57 @@ namespace Hated.Api.Controllers
         [HttpGet("{commentId}")]
         public async Task<IActionResult> GetAsync(Guid commentId)
         {
-            var comment = await _postCommentService.GetAsync(commentId);
-            if (comment == null)
+            try
             {
-                return NotFound();
+                var comment = await _postCommentService.GetAsync(commentId);
+                if (comment == null)
+                {
+                    return NotFound();
+                }
+                return Json(comment);
             }
-
-            return Json(comment);
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
         
         //GET comments/post/guid
         [HttpGet("post/{postId}")]
         public async Task<IActionResult> GetAllAsyncFromPostAsync(Guid postId)
         {
-            var comments = await _postCommentService.GetAllFromPostAsync(postId);
-            if (comments == null)
+            try
             {
-                NotFound();
+                var comments = await _postCommentService.GetAllFromPostAsync(postId);
+                if (comments == null)
+                {
+                    NotFound();
+                }
+                return Json(comments);
             }
-            return Json(comments);
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
 
         //GET comments
         [HttpGet]
         public async Task<IActionResult> GetAllAsync()
         {
-            var comments = await _postCommentService.GetAllAsync();
-            if (comments == null)
+            try
             {
-                NotFound();
+                var comments = await _postCommentService.GetAllAsync();
+                if (comments == null)
+                {
+                    NotFound();
+                }
+                return Json(comments);
             }
-            return Json(comments);
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
 
         //Update
@@ -79,8 +106,15 @@ namespace Hated.Api.Controllers
             {
                 Unauthorized();
             }
-            await _postCommentService.UpdateAsync(postId, updatedComment);
-            return Ok();
+            try
+            {
+                await _postCommentService.UpdateAsync(postId, updatedComment);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
 
         //Delete
@@ -89,13 +123,20 @@ namespace Hated.Api.Controllers
         [HttpDelete("post/{postId}/comment/{commentId}")]
         public async Task<IActionResult> DeleteAsync(Guid postId, Guid commentId)
         {
-            var comment = await _postCommentService.GetAsync(commentId);
-            if (!comment.UserId.IsAuthorOrAdmin(User))
+            try
             {
-                Unauthorized();
+                var comment = await _postCommentService.GetAsync(commentId);
+                if (!comment.UserId.IsAuthorOrAdmin(User))
+                {
+                    Unauthorized();
+                }
+                await _postCommentService.DeleteAsync(postId, commentId);
+                return Ok();
             }
-            await _postCommentService.DeleteAsync(postId, commentId);
-            return Ok();
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
 
     }

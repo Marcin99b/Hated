@@ -48,22 +48,21 @@ namespace Hated.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllAsync()
         {
-
-            IEnumerable<UserDto> users = null;
+            
             try
             {
-                users = await _userService.GetAllAsync();
+                var users = await _userService.GetAllAsync();
+                if (users == null)
+                {
+                    return NotFound();
+                }
+                return Json(users);
             }
             catch (Exception e)
             {
-                BadRequest(e);
-            }
-            if (users == null)
-            {
-                return NotFound();
+                return BadRequest(e);
             }
 
-            return Json(users);
         }
         
         //Update
@@ -76,17 +75,15 @@ namespace Hated.Api.Controllers
             {
                 Unauthorized();
             }
-
             try
             {
                 await _userService.UpdateAsync(updatedUser);
+                return Ok();
             }
             catch (Exception e)
             {
-                BadRequest(e);
+                return BadRequest(e);
             }
-
-            return Ok();
         }
 
         //Delete
@@ -99,8 +96,15 @@ namespace Hated.Api.Controllers
             {
                 Unauthorized();
             }
-            await _userService.DeleteAsync(userId);
-            return Ok();
+            try
+            {
+                await _userService.DeleteAsync(userId);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
     }
 }

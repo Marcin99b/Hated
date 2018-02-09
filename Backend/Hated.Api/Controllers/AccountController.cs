@@ -27,12 +27,12 @@ namespace Hated.Api.Controllers
             try
             {
                 await _userService.RegisterAsync(newUser.Email, newUser.Username, newUser.Password);
+                return Created($"users/{newUser.Email}", null);
             }
             catch (Exception e)
             {
-                BadRequest(e);
+                return BadRequest(e);
             }
-            return Created($"users/{newUser.Email}", null);
         }
 
         //Token
@@ -49,9 +49,8 @@ namespace Hated.Api.Controllers
             }
             catch (Exception e)
             {
-                BadRequest(e);
+                return BadRequest(e);
             }
-            return NoContent();
         }
     }
 }
