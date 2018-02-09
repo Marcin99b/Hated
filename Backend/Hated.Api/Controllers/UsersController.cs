@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Hated.Infrastructure.Commands.Users;
 using Hated.Infrastructure.DTO;
+using Hated.Infrastructure.Extensions;
 using Hated.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -51,7 +54,10 @@ namespace Hated.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateAsync([FromBody]UserDto updatedUser)
         {
-            //var x = JwtSecurityTokenHandler.;
+            if (!updatedUser.Id.IsAuthorOrAdmin(User))
+            {
+                Unauthorized();
+            }
             await _userService.UpdateAsync(updatedUser);
             return Ok();
         }
@@ -62,6 +68,10 @@ namespace Hated.Api.Controllers
         [HttpDelete("{userId}")]
         public async Task<IActionResult> DeleteAsync(Guid userId)
         {
+            if (!userId.IsAuthorOrAdmin(User))
+            {
+                Unauthorized();
+            }
             await _userService.DeleteAsync(userId);
             return Ok();
         }

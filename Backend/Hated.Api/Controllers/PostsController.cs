@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Hated.Infrastructure.Commands.Posts;
 using Hated.Infrastructure.DTO;
+using Hated.Infrastructure.Extensions;
 using Hated.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +24,10 @@ namespace Hated.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> AddAsync([FromBody]CreatePost newPost)
         {
+            if (!newPost.UserId.IsAuthorOrAdmin(User))
+            {
+                Unauthorized();
+            }
             var postId = await _postService.AddAsync(newPost.UserId, newPost.Content);
             return Created($"posts/{postId}", null);
         }
@@ -60,6 +65,10 @@ namespace Hated.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateAsync([FromBody]PostDto updatedPost)
         {
+            if (!updatedPost.UserId.IsAuthorOrAdmin(User))
+            {
+                Unauthorized();
+            }
             await _postService.UpdateAsync(updatedPost);
             return Ok();
         }
@@ -70,6 +79,11 @@ namespace Hated.Api.Controllers
         [HttpDelete("{postId}")]
         public async Task<IActionResult> DeleteAsync(Guid postId)
         {
+            var post = await _postService.GetAsync(postId);
+            if (!post.UserId.IsAuthorOrAdmin(User))
+            {
+                Unauthorized();
+            }
             await _postService.DeleteAsync(postId);
             return Ok();
         }

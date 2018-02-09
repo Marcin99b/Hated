@@ -48,7 +48,8 @@ namespace Hated.Api
                     {
                         ValidIssuer = jwtSettings.Issuer,
                         ValidateAudience = false,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key))
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key)),
+                        SaveSigninToken = true
                     };
                 });
             services.AddAuthorization(x => x.AddPolicy("admin", policy => policy.RequireRole("admin")));
