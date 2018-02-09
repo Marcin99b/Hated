@@ -2,6 +2,7 @@
 /dist/
 /config/
 /build/
+/node_modules/
 .babelrc
 .editorconfig
 .eslintignore
