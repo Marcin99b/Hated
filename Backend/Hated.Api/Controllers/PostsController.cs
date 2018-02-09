@@ -28,8 +28,15 @@ namespace Hated.Api.Controllers
             {
                 Unauthorized();
             }
-            var postId = await _postService.AddAsync(newPost.UserId, newPost.Content);
-            return Created($"posts/{postId}", null);
+            try
+            {
+                var postId = await _postService.AddAsync(newPost.UserId, newPost.Content);
+                return Created($"posts/{postId}", null);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
 
         //Read
@@ -37,26 +44,38 @@ namespace Hated.Api.Controllers
         [HttpGet("{postId}")]
         public async Task<IActionResult> GetAsync(Guid postId)
         {
-            var post = await _postService.GetAsync(postId);
-            if (post == null)
+            try
             {
-               return NotFound();
+                var post = await _postService.GetAsync(postId);
+                if (post == null)
+                {
+                    return NotFound();
+                }
+                return Json(post);
             }
-
-            return Json(post);
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
 
         //GET posts
         [HttpGet]
         public async Task<IActionResult> GetAllAsync()
         {
-            var posts = await _postService.GetAllAsync();
-            if (posts == null)
+            try
             {
-                return NotFound();
+                var posts = await _postService.GetAllAsync();
+                if (posts == null)
+                {
+                    return NotFound();
+                }
+                return Json(posts);
             }
-
-            return Json(posts);
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
 
         //Update
@@ -65,12 +84,19 @@ namespace Hated.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateAsync([FromBody]PostDto updatedPost)
         {
-            if (!updatedPost.UserId.IsAuthorOrAdmin(User))
+            try
             {
-                Unauthorized();
+                if (!updatedPost.UserId.IsAuthorOrAdmin(User))
+                {
+                    Unauthorized();
+                }
+                await _postService.UpdateAsync(updatedPost);
+                return Ok();
             }
-            await _postService.UpdateAsync(updatedPost);
-            return Ok();
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
 
         //Delete
@@ -79,13 +105,20 @@ namespace Hated.Api.Controllers
         [HttpDelete("{postId}")]
         public async Task<IActionResult> DeleteAsync(Guid postId)
         {
-            var post = await _postService.GetAsync(postId);
-            if (!post.UserId.IsAuthorOrAdmin(User))
+            try
             {
-                Unauthorized();
+                var post = await _postService.GetAsync(postId);
+                if (!post.UserId.IsAuthorOrAdmin(User))
+                {
+                    Unauthorized();
+                }
+                await _postService.DeleteAsync(postId);
+                return Ok();
             }
-            await _postService.DeleteAsync(postId);
-            return Ok();
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
     }
 }
