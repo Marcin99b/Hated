@@ -2,11 +2,11 @@
   <form class="login-form" @submit.prevent="logIn">
     <div class="login-form__field">
       <label for="email">Email</label>
-      <input name="email" v-model="user.email" type="email">
+      <input name="email" v-model="user.email" autocomplete="current-password" type="email">
     </div>
     <div class="login-form__field">
       <label for="password">Hasło</label>
-      <input name="password" v-model="user.password" type="password">
+      <input name="password" autocomplete="current-password" v-model="user.password" type="password">
     </div>
     <router-link to="/register">
       Nie masz konta?
