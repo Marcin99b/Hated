@@ -28,4 +28,4 @@ Młody wiek osób dołączających jak i niski poziom doświadczenia nie są czy
 |Komunikatywność| |
 |Chęć rozwoju| |
 
-Osoby których specjalizacja nie została uwzględniona poniżej, również mogą zgłaszać się jako chętne do współpracy - jednak mają mniejsze szanse na dołączenie od tych, które są dla nas większym priorytetem.
+Osoby których specjalizacja nie została uwzględniona powyżej, również mogą zgłaszać się jako chętne do współpracy - jednak mają mniejsze szanse na dołączenie od tych, które są dla nas większym priorytetem.
