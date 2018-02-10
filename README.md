@@ -20,7 +20,10 @@ Młody wiek osób dołączających jak i niski poziom doświadczenia nie są czy
 ### Aktualnie poszukujemy do współpracy:
 
 **Junior Frontend developer** (Poszukiwana ilość: 1)
+
 |Wymagania|Dodatkowym atutem będzie|
 |--|--|
-|Znajomość frameworka Vue.js|Umiejętność tworzenia grafiki 2D
+|Znajomość frameworka Vue.js|Umiejętność tworzenia grafiki 2D|
 |Kontakt z tworzeniem aplikacji PWA|Znajomość systemu kontroli wersji Git|
+|Komunikatywność| |
+|Chęć rozwoju| |
