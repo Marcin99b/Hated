@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using Hated.Infrastructure.Commands.Account;
 using Hated.Infrastructure.Commands.Users;
@@ -49,7 +51,10 @@ namespace Hated.Api.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(e.Message);
+                return BadRequest(new ExceptionDto
+                {
+                    Message = e.Message
+                });
             }
         }
     }
