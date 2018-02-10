@@ -21,8 +21,6 @@
 </template>
 
 <script>
-import Endpoints from '@/services/Endpoints';
-
 export default {
   data() {
     return {
@@ -32,15 +30,14 @@ export default {
       },
     };
   },
+  computed: {
+    currentTest() {
+      return this.$store.state.test;
+    },
+  },
   methods: {
     logIn() {
-      Endpoints.logIn(this.user)
-        .then((data) => {
-          console.log(data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      this.$store.dispatch('toggleTest');
     },
   },
 };

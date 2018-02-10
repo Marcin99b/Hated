@@ -5,10 +5,10 @@
       <h2>Hejtuj jak chcesz</h2>
     </div>
     <img class="header__image" src="http://via.placeholder.com/200x150" alt="Logo">
-    <div class="header__user">
-      <router-link to="/login" tag="span" v-if="!isTouchDevice">Login</router-link>
-      <router-link to="/login" tag="span" v-else class="fa fa-sign-in"></router-link>
-    </div>
+    <router-link to="/login" tag="div" class="header__user">
+      <span v-if="!isTouchDevice">Login</span>
+      <span v-else class="fa fa-sign-in"></span>
+    </router-link>
   </header>
 </template>
 
