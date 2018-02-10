@@ -28,20 +28,19 @@ namespace Hated.Api.Controllers
         [HttpGet("{email}")]
         public async Task<IActionResult> GetAsync(string email)
         {
-            var user = new UserDto();
             try
             {
-                user = await _userService.GetAsync(email);
+                var user = await _userService.GetAsync(email);
+                if (user == null)
+                {
+                    return NotFound();
+                }
+                return Json(user);
             }
             catch (Exception e)
             {
-                BadRequest(e.Message);
+                return BadRequest(e.Message);
             }
-            if (user == null)
-            {
-                return NotFound();
-            }
-            return Json(user);
         }
 
         // GET users
