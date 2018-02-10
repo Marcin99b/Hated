@@ -8,6 +8,7 @@
       <label for="password">Hasło</label>
       <input name="password" autocomplete="current-password" v-model="user.password" type="password">
     </div>
+    <span class="error-message" v-show="error">Niepoprawny email lub hasło</span>
     <div class="login-form__field">
       <router-link to="/register">
       Nie masz konta?
@@ -33,6 +34,9 @@ export default {
   computed: {
     isLogged() {
       return this.$store.state.user.isLogged;
+    },
+    error() {
+      return this.$store.state.loginError;
     },
   },
   methods: {
@@ -70,5 +74,8 @@ export default {
 }
 .login-form__field input{
   border:0;
+}
+.error-message{
+  font-size: 1rem;
 }
 </style>

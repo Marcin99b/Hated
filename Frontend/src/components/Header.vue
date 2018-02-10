@@ -73,10 +73,10 @@ export default {
 .header__logout{
   position: absolute;
   top: 0;
-  right: 1vw;
-  width: 8vw;
+  right: 0vw;
+  width: 10vw;
   height: 100%;
-  font-size: .7rem;
+  font-size: .9rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,7 +91,6 @@ export default {
   cursor: pointer;
   background-color: white;
   color: var(--main-color);
-  border: 0.5vw solid var(--main-color);
 }
 .header__heading{
   position: absolute;

@@ -15,6 +15,9 @@ export default {
   components: {
     Header,
   },
+  mounted() {
+    this.$store.dispatch('checkIsAlreadyLogged');
+  },
 };
 </script>
 <style>
