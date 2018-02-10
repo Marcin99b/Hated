@@ -24,5 +24,3 @@ Młody wiek osób dołączających jak i niski poziom doświadczenia nie są czy
 |--|--|
 |Znajomość frameworka Vue.js|Umiejętność tworzenia grafiki 2D
 |Kontakt z tworzeniem aplikacji PWA|Znajomość systemu kontroli wersji Git|
-|Komunikatywność| |
-|Chęć rozwoju| |
