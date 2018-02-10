@@ -33,7 +33,10 @@ namespace Hated.Api.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(e.Message);
+                return Json(new ExceptionDto
+                {
+                    ErrorMessage = e.Message
+                });
             }
         }
 
@@ -51,9 +54,9 @@ namespace Hated.Api.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ExceptionDto
+                return Json(new ExceptionDto
                 {
-                    Message = e.Message
+                    ErrorMessage = e.Message
                 });
             }
         }

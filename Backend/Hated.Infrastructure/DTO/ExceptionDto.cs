@@ -2,6 +2,6 @@
 {
     public class ExceptionDto
     {
-        public string Message { get; set; }
+        public string ErrorMessage { get; set; }
     }
 }
