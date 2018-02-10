@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using Hated.Infrastructure.Commands.Account;
 using Hated.Infrastructure.Commands.Users;
@@ -27,12 +29,12 @@ namespace Hated.Api.Controllers
             try
             {
                 await _userService.RegisterAsync(newUser.Email, newUser.Username, newUser.Password);
+                return Created($"users/{newUser.Email}", null);
             }
             catch (Exception e)
             {
-                BadRequest(e);
+                return BadRequest(e.Message);
             }
-            return Created($"users/{newUser.Email}", null);
         }
 
         //Token
@@ -49,9 +51,11 @@ namespace Hated.Api.Controllers
             }
             catch (Exception e)
             {
-                BadRequest(e);
+                return BadRequest(new ExceptionDto
+                {
+                    Message = e.Message
+                });
             }
-            return NoContent();
         }
     }
 }

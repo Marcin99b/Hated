@@ -28,42 +28,40 @@ namespace Hated.Api.Controllers
         [HttpGet("{email}")]
         public async Task<IActionResult> GetAsync(string email)
         {
-            var user = new UserDto();
             try
             {
-                user = await _userService.GetAsync(email);
+                var user = await _userService.GetAsync(email);
+                if (user == null)
+                {
+                    return NotFound();
+                }
+                return Json(user);
             }
             catch (Exception e)
             {
-                BadRequest(e);
+                return BadRequest(e.Message);
             }
-            if (user == null)
-            {
-                return NotFound();
-            }
-            return Json(user);
         }
 
         // GET users
         [HttpGet]
         public async Task<IActionResult> GetAllAsync()
         {
-
-            IEnumerable<UserDto> users = null;
+            
             try
             {
-                users = await _userService.GetAllAsync();
+                var users = await _userService.GetAllAsync();
+                if (users == null)
+                {
+                    return NotFound();
+                }
+                return Json(users);
             }
             catch (Exception e)
             {
-                BadRequest(e);
-            }
-            if (users == null)
-            {
-                return NotFound();
+                return BadRequest(e.Message);
             }
 
-            return Json(users);
         }
         
         //Update
@@ -76,17 +74,15 @@ namespace Hated.Api.Controllers
             {
                 Unauthorized();
             }
-
             try
             {
                 await _userService.UpdateAsync(updatedUser);
+                return Ok();
             }
             catch (Exception e)
             {
-                BadRequest(e);
+                return BadRequest(e.Message);
             }
-
-            return Ok();
         }
 
         //Delete
@@ -99,8 +95,15 @@ namespace Hated.Api.Controllers
             {
                 Unauthorized();
             }
-            await _userService.DeleteAsync(userId);
-            return Ok();
+            try
+            {
+                await _userService.DeleteAsync(userId);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }
