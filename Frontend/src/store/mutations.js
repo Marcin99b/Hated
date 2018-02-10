@@ -1,5 +1,14 @@
 export default {
-  toggleTest(state) {
-    state.test = !state.test;
+  logIn(state, payload) {
+    state.user = {
+      isLogged: true,
+      token: payload.data.token,
+    };
+  },
+  logOut(state) {
+    state.user = {
+      isLogged: false,
+      token: '',
+    };
   },
 };

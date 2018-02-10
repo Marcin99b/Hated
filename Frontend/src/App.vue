@@ -2,7 +2,9 @@
   <div id="app">
     <Header/>
     <main>
-      <router-view></router-view>
+      <transition name="fade">
+        <router-view></router-view>
+      </transition>
     </main>
   </div>
 </template>
@@ -22,7 +24,7 @@ export default {
   --hand1: 'Caveat', cursive;
   --hand2: 'Kalam', cursive;
 }
-body {
+body, html {
   margin: 0;
   padding: 0;
   font-family: var(--main-font);
@@ -30,5 +32,14 @@ body {
 }
 *{
   box-sizing: border-box;
+}
+.fade-enter-to, .fade-leave{
+  transform: scale(1);
+}
+.fade-enter-active, .fade-leave-active {
+  transition: transform .5s;
+}
+.fade-enter, .fade-leave-to {
+  transform: scale(0);
 }
 </style>

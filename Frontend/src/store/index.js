@@ -7,7 +7,10 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    test: true,
+    user: {
+      isLogged: false,
+      token: '',
+    },
   },
   actions,
   mutations,

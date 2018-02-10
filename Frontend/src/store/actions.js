@@ -1,5 +1,13 @@
+import Endpoints from '@/services/Endpoints';
+
 export default {
-  toggleTest(context) {
-    context.commit('toggleTest');
+  logIn({ commit }, user) {
+    Endpoints.logIn(user)
+      .then((data) => {
+        commit('logIn', data);
+      });
+  },
+  logOut({ commit }) {
+    commit('logOut');
   },
 };

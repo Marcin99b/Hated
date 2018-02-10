@@ -31,14 +31,19 @@ export default {
     };
   },
   computed: {
-    currentTest() {
-      return this.$store.state.test;
+    isLogged() {
+      return this.$store.state.user.isLogged;
     },
   },
   methods: {
     logIn() {
-      this.$store.dispatch('toggleTest');
+      this.$store.dispatch('logIn', this.user);
     },
+  },
+  created() {
+    if (this.isLogged) {
+      this.$router.push('/');
+    }
   },
 };
 </script>
@@ -46,6 +51,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .login-form{
+  position: absolute;
+  left:0;
+  right:0;
   width: 50vw;
   height: 50vh;
   background-color: var(--main-color);

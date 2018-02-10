@@ -4,11 +4,14 @@
       <h1>Hated</h1>
       <h2>Hejtuj jak chcesz</h2>
     </div>
-    <img class="header__image" src="http://via.placeholder.com/200x150" alt="Logo">
-    <router-link to="/login" tag="div" class="header__user">
-      <span v-if="!isTouchDevice">Login</span>
+    <router-link to="/" tag="img" class="header__image" src="http://via.placeholder.com/200x150" alt="Logo"></router-link>
+    <router-link to="/login" tag="button" v-if="!isLogged" class="header__login">
+      <span v-if="!isTouchDevice">Zaloguj się</span>
       <span v-else class="fa fa-sign-in"></span>
     </router-link>
+    <div v-else class="header__login--logged">
+      <button class="header__logout" @click="logOut" >Wyloguj się</button>
+    </div>
   </header>
 </template>
 
@@ -19,10 +22,23 @@ export default {
 
     };
   },
+  methods: {
+    logOut() {
+      this.$store.dispatch('logOut');
+    },
+  },
   computed: {
     isTouchDevice() {
       return window.innerWidth < 1024;
     },
+    isLogged() {
+      return this.$store.state.user.isLogged;
+    },
+  },
+  updated() {
+    if (this.isLogged) {
+      this.$router.replace('/');
+    }
   },
 };
 </script>
@@ -50,19 +66,28 @@ export default {
   height: 100%;
   padding: 1vh;
 }
-.header__user{
+.header__image:hover{
+  cursor: pointer;
+}
+.header__login,
+.header__logout{
   position: absolute;
   top: 0;
   right: 1vw;
   width: 8vw;
   height: 100%;
-  font-size: 1.7rem;
+  font-size: .7rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 0.5vw solid transparent;
+  background-color: var(--main-color);
+  color:  white;
 }
-.header__user:hover,
-.header__user:active{
+.header__login:hover,
+.header__login:active,
+.header__logout:hover,
+.header__logout:active{
   cursor: pointer;
   background-color: white;
   color: var(--main-color);
@@ -85,7 +110,7 @@ export default {
   font-size: 1rem;
 }
 @media (max-width: 1024px){
-  .header__user{
+  .header__login{
     width: 20vw;
   }
   .header__heading h1{
