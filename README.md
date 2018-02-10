@@ -1,6 +1,4 @@
 
-# Hated
-
 ## Czym jest Hated?
 Hated to aplikacja z elementami społecznościowymi, pozwalająca użytkownikom na dzielenie się negatywnymi opiniami na różne tematy życia codziennego.
 Pozwala nie tylko na dzielenie się własnymi negatywnymi przemyśleniami, ale też na sprawdzenie zdania innych osób na różne tematy.
