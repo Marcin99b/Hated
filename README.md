@@ -27,3 +27,5 @@ Młody wiek osób dołączających jak i niski poziom doświadczenia nie są czy
 |Kontakt z tworzeniem aplikacji PWA|Znajomość systemu kontroli wersji Git|
 |Komunikatywność| |
 |Chęć rozwoju| |
+
+Osoby których specjalizacja nie została uwzględniona poniżej, również mogą zgłaszać się jako chętne do współpracy - jednak mają mniejsze szanse na dołączenie od tych, które są dla nas większym priorytetem.
