@@ -20,7 +20,7 @@
     }
 
     body {
-        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+        font-family: 'Roboto', sans-serif;
         line-height: 1;
         font-size: 14px;
         font-weight: 300;
