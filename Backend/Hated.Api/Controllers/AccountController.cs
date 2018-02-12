@@ -63,7 +63,7 @@ namespace Hated.Api.Controllers
 
         //POST account/refreshtoken
         [HttpPost("refreshtoken")]
-        public Task<IActionResult> RefreshTokenAsync()
+        public async Task<IActionResult> RefreshTokenAsync()
         {
             try
             {
