@@ -5,9 +5,11 @@ namespace Hated.Infrastructure.Extensions
 {
     public static class AuthorizeExtensions
     {
-        public static bool IsAuthorOrAdmin(this Guid id, ClaimsPrincipal claimsPrincipal)
+        public static bool IsAuthorOrAdmin(this Guid id, ClaimsPrincipal userToken)
         {
-            return claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier).Value == id.ToString();
+            var isAdmin = userToken.FindFirst(ClaimTypes.Role).Value == "admin";
+            var isAuthor = userToken.FindFirst(ClaimTypes.NameIdentifier).Value == id.ToString();
+            return isAdmin || isAuthor;
         }
     }
 }
