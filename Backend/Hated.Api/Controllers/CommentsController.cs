@@ -23,7 +23,7 @@ namespace Hated.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> AddAsync([FromBody]CreateComment newComment)
         {
-            if (!newComment.UserId.IsAuthorOrAdmin(User))
+            if (!newComment.UserId.HavePermissions(User))
             {
                 Unauthorized();
             }
@@ -114,7 +114,7 @@ namespace Hated.Api.Controllers
         [HttpPut("post/{postId}")]
         public async Task<IActionResult> UpdateAsync(Guid postId, [FromBody] CommentDto updatedComment)
         {
-            if (!updatedComment.UserId.IsAuthorOrAdmin(User))
+            if (!updatedComment.UserId.HavePermissions(User))
             {
                 Unauthorized();
             }
@@ -141,7 +141,7 @@ namespace Hated.Api.Controllers
             try
             {
                 var comment = await _postCommentService.GetAsync(commentId);
-                if (!comment.UserId.IsAuthorOrAdmin(User))
+                if (!comment.UserId.HavePermissions(User))
                 {
                     Unauthorized();
                 }

@@ -76,7 +76,7 @@ namespace Hated.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateAsync([FromBody]UserDto updatedUser)
         {
-            if (!updatedUser.Id.IsAuthorOrAdmin(User))
+            if (!updatedUser.Id.HavePermissions(User))
             {
                 Unauthorized();
             }
@@ -100,7 +100,7 @@ namespace Hated.Api.Controllers
         [HttpDelete("{userId}")]
         public async Task<IActionResult> DeleteAsync(Guid userId)
         {
-            if (!userId.IsAuthorOrAdmin(User))
+            if (!userId.HavePermissions(User))
             {
                 Unauthorized();
             }
