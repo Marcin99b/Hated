@@ -60,5 +60,23 @@ namespace Hated.Api.Controllers
                 });
             }
         }
+
+        //POST account/refreshtoken
+        [HttpPost("refreshtoken")]
+        public IActionResult RefreshTokenAsync()
+        {
+            try
+            {
+                var token = _jwtHandler.RefreshToken(User);
+                return Json(token);
+            }
+            catch (Exception e)
+            {
+                return Json(new ExceptionDto
+                {
+                    ErrorMessage = e.Message
+                });
+            }
+        }
     }
 }

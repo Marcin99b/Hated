@@ -2,6 +2,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 using Hated.Infrastructure.DTO;
 using Hated.Infrastructure.Extensions;
 using Hated.Infrastructure.Settings;
@@ -18,7 +19,7 @@ namespace Hated.Infrastructure.Services
             _jwtSettings = jwtSettings;
         }
 
-        public JwtDto CreateToken(Guid userId, string role)
+        public  JwtDto CreateToken(Guid userId, string role)
         {
             var now = DateTime.UtcNow;
             var claims = new Claim[]
@@ -45,6 +46,13 @@ namespace Hated.Infrastructure.Services
                 Token = token,
                 Expiry = expires.ToTimestamp()
             };
+        }
+
+        public JwtDto RefreshToken(ClaimsPrincipal userToken)
+        {
+            var userId = Guid.Parse(userToken.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var role = userToken.FindFirst(ClaimTypes.Role).Value;
+            return CreateToken(userId, role);
         }
     }
 }
