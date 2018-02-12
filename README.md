@@ -14,16 +14,3 @@ Osoby zainteresowane rozwojem aplikacji prosimy o kierowanie wiadomości pod adr
 Przydadzą się nie tylko zgłoszenia osób chcących współtworzyć projekt, ale też pojedyncze uwagi dotyczące projektu - **każda próba pomocy jest ważna**.
 
 Młody wiek osób dołączających jak i niski poziom doświadczenia nie są czymś, co skreśla was z osób mogących współtworzyć projekt - podstawa to spełnianie podstawowych wymagań przedstawionych poniżej.
-
-### Aktualnie poszukujemy do współpracy:
-
-**Junior Frontend developer** (Poszukiwana ilość: 1)
-
-|Wymagania|Dodatkowym atutem będzie|
-|--|--|
-|Znajomość frameworka Vue.js|Umiejętność tworzenia grafiki 2D|
-|Kontakt z tworzeniem aplikacji PWA|Znajomość systemu kontroli wersji Git|
-|Komunikatywność| |
-|Chęć rozwoju| |
-
-**Osoby których specjalizacja nie została uwzględniona powyżej, również mogą zgłaszać się jako chętne do współpracy - jednak mają mniejsze szanse na dołączenie od tych, które są dla nas większym priorytetem.**
