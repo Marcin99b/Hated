@@ -36,7 +36,7 @@ namespace Hated.Api.Controllers
             {
                 return Json(new ExceptionDto
                 {
-                    ErrorMessage = e.Message
+                    Error = e.Message
                 });
             }
         }
@@ -59,7 +59,7 @@ namespace Hated.Api.Controllers
             {
                 return Json(new ExceptionDto
                 {
-                    ErrorMessage = e.Message
+                    Error = e.Message
                 });
             }
         }
@@ -81,7 +81,7 @@ namespace Hated.Api.Controllers
             {
                 return Json(new ExceptionDto
                 {
-                    ErrorMessage = e.Message
+                    Error = e.Message
                 });
             }
         }
@@ -103,7 +103,7 @@ namespace Hated.Api.Controllers
             {
                 return Json(new ExceptionDto
                 {
-                    ErrorMessage = e.Message
+                    Error = e.Message
                 });
             }
         }
@@ -127,7 +127,7 @@ namespace Hated.Api.Controllers
             {
                 return Json(new ExceptionDto
                 {
-                    ErrorMessage = e.Message
+                    Error = e.Message
                 });
             }
         }
@@ -152,7 +152,7 @@ namespace Hated.Api.Controllers
             {
                 return Json(new ExceptionDto
                 {
-                    ErrorMessage = e.Message
+                    Error = e.Message
                 });
             }
         }
