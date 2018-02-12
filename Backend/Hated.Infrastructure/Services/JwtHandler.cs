@@ -19,7 +19,7 @@ namespace Hated.Infrastructure.Services
             _jwtSettings = jwtSettings;
         }
 
-        public  JwtDto CreateToken(Guid userId, string role)
+        public async Task<JwtDto> CreateToken(Guid userId, string role)
         {
             var now = DateTime.UtcNow;
             var claims = new Claim[]
@@ -48,11 +48,11 @@ namespace Hated.Infrastructure.Services
             };
         }
 
-        public JwtDto RefreshToken(ClaimsPrincipal userToken)
+        public async Task<JwtDto> RefreshToken(ClaimsPrincipal userToken)
         {
             var userId = Guid.Parse(userToken.FindFirst(ClaimTypes.NameIdentifier).Value);
             var role = userToken.FindFirst(ClaimTypes.Role).Value;
-            return CreateToken(userId, role);
+            return await CreateToken(userId, role);
         }
     }
 }

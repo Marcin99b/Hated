@@ -49,7 +49,7 @@ namespace Hated.Api.Controllers
             {
                 await _userService.LoginAsync(loginUser.Email, loginUser.Password);
                 var user = await _userService.GetAsync(loginUser.Email);
-                var token = _jwtHandler.CreateToken(user.Id, "user");
+                var token = await _jwtHandler.CreateToken(user.Id, "user");
                 return Json(token);
             }
             catch (Exception e)
@@ -63,11 +63,11 @@ namespace Hated.Api.Controllers
 
         //POST account/refreshtoken
         [HttpPost("refreshtoken")]
-        public IActionResult RefreshTokenAsync()
+        public Task<IActionResult> RefreshTokenAsync()
         {
             try
             {
-                var token = _jwtHandler.RefreshToken(User);
+                var token = await _jwtHandler.RefreshToken(User);
                 return Json(token);
             }
             catch (Exception e)
