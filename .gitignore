@@ -321,6 +321,4 @@ ASALocalRun/
 
 # MSBuild Binary and Structured Log
 *.binlog
-Frontend/
-*.vue
-Frontend/src/components/Header.vue
+
