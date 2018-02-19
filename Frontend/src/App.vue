@@ -1,48 +1,32 @@
 <template>
   <div id="app">
-    <Header/>
-    <main>
-      <transition name="fade">
-        <router-view></router-view>
-      </transition>
-    </main>
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
+    <router-view/>
   </div>
 </template>
-<script>
-import Header from '@/components/Header';
 
-export default {
-  components: {
-    Header,
-  },
-  mounted() {
-    this.$store.dispatch('checkIsAlreadyLogged');
-  },
-};
-</script>
 <style>
-:root{
-  --main-color: rgba(179, 9, 9, 0.795);
-  --main-font: 'Lato', sans-serif;
-  --hand1: 'Caveat', cursive;
-  --hand2: 'Kalam', cursive;
+#app {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
-body, html {
-  margin: 0;
-  padding: 0;
-  font-family: var(--main-font);
-  font-size: 1.3rem;
+
+#nav {
+  padding: 30px;
 }
-*{
-  box-sizing: border-box;
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
 }
-.fade-enter-to, .fade-leave{
-  transform: scale(1);
-}
-.fade-enter-active, .fade-leave-active {
-  transition: transform .5s;
-}
-.fade-enter, .fade-leave-to {
-  transform: scale(0);
+
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
