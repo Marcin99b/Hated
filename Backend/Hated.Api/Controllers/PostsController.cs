@@ -24,7 +24,7 @@ namespace Hated.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> AddAsync([FromBody]CreatePost newPost)
         {
-            if (!newPost.UserId.IsAuthorOrAdmin(User))
+            if (!newPost.UserId.HavePermissions(User))
             {
                 Unauthorized();
             }
@@ -37,7 +37,7 @@ namespace Hated.Api.Controllers
             {
                 return Json(new ExceptionDto
                 {
-                    ErrorMessage = e.Message
+                    Error = e.Message
                 });
             }
         }
@@ -60,7 +60,7 @@ namespace Hated.Api.Controllers
             {
                 return Json(new ExceptionDto
                 {
-                    ErrorMessage = e.Message
+                    Error = e.Message
                 });
             }
         }
@@ -82,7 +82,7 @@ namespace Hated.Api.Controllers
             {
                 return Json(new ExceptionDto
                 {
-                    ErrorMessage = e.Message
+                    Error = e.Message
                 });
             }
         }
@@ -95,7 +95,7 @@ namespace Hated.Api.Controllers
         {
             try
             {
-                if (!updatedPost.UserId.IsAuthorOrAdmin(User))
+                if (!updatedPost.UserId.HavePermissions(User))
                 {
                     Unauthorized();
                 }
@@ -106,7 +106,7 @@ namespace Hated.Api.Controllers
             {
                 return Json(new ExceptionDto
                 {
-                    ErrorMessage = e.Message
+                    Error = e.Message
                 });
             }
         }
@@ -120,7 +120,7 @@ namespace Hated.Api.Controllers
             try
             {
                 var post = await _postService.GetAsync(postId);
-                if (!post.UserId.IsAuthorOrAdmin(User))
+                if (!post.UserId.HavePermissions(User))
                 {
                     Unauthorized();
                 }
@@ -131,7 +131,7 @@ namespace Hated.Api.Controllers
             {
                 return Json(new ExceptionDto
                 {
-                    ErrorMessage = e.Message
+                    Error = e.Message
                 });
             }
         }
