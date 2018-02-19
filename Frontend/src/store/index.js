@@ -11,6 +11,7 @@ export default new Vuex.Store({
       isLogged: false,
       token: '',
     },
+    loginError: '',
   },
   actions,
   mutations,
