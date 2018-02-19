@@ -1,9 +1,18 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-Vue.use(Vuex)
+import Vue from 'vue';
+import Vuex from 'vuex';
+import actions from './actions';
+import mutations from './mutations';
 
-const store = new Vuex.Store({
-    modules: {}
-})
+Vue.use(Vuex);
 
-export default store
+export default new Vuex.Store({
+  state: {
+    user: {
+      isLogged: false,
+      token: '',
+    },
+    loginError: '',
+  },
+  actions,
+  mutations,
+});
