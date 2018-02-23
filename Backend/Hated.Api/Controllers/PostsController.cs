@@ -67,11 +67,11 @@ namespace Hated.Api.Controllers
 
         //GET posts
         [HttpGet]
-        public async Task<IActionResult> GetAllAsync()
+        public async Task<IActionResult> GetAllAsync(int? from, int? number)
         {
             try
             {
-                var posts = await _postService.GetAllAsync();
+                var posts = await _postService.GetAllAsync(from, number);
                 if (posts == null)
                 {
                     return NotFound();

@@ -13,6 +13,8 @@ namespace Hated.Core.Repositories
 
         Task<IEnumerable<User>> GetAllAsync();
 
+        Task<IEnumerable<User>> GetAllAsync(int from, int number);
+
         Task AddAsync(User user);
 
         Task UpdateAsync(User user);

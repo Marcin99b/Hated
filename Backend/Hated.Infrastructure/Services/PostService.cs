@@ -40,9 +40,11 @@ namespace Hated.Infrastructure.Services
             return _mapper.Map<Post, PostDto>(post);
         }
 
-        public async Task<IEnumerable<PostDto>> GetAllAsync()
+        public async Task<IEnumerable<PostDto>> GetAllAsync(int? from, int? number)
         {
-            var posts = await _postRepository.GetAllAsync();
+            var posts = from != null && number != null ? 
+                await _postRepository.GetAllAsync((int)from, (int)number) 
+                : await _postRepository.GetAllAsync();
             return posts.Select(x => _mapper.Map<Post, PostDto>(x));
         }
 

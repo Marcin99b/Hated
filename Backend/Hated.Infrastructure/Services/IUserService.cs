@@ -11,7 +11,7 @@ namespace Hated.Infrastructure.Services
         Task LoginAsync(string email, string password);
         Task<UserDto> GetAsync(Guid id);
         Task<UserDto> GetAsync(string email);
-        Task<IEnumerable<UserDto>> GetAllAsync();
+        Task<IEnumerable<UserDto>> GetAllAsync(int? from, int? number);
         Task UpdateAsync(UserDto updatedUser);
         Task DeleteAsync(Guid id);
     }

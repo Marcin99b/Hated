@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Hated.Core.Domain;
 using Hated.Core.Repositories;
+using Hated.Infrastructure.Extensions;
 using MongoDB.Driver;
 
 namespace Hated.Infrastructure.Repositories
@@ -23,6 +24,9 @@ namespace Hated.Infrastructure.Repositories
 
         public async Task<IEnumerable<Post>> GetAllAsync()
             => await _posts.AsQueryable().ToListAsync();
+
+        public async Task<IEnumerable<Post>> GetAllAsync(int from, int number)
+            => await _posts.PaginateMongo(from, number);
 
         public async Task AddAsync(Post post)
             => await _posts.InsertOneAsync(post);

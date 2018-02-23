@@ -42,12 +42,11 @@ namespace Hated.Api.Controllers
 
         // GET users
         [HttpGet]
-        public async Task<IActionResult> GetAllAsync()
+        public async Task<IActionResult> GetAllAsync(int? from, int? number)
         {
-            
             try
             {
-                var users = await _userService.GetAllAsync();
+                var users = await _userService.GetAllAsync(from, number);
                 if (users == null)
                 {
                     return NotFound();
@@ -61,7 +60,6 @@ namespace Hated.Api.Controllers
                     Error = e.Message
                 });
             }
-
         }
         
         //Update
