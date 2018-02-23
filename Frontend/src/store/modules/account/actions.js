@@ -13,4 +13,7 @@ export default {
   checkIsAlreadyLogged({ commit }) {
     commit('checkIsAlreadyLogged');
   },
+  clearError({ commit }) {
+    commit('clearError');
+  }
 };
