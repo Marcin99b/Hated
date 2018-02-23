@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Net.Mime;
 using System.Threading.Tasks;
 using Hated.Infrastructure.Commands.Account;
 using Hated.Infrastructure.Commands.Users;
 using Hated.Infrastructure.DTO;
+using Hated.Infrastructure.Extensions;
 using Hated.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -69,6 +68,44 @@ namespace Hated.Api.Controllers
             {
                 var token = await _jwtHandler.RefreshTokenAsync(User);
                 return Json(token);
+            }
+            catch (Exception e)
+            {
+                return Json(new ExceptionDto
+                {
+                    Error = e.Message
+                });
+            }
+        }
+
+        //POST account/setotheradmin
+        [HttpPost("setotheradmin")]
+        public async Task<IActionResult> SetOtherAdminAsync([FromBody]SetUserRole setUserRole)
+        {
+            try
+            {
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return Json(new ExceptionDto
+                {
+                    Error = e.Message
+                });
+            }
+        }
+
+        //POST account/unsetotheradmin
+        [HttpPost("unsetotheradmin")]
+        public async Task<IActionResult> UnsetOtherAdminAsync([FromBody]SetUserRole setUserRole)
+        {
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+            try
+            {
+                return Ok();
             }
             catch (Exception e)
             {

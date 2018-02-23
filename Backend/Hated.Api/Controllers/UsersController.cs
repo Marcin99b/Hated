@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using Hated.Infrastructure.Commands.Users;
 using Hated.Infrastructure.DTO;
 using Hated.Infrastructure.Extensions;
 using Hated.Infrastructure.Services;
@@ -78,7 +72,7 @@ namespace Hated.Api.Controllers
         {
             if (!updatedUser.Id.HavePermissions(User))
             {
-                Unauthorized();
+                return Unauthorized();
             }
             try
             {
@@ -102,7 +96,7 @@ namespace Hated.Api.Controllers
         {
             if (!userId.HavePermissions(User))
             {
-                Unauthorized();
+                return Unauthorized();
             }
             try
             {

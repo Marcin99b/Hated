@@ -25,7 +25,7 @@ namespace Hated.Api.Controllers
         {
             if (!newComment.UserId.HavePermissions(User))
             {
-                Unauthorized();
+                return Unauthorized();
             }
             try
             {
@@ -93,10 +93,6 @@ namespace Hated.Api.Controllers
             try
             {
                 var comments = await _postCommentService.GetAllAsync();
-                if (comments == null)
-                {
-                    NotFound();
-                }
                 return Json(comments);
             }
             catch (Exception e)
@@ -116,7 +112,7 @@ namespace Hated.Api.Controllers
         {
             if (!updatedComment.UserId.HavePermissions(User))
             {
-                Unauthorized();
+                return Unauthorized();
             }
             try
             {
@@ -143,7 +139,7 @@ namespace Hated.Api.Controllers
                 var comment = await _postCommentService.GetAsync(commentId);
                 if (!comment.UserId.HavePermissions(User))
                 {
-                    Unauthorized();
+                    return Unauthorized();
                 }
                 await _postCommentService.DeleteAsync(postId, commentId);
                 return Ok();

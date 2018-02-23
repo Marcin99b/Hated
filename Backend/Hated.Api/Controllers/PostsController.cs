@@ -26,7 +26,7 @@ namespace Hated.Api.Controllers
         {
             if (!newPost.UserId.HavePermissions(User))
             {
-                Unauthorized();
+                return Unauthorized();
             }
             try
             {
@@ -97,7 +97,7 @@ namespace Hated.Api.Controllers
             {
                 if (!updatedPost.UserId.HavePermissions(User))
                 {
-                    Unauthorized();
+                    return Unauthorized();
                 }
                 await _postService.UpdateAsync(updatedPost);
                 return Ok();
@@ -122,7 +122,7 @@ namespace Hated.Api.Controllers
                 var post = await _postService.GetAsync(postId);
                 if (!post.UserId.HavePermissions(User))
                 {
-                    Unauthorized();
+                    return Unauthorized();
                 }
                 await _postService.DeleteAsync(postId);
                 return Ok();
