@@ -5,6 +5,7 @@ using Hated.Infrastructure.Commands.Users;
 using Hated.Infrastructure.DTO;
 using Hated.Infrastructure.Extensions;
 using Hated.Infrastructure.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hated.Api.Controllers
@@ -81,6 +82,7 @@ namespace Hated.Api.Controllers
         }
 
         //POST account/setotheradmin
+        [Authorize]
         [HttpPost("setotheradmin")]
         public async Task<IActionResult> SetOtherAdminAsync([FromBody]SetUserRole setUserRole)
         {
@@ -103,6 +105,7 @@ namespace Hated.Api.Controllers
         }
 
         //POST account/unsetotheradmin
+        [Authorize]
         [HttpPost("unsetotheradmin")]
         public async Task<IActionResult> UnsetOtherAdminAsync([FromBody]SetUserRole setUserRole)
         {
