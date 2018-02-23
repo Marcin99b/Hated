@@ -7,7 +7,8 @@ namespace Hated.Infrastructure.Services
 {
     public interface IJwtHandler
     {
-        Task<JwtDto> CreateToken(Guid userId, string role);
-        Task<JwtDto> RefreshToken(ClaimsPrincipal userToken);
+        Task<JwtDto> CreateTokenAsync(Guid userId, string role);
+        Task<JwtDto> CreateTokenByUserObject(UserDto user);
+        Task<JwtDto> RefreshTokenAsync(ClaimsPrincipal userToken);
     }
 }

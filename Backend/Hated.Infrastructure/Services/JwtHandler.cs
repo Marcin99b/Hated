@@ -19,7 +19,7 @@ namespace Hated.Infrastructure.Services
             _jwtSettings = jwtSettings;
         }
 
-        public async Task<JwtDto> CreateToken(Guid userId, string role)
+        public async Task<JwtDto> CreateTokenAsync(Guid userId, string role)
         {
             var now = DateTime.UtcNow;
             var claims = new Claim[]
@@ -29,18 +29,17 @@ namespace Hated.Infrastructure.Services
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()), 
                 new Claim(JwtRegisteredClaimNames.Iat, now.ToTimestamp().ToString(), ClaimValueTypes.Integer64)
             };
-            var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key)), 
-                SecurityAlgorithms.HmacSha256);
+            var signingCredentials = await Task.FromResult(new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key)), 
+                SecurityAlgorithms.HmacSha256));
             var expires = now.AddMinutes(_jwtSettings.ExpiryMinutes);
-            var jwt = new JwtSecurityToken(
+            var jwt = await Task.FromResult(new JwtSecurityToken(
                 issuer: _jwtSettings.Issuer,
                 claims: claims,
                 notBefore: now,
                 expires: expires,
                 signingCredentials: signingCredentials
-                );
-
-            var token = new JwtSecurityTokenHandler().WriteToken(jwt);
+                ));
+            var token = await Task.FromResult(new JwtSecurityTokenHandler().WriteToken(jwt));
             return new JwtDto
             {
                 Token = token,
@@ -48,11 +47,14 @@ namespace Hated.Infrastructure.Services
             };
         }
 
-        public async Task<JwtDto> RefreshToken(ClaimsPrincipal userToken)
+        public async Task<JwtDto> CreateTokenByUserObject(UserDto user)
+            => await CreateTokenAsync(user.Id, user.Role);
+
+        public async Task<JwtDto> RefreshTokenAsync(ClaimsPrincipal userToken)
         {
             var userId = Guid.Parse(userToken.FindFirst(ClaimTypes.NameIdentifier).Value);
             var role = userToken.FindFirst(ClaimTypes.Role).Value;
-            return await CreateToken(userId, role);
+            return await CreateTokenAsync(userId, role);
         }
     }
 }

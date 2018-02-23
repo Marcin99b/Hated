@@ -7,6 +7,7 @@ namespace Hated.Core.Domain
         public Guid Id { get; protected set; }
         public string Email { get; protected set; }
         public string Username { get; protected set; }
+        public string Role { get; protected set; }
         public string Password { get; protected set; }
         public string Salt { get; protected set; }
         public DateTime ChangedAt { get; protected set; }
@@ -18,6 +19,7 @@ namespace Hated.Core.Domain
             SetEmail(email);
             SetUsername(username);
             SetPassword(password);
+            
             SetSalt(salt);
             CreatedAt = DateTime.UtcNow;
         }
@@ -31,6 +33,12 @@ namespace Hated.Core.Domain
         public void SetUsername(string username)
         {
             Username = username;
+            ChangedAt = DateTime.UtcNow;
+        }
+
+        public void SetRole(string role)
+        {
+            Role = role;
             ChangedAt = DateTime.UtcNow;
         }
 
