@@ -1,4 +1,5 @@
 ﻿using System;
+using SimpleValidator.Extensions;
 
 namespace Hated.Core.Domain
 {
@@ -26,12 +27,25 @@ namespace Hated.Core.Domain
 
         public void SetEmail(string email)
         {
+            if (!email.IsEmail())
+            {
+                throw new Exception($"Email: {email} is not valid");
+            }
             Email = email;
             ChangedAt = DateTime.UtcNow;
         }
 
         public void SetUsername(string username)
         {
+            if (!username.IsMinLength(3))
+            {
+                throw new Exception($"Username: {username} lenght is lower than 3");
+            }
+            if (!username.IsMaxLength(30))
+            {
+                throw new Exception($"Username: {username} lenght is more than 30");
+            }
+
             Username = username;
             ChangedAt = DateTime.UtcNow;
         }
@@ -44,6 +58,10 @@ namespace Hated.Core.Domain
 
         public void SetPassword(string password)
         {
+            if (!password.IsMinLength(6))
+            {
+                throw new Exception($"Password lenght is lower than 6");
+            }
             Password = password;
             ChangedAt = DateTime.UtcNow;
         }

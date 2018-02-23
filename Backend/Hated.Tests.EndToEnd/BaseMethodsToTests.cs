@@ -26,8 +26,8 @@ namespace Hated.Tests.EndToEnd
 
         private async Task ConstructorAsync()
         {
-            testEmailGenerate = Guid.NewGuid().ToString();
-            testPasswordGenerate = Guid.NewGuid().ToString();
+            testEmailGenerate = Guid.NewGuid() + "@email.com";
+            testPasswordGenerate = "secret";
             await CreateNewUser(testEmailGenerate, null, testPasswordGenerate);
             await LoginUserAsync(testEmailGenerate, testPasswordGenerate);
             testUserGenerate = await GetUserAsync(testEmailGenerate);
@@ -90,7 +90,7 @@ namespace Hated.Tests.EndToEnd
         //Post
         protected async Task<HttpResponseMessage> CreateNewPost(Guid userId, string content = null)
         {
-            content = content ?? "testcontent";
+            content = content ?? Guid.NewGuid() + Guid.NewGuid().ToString();
             var payload = GetPayload(new CreatePost
             {
                 UserId = userId,

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Hated.Core.Domain;
 using Xunit;
 
@@ -12,9 +13,9 @@ namespace Hated.Tests.Domain
             string beforeText = "before";
             string afterText = "after";
 
-            var user = new User("test@test.com", "test", "secret", "salt");
+            var user = new User("test@test.com", "secret", "secret123", "salt");
 
-            var post = new Post(user.Id, "test");
+            var post = new Post(user.Id, Guid.NewGuid().ToString() + Guid.NewGuid());
             var comment = new Comment(user.Id, beforeText);
 
             post.AddComment(comment);

@@ -27,7 +27,7 @@ namespace Hated.Tests.EndToEnd
         [Fact]
         public async Task CreatedUserShouldBeCreated()
         {
-            string emailTestedUser = Guid.NewGuid().ToString();
+            string emailTestedUser = Guid.NewGuid() + "@email.com";
             var response = await CreateNewUser(emailTestedUser);
 
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
@@ -41,7 +41,7 @@ namespace Hated.Tests.EndToEnd
         [Fact]
         public async Task UpdatedUserShouldBeUpdated()
         {
-            string usernameAfterUpdate = Guid.NewGuid().ToString();
+            string usernameAfterUpdate = "updated";
             testUserGenerate.Username = usernameAfterUpdate;
             
             var payload = GetPayload(testUserGenerate);
