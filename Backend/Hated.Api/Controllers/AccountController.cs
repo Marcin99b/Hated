@@ -13,11 +13,13 @@ namespace Hated.Api.Controllers
     {
         private readonly IUserService _userService;
         private readonly IJwtHandler _jwtHandler;
+        private readonly IRoleService _roleService;
 
-        public AccountController(IUserService userService, IJwtHandler jwtHandler)
+        public AccountController(IUserService userService, IJwtHandler jwtHandler, IRoleService roleService)
         {
             _userService = userService;
             _jwtHandler = jwtHandler;
+            _roleService = roleService;
         }
 
         //Create
@@ -82,8 +84,13 @@ namespace Hated.Api.Controllers
         [HttpPost("setotheradmin")]
         public async Task<IActionResult> SetOtherAdminAsync([FromBody]SetUserRole setUserRole)
         {
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
             try
             {
+                await _roleService.SetAdmin(setUserRole.UserId);
                 return Ok();
             }
             catch (Exception e)
@@ -105,6 +112,7 @@ namespace Hated.Api.Controllers
             }
             try
             {
+                await _roleService.SetAdmin(setUserRole.UserId);
                 return Ok();
             }
             catch (Exception e)
