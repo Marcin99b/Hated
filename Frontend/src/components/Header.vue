@@ -5,23 +5,21 @@
       <h2>Hejtuj jak chcesz</h2>
     </div>
     <router-link to="/" tag="img" class="header__image" src="http://via.placeholder.com/200x150" alt="Logo"></router-link>
-    <router-link to="/login" tag="button" v-if="!isLogged" class="header__login">
+    <router-link to="/login" tag="button" v-if="!user.isLogged" class="header__login global-button">
       <span v-if="!isTouchDevice">Zaloguj się</span>
       <span v-else class="fa fa-sign-in"></span>
     </router-link>
     <div v-else class="header__login--logged">
-      <button class="header__logout" @click="logOut" >Wyloguj się</button>
+      <button class="header__logout global-button" @click="logOut">
+        <span v-if="!isTouchDevice">Wyloguj się</span>
+        <span v-else class="fa fa-sign-out"></span> 
+      </button>
     </div>
   </header>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-
-    };
-  },
   methods: {
     logOut() {
       this.$store.dispatch('logOut');
@@ -31,15 +29,15 @@ export default {
     isTouchDevice() {
       return window.innerWidth < 1024;
     },
-    isLogged() {
-      return this.$store.state.user.isLogged;
-    },
-  },
-  updated() {
-    if (this.isLogged) {
-      this.$router.replace('/');
+    user() { 
+      return this.$store.state.account.user;
     }
   },
+  updated() {
+    if (this.user.isLogged) {
+      this.$router.push('/');
+    }
+  }
 };
 </script>
 
@@ -74,15 +72,7 @@ export default {
   position: absolute;
   top: 0;
   right: 0vw;
-  width: 10vw;
   height: 100%;
-  font-size: .9rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 0.5vw solid transparent;
-  background-color: var(--main-color);
-  color:  white;
 }
 .header__login:hover,
 .header__login:active,
@@ -109,14 +99,19 @@ export default {
   font-size: 1rem;
 }
 @media (max-width: 1024px){
-  .header__login{
+  .header__login,
+  .header__logout{
     width: 20vw;
-  }
-  .header__heading h1{
     font-size: 1.5rem;
   }
+  .header__heading h1{
+    font-size: 1.4rem;
+  }
   .header__heading h2{
-    font-size: 1rem;
+    font-size: .9rem;
+  }
+  .header__image{
+    left: 10vw;
   }
 }
 </style>

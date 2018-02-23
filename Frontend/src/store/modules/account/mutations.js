@@ -1,4 +1,4 @@
-import SessionStorageHandler from './sessionStorage';
+import SessionStorageHandler from '../../sessionStorage';
 
 export default {
   logIn(state, payload) {
@@ -9,7 +9,7 @@ export default {
       };
       SessionStorageHandler.saveState(state);
     } else {
-      state.loginError = payload.errorMessage;
+      state.loginError = payload.error;
     }
   },
   logOut(state) {
@@ -25,4 +25,7 @@ export default {
       state.user = newState.user;
     }
   },
+  clearError(state) {
+    state.loginError = null;
+  }
 };
