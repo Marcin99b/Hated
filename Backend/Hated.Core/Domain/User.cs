@@ -18,8 +18,8 @@ namespace Hated.Core.Domain
             Id = Guid.NewGuid();
             SetEmail(email);
             SetUsername(username);
+            SetRole("User");
             SetPassword(password);
-            
             SetSalt(salt);
             CreatedAt = DateTime.UtcNow;
         }
