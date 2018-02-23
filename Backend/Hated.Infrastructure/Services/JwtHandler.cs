@@ -54,6 +54,11 @@ namespace Hated.Infrastructure.Services
         {
             var userId = Guid.Parse(userToken.FindFirst(ClaimTypes.NameIdentifier).Value);
             var role = userToken.FindFirst(ClaimTypes.Role).Value;
+            var expiryToken = userToken.FindFirst(JwtRegisteredClaimNames.Iat).Value;
+            if (Int64.Parse(expiryToken) > DateTime.UtcNow.ToTimestamp())
+            {
+                throw new Exception("Token is expired");
+            }
             return await CreateTokenAsync(userId, role);
         }
     }
