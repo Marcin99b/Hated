@@ -14,7 +14,7 @@
       Nie masz konta?
       </router-link></div>
     <div class="login-form__field">
-      <button type="submit">
+      <button type="submit" class="global-button">
         Zaloguj się
       </button>
     </div>
@@ -26,22 +26,25 @@ export default {
   data() {
     return {
       user: {
-        email: 'usertest@abcd.abcd',
-        password: 'testowehaslo',
+        email: 'qwerty@qwerty.com',
+        password: 'qwerty',
       },
     };
   },
   computed: {
     isLogged() {
-      return this.$store.state.user.isLogged;
+      return this.$store.state.account.user.isLogged;
     },
     error() {
-      return this.$store.state.loginError;
+      return this.$store.state.account.loginError;
     },
   },
   methods: {
     logIn() {
       this.$store.dispatch('logIn', this.user);
+      if (this.isLogged) {
+        this.$router.push('/');
+      }
     },
   },
   created() {
@@ -49,6 +52,13 @@ export default {
       this.$router.push('/');
     }
   },
+  updated() {
+    if(this.error){
+      setTimeout(()=> {
+        this.$store.dispatch('clearError');
+      },3000);
+    }
+  }
 };
 </script>
 
@@ -71,11 +81,28 @@ export default {
 }
 .login-form__field{
   margin: 1vh 0;
+  text-align: center;
 }
 .login-form__field input{
   border:0;
+  font-size: .8rem;
 }
 .error-message{
   font-size: 1rem;
+}
+@media (max-width: 1024px){
+  .login-form{
+    width: 80vw;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .login-form__field button{
+    width: 30vw;
+    padding: .3rem;
+  }
+  .login-form__field a{
+    font-size: .9rem;
+  }
 }
 </style>
