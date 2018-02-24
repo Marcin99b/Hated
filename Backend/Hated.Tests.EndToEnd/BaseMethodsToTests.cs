@@ -42,14 +42,13 @@ namespace Hated.Tests.EndToEnd
 
         #region User
         //User
-        protected async Task<HttpResponseMessage> CreateNewUser(string email, string username = null, string password = "secret")
+        protected async Task<HttpResponseMessage> CreateNewUser(string email, string username = null, string password = null)
         {
-            username = username ?? "testuser";
             var payload = GetPayload(new CreateUser
             {
                 Email = email,
-                Username = username,
-                Password = password
+                Username = username ?? Guid.NewGuid().ToString().Substring(0, 30),
+                Password = password ?? Guid.NewGuid().ToString()
             });
             
             return await Client.PostAsync("account/register", payload);

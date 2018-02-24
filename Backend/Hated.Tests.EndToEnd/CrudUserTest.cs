@@ -41,7 +41,7 @@ namespace Hated.Tests.EndToEnd
         [Fact]
         public async Task UpdatedUserShouldBeUpdated()
         {
-            string usernameAfterUpdate = "updated";
+            string usernameAfterUpdate = Guid.NewGuid().ToString().Substring(0, 30);
             testUserGenerate.Username = usernameAfterUpdate;
             
             var payload = GetPayload(testUserGenerate);

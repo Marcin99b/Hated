@@ -6,6 +6,7 @@ using AutoMapper;
 using Hated.Core.Domain;
 using Hated.Core.Repositories;
 using Hated.Infrastructure.DTO;
+using Hated.Infrastructure.Extensions;
 
 namespace Hated.Infrastructure.Services
 {
@@ -23,6 +24,7 @@ namespace Hated.Infrastructure.Services
         //Create
         public async Task<Guid> AddAsync(Guid userId, string content)
         {
+            content.PostContentValidation();
             var post = new Post(userId, content);
             await _postRepository.AddAsync(post);
             return post.Id;
@@ -51,6 +53,7 @@ namespace Hated.Infrastructure.Services
         //Update
         public async Task UpdateAsync(PostDto updatedPost)
         {
+            updatedPost.Content.PostContentValidation();
             var post = await _postRepository.GetAsync(updatedPost.Id);
             if (post == null)
             {
