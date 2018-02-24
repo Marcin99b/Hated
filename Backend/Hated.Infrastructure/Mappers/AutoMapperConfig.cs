@@ -11,6 +11,7 @@ namespace Hated.Infrastructure.Mappers
                 {
                     cfg.CreateMap<User, UserDto>();
                     cfg.CreateMap<Post, PostDto>();
+                    cfg.CreateMap<Post, DetailPostDto>();
                     cfg.CreateMap<Comment, CommentDto>();
                 })
                 .CreateMapper();

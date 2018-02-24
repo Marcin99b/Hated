@@ -24,13 +24,9 @@ namespace Hated.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> AddAsync([FromBody]CreatePost newPost)
         {
-            if (!newPost.UserId.HavePermissions(User))
-            {
-                return Unauthorized();
-            }
             try
             {
-                var postId = await _postService.AddAsync(newPost.UserId, newPost.Content);
+                var postId = await _postService.AddAsync(User.GetUserId(), newPost.Content);
                 return Created($"posts/{postId}", null);
             }
             catch (Exception e)
@@ -95,7 +91,7 @@ namespace Hated.Api.Controllers
         {
             try
             {
-                if (!updatedPost.UserId.HavePermissions(User))
+                if (!updatedPost.Author.Id.HavePermissions(User))
                 {
                     return Unauthorized();
                 }
@@ -120,7 +116,7 @@ namespace Hated.Api.Controllers
             try
             {
                 var post = await _postService.GetAsync(postId);
-                if (!post.UserId.HavePermissions(User))
+                if (!post.Author.Id.HavePermissions(User))
                 {
                     return Unauthorized();
                 }

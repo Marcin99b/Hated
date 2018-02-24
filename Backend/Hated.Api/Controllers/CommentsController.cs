@@ -23,13 +23,9 @@ namespace Hated.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> AddAsync([FromBody]CreateComment newComment)
         {
-            if (!newComment.UserId.HavePermissions(User))
-            {
-                return Unauthorized();
-            }
             try
             {
-                var commentId = await _postCommentService.AddAsync(newComment.UserId, newComment.PostId, newComment.Content);
+                var commentId = await _postCommentService.AddAsync(User.GetUserId(), newComment.PostId, newComment.Content);
                 return Created($"comments/{commentId}", null);
             }
             catch (Exception e)
