@@ -12,6 +12,9 @@ export default {
       state.loginError = payload.error;
     }
   },
+  registerFailed(state, error){
+    state.registerError = error;
+  },
   logOut(state) {
     state.user = {
       isLogged: false,
@@ -27,5 +30,6 @@ export default {
   },
   clearError(state) {
     state.loginError = null;
+    state.registerError = null;
   }
 };

@@ -15,8 +15,16 @@ export default {
   components: {
     Header,
   },
+  computed: {
+    isLogged(){
+      return this.$store.state.account.user.isLogged;
+    }
+  },
   mounted() {
     this.$store.dispatch('checkIsAlreadyLogged');
+    if(this.isLogged){
+      this.$router.push('/');
+    }
   },
 };
 </script>

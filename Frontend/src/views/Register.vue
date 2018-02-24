@@ -2,21 +2,23 @@
   <form class="register-form" @submit.prevent="register">
     <div class="register-form__field">
       <label for="username">Nazwa</label>
-      <input name="username" v-model="user.username" autocomplete="username" @input="validateUsername" type="text" :class="{correct: validateUsername, wrong: !validateUsername}">
+      <input name="username" v-model="user.username" autocomplete="honoric-prefix" type="text" :class="{correct: validateUsername, wrong: !validateUsername}">
     </div>
     <div class="register-form__field">
       <label for="email">Email</label>
-      <input name="email" v-model="user.email" autocomplete="email" @input="validateEmail" :class="{correct: validateEmail, wrong: !validateEmail}" type="email">
+      <input name="email" v-model="user.email" autocomplete="email" :class="{correct: validateEmail, wrong: !validateEmail}" type="email">
     </div>
     <div class="register-form__field">
       <label for="password">Hasło</label>
-      <input name="password" autocomplete="password" v-model="user.password" @input="validatePasswords" type="password" :class="{correct: validatePasswords, wrong: !validatePasswords}">
+      <input name="password" autocomplete="password" v-model="user.password" type="password" :class="{correct: validatePasswords, wrong: !validatePasswords}">
     </div>
     <div class="register-form__field">
       <label for="password">Powtórz hasło</label>
-      <input name="password" autocomplete="password" v-model="user.password2" @input="validatePasswords" type="password" :class="{correct: validatePasswords, wrong: !validatePasswords}">
+      <input name="password" autocomplete="password" v-model="user.password2" type="password" :class="{correct: validatePasswords, wrong: !validatePasswords}">
     </div>
-    <div class="error-box" ref="errorBox"></div>
+    <div class="error-box" v-if="error">
+      {{error}}
+    </div>
     <div class="register-form__field">
       <button type="submit" class="global-button">
         Zarejestruj się
@@ -35,7 +37,6 @@ export default {
         password2: '',
         username: ''
       },
-      isValid: false,
       TESTS: {
         username: /^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/,
         email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -56,15 +57,18 @@ export default {
       return this.user.password === this.user.password2 && this.user.password !== '';
     },
     validateAll() {
-      return this.validateUsername() && this.validateEmail() && this.validatePasswords()
+      return this.validateUsername && this.validateEmail && this.validatePasswords;
     },
+    error(){
+      return this.$store.state.account.registerError;
+    }
   },
   methods: {
     register() {
-      if (this.validateAll()) {
+      if (this.validateAll) {
         this.$store.dispatch('register', this.user);
       } else {
-        alert('Złe dane');
+        alert('Błędne dane');
       }
     },
   },

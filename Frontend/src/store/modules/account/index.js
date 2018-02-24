@@ -8,7 +8,8 @@ export default {
             isLogged: false,
             token: '',
         },
-        loginError: ''
+        loginError: '',
+        registerError: ''
     },
     actions,
     mutations
