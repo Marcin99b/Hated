@@ -17,6 +17,7 @@ namespace Hated.Core.Domain
             get => _comments;
             set => _comments = new HashSet<Comment>(value);
         }
+        public bool Activated { get; protected set; }
         public DateTime ChangedAt { get; protected set; }
         public DateTime CreatedAt { get; protected set; }
 
@@ -25,6 +26,7 @@ namespace Hated.Core.Domain
             Id = Guid.NewGuid();
             UserId = userId;
             SetContent(content);
+            Deactivate();
             CreatedAt = DateTime.UtcNow;
         }
 
@@ -35,6 +37,18 @@ namespace Hated.Core.Domain
                 throw new Exception($"Content lenght is lower than 50");
             }
             Content = content;
+            ChangedAt = DateTime.UtcNow;
+        }
+
+        public void Activate()
+        {
+            Activated = true;
+            ChangedAt = DateTime.UtcNow;
+        }
+
+        public void Deactivate()
+        {
+            Activated = false;
             ChangedAt = DateTime.UtcNow;
         }
 
