@@ -18,6 +18,13 @@
         Zaloguj się
       </button>
     </div>
+    <div v-if="loading" class="login-form__field spinner">
+      <div class="rect1"></div>
+      <div class="rect2"></div>
+      <div class="rect3"></div>
+      <div class="rect4"></div>
+      <div class="rect5"></div>
+    </div>
   </form>
 </template>
 
@@ -29,6 +36,7 @@ export default {
         email: 'qwerty@qwerty.com',
         password: 'qwerty',
       },
+      loading: false
     };
   },
   computed: {
@@ -41,10 +49,8 @@ export default {
   },
   methods: {
     logIn() {
+      this.loading = true;
       this.$store.dispatch('logIn', this.user);
-      if (this.isLogged) {
-        this.$router.push('/');
-      }
     },
   },
   created() {
@@ -54,6 +60,7 @@ export default {
   },
   updated() {
     if(this.error){
+      this.loading = false;
       setTimeout(()=> {
         this.$store.dispatch('clearError');
       },3000);
@@ -90,6 +97,60 @@ export default {
 .error-message{
   font-size: 1rem;
 }
+/* Spinner */
+.spinner {
+  margin: 0 auto;
+  width: 50px;
+  height: 40px;
+  text-align: center;
+  font-size: 10px;
+}
+
+.spinner > div {
+  background-color: var(--main-color);
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+  
+  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+  20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+  0%, 40%, 100% { 
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% { 
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+  }
+}
+/*Spinner end*/
 @media (max-width: 1024px){
   .login-form{
     width: 80vw;
