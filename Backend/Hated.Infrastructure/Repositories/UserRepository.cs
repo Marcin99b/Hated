@@ -22,8 +22,18 @@ namespace Hated.Infrastructure.Repositories
         public async Task<User> GetAsync(Guid id)
             => await Task.FromResult(_users.AsQueryable().SingleOrDefault(x => x.Id == id));
 
-        public async Task<User> GetAsync(string email)
-            => await Task.FromResult(_users.AsQueryable().SingleOrDefault(x => x.Email == email));
+        public async Task<User> GetAsync(string email = null, string username = null)
+        {
+            if (email != null)
+            {
+                return await Task.FromResult(_users.AsQueryable().SingleOrDefault(x => x.Email == email));
+            }
+            if (username != null)
+            {
+                return await Task.FromResult(_users.AsQueryable().SingleOrDefault(x => x.Username == username));
+            }
+            throw new Exception($"Cannot return user where email: {email} or username: {username}");
+        }
 
         public async Task<IEnumerable<User>> GetAllAsync()
             => await _users.AsQueryable().ToListAsync();

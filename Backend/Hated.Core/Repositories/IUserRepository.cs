@@ -9,7 +9,7 @@ namespace Hated.Core.Repositories
     {
         Task<User> GetAsync(Guid id);
 
-        Task<User> GetAsync(string email);
+        Task<User> GetAsync(string email = null, string username = null);
 
         Task<IEnumerable<User>> GetAllAsync();
 
