@@ -9,5 +9,8 @@ export default {
   },
   newToken() {
     return Api().post('/Account/token');
-  }
+  },
+  getPostsFrom(x,y) {
+    return Api().get(`/Posts?from=${x}&number=${y}`);
+  },
 };

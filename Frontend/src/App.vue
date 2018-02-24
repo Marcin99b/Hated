@@ -22,9 +22,6 @@ export default {
   },
   mounted() {
     this.$store.dispatch('checkIsAlreadyLogged');
-    if(this.isLogged){
-      this.$router.push('/');
-    }
   },
 };
 </script>
@@ -41,6 +38,7 @@ body, html {
   padding: 0;
   font-family: var(--main-font);
   font-size: 1.3rem;
+  overflow-x: hidden;
 }
 .global-button{
   width: 10vw;
