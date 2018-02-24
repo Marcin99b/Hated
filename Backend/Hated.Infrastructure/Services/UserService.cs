@@ -25,13 +25,19 @@ namespace Hated.Infrastructure.Services
         //Create
         public async Task RegisterAsync(string email, string username, string password)
         {
-            var didUserExistEmail = _userRepository.GetAsync(email);
-            if (didUserExistEmail != null)
+            try
+            {
+               await _userRepository.GetAsync(email);
+            }
+            catch
             {
                 throw new Exception($"User with email: {email} is exists");
             }
-            var didUserExistUsername = _userRepository.GetAsync(null, username);
-            if (didUserExistUsername != null)
+            try
+            {
+                await _userRepository.GetAsync(null, username);
+            }
+            catch
             {
                 throw new Exception($"User with username: {username} is exists");
             }
