@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Hated.Infrastructure.Commands.Activation;
 using Hated.Infrastructure.DTO;
@@ -44,7 +43,7 @@ namespace Hated.Api.Controllers
 
         //Post deactivation
         [Authorize]
-        [HttpPost("post/activate")]
+        [HttpPost("post/deactivate")]
         public async Task<IActionResult> DeactivatePostAsync([FromBody]ActivationPost activationPost)
         {
             if (!User.IsAdmin())
