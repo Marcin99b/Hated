@@ -5,6 +5,17 @@ export default {
     Endpoints.logIn(user)
       .then(({ data }) => {
         commit('logIn', data);
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  },
+  register({ dispatch }, user) {
+    Endpoints.register(user)
+      .then(({ data }) => {
+        if (!data.error) {
+          dispatch('logIn', user);
+        }
       });
   },
   logOut({ commit }) {
