@@ -87,12 +87,11 @@ namespace Hated.Tests.EndToEnd
 
         #region Post
         //Post
-        protected async Task<HttpResponseMessage> CreateNewPost(Guid userId, string content = null)
+        protected async Task<HttpResponseMessage> CreateNewPost(string content = null)
         {
             content = content ?? Guid.NewGuid() + Guid.NewGuid().ToString();
             var payload = GetPayload(new CreatePost
             {
-                UserId = userId,
                 Content = content
             });
             return await Client.PostAsync("posts", payload);
@@ -108,7 +107,7 @@ namespace Hated.Tests.EndToEnd
 
         protected async Task<PostDto> CreateAndGetRandomPost(UserDto user)
         {
-            var responsePost = await CreateNewPost(user.Id);
+            var responsePost = await CreateNewPost();
             return await GetPostAsync(responsePost.Headers.Location.ToString());
         }
         #endregion
@@ -119,7 +118,6 @@ namespace Hated.Tests.EndToEnd
         {
             var payload = GetPayload(new CreateComment
             {
-                UserId = userId,
                 PostId = postId,
                 Content = content
             });

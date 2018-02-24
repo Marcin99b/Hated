@@ -11,7 +11,7 @@ namespace Hated.Tests.EndToEnd
         [Fact]
         public async Task CreatedCommentShouldBeCreatedAndValid()
         {
-            var responsePost = await CreateNewPost(testUserGenerate.Id);
+            var responsePost = await CreateNewPost();
             var post = await GetPostAsync(responsePost.Headers.Location.ToString());
             var responseComment = await CreateNewComment(testUserGenerate.Id, post.Id, Guid.NewGuid().ToString());
 

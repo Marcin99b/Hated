@@ -12,6 +12,9 @@ namespace Hated.Infrastructure.Extensions
             => userToken.FindFirst(ClaimTypes.Role).Value == "admin";
 
         public static bool IsAuthor(this Guid id, ClaimsPrincipal userToken)
-            => userToken.FindFirst(ClaimTypes.NameIdentifier).Value == id.ToString();
+            => userToken.GetUserId() == id;
+
+        public static Guid GetUserId(this ClaimsPrincipal userToken)
+            => new Guid(userToken.FindFirst(ClaimTypes.NameIdentifier).Value);
     }
 }

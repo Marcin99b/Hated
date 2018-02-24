@@ -13,11 +13,13 @@ namespace Hated.Infrastructure.Services
     public class PostService : IPostService
     {
         private readonly IPostRepository _postRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
 
-        public PostService(IPostRepository postRepository, IMapper mapper)
+        public PostService(IPostRepository postRepository, IUserRepository userRepository, IMapper mapper)
         {
             _postRepository = postRepository;
+            _userRepository = userRepository;
             _mapper = mapper;
         }
 
@@ -31,15 +33,18 @@ namespace Hated.Infrastructure.Services
         }
         
         //Read
-        public async Task<PostDto> GetAsync(Guid id)
+        public async Task<DetailPostDto> GetAsync(Guid id)
         {
             var post = await _postRepository.GetAsync(id);
             if (post == null)
             {
                 throw new Exception($"Post with id: {id} isn't exist");
             }
-
-            return _mapper.Map<Post, PostDto>(post);
+            var user = await _userRepository.GetAsync(post.UserId);
+            var userDto = _mapper.Map<User, UserDto>(user);
+            var detailPost = _mapper.Map<Post, DetailPostDto>(post);
+            detailPost.Author = userDto;
+            return detailPost;
         }
 
         public async Task<IEnumerable<PostDto>> GetAllAsync(int? from, int? number)
@@ -47,7 +52,16 @@ namespace Hated.Infrastructure.Services
             var posts = from != null && number != null ? 
                 await _postRepository.GetAllAsync((int)from, (int)number) 
                 : await _postRepository.GetAllAsync();
-            return posts.Select(x => _mapper.Map<Post, PostDto>(x));
+
+            var postsDto = new List<PostDto>();
+            foreach (var post in posts)
+            {
+                var user = await _userRepository.GetAsync(post.UserId);
+                var postDto = _mapper.Map<Post, PostDto>(post);
+                postDto.Author = _mapper.Map<User, UserDto>(user);
+                postsDto.Add(postDto);
+            }
+            return postsDto;
         }
 
         //Update
