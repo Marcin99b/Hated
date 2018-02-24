@@ -6,6 +6,7 @@ using AutoMapper;
 using Hated.Core.Domain;
 using Hated.Core.Repositories;
 using Hated.Infrastructure.DTO;
+using Hated.Infrastructure.Extensions;
 
 namespace Hated.Infrastructure.Services
 {
@@ -25,6 +26,9 @@ namespace Hated.Infrastructure.Services
         //Create
         public async Task RegisterAsync(string email, string username, string password)
         {
+            email.EmailValidation();
+            username.UsernameValidation();
+            password.PasswordValidation();
             try
             {
                await _userRepository.GetAsync(email);
@@ -50,6 +54,8 @@ namespace Hated.Infrastructure.Services
         //Login
         public async Task LoginAsync(string email, string password)
         {
+            email.EmailValidation();
+            password.PasswordValidation();
             var user = await _userRepository.GetAsync(email);
             if (user == null)
             {
@@ -78,6 +84,7 @@ namespace Hated.Infrastructure.Services
 
         public async Task<UserDto> GetAsync(string email)
         {
+            email.EmailValidation();
             var user = await _userRepository.GetAsync(email);
             if (user == null)
             {
@@ -98,6 +105,8 @@ namespace Hated.Infrastructure.Services
         //Update
         public async Task UpdateAsync(UserDto updatedUser)
         {
+            updatedUser.Email.EmailValidation();
+            updatedUser.Username.UsernameValidation();
             var user = await _userRepository.GetAsync(updatedUser.Id);
             if (user == null)
             {

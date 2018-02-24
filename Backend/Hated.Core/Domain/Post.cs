@@ -31,10 +31,6 @@ namespace Hated.Core.Domain
 
         public void SetContent(string content)
         {
-            if (content.Length < 50)
-            {
-                throw new Exception($"Content lenght is lower than 50");
-            }
             Content = content;
             ChangedAt = DateTime.UtcNow;
         }
