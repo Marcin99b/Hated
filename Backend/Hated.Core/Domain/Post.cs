@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using SimpleValidator.Extensions;
 
 namespace Hated.Core.Domain
 {
@@ -32,7 +31,7 @@ namespace Hated.Core.Domain
 
         public void SetContent(string content)
         {
-            if (!content.IsMinLength(50))
+            if (content.Length < 50)
             {
                 throw new Exception($"Content lenght is lower than 50");
             }
