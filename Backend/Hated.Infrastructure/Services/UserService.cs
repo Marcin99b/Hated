@@ -28,12 +28,12 @@ namespace Hated.Infrastructure.Services
             var didUserExistEmail = _userRepository.GetAsync(email);
             if (didUserExistEmail != null)
             {
-                throw new Exception($"User with email: {email} is exist");
+                throw new Exception($"User with email: {email} is exists");
             }
             var didUserExistUsername = _userRepository.GetAsync(null, username);
             if (didUserExistUsername != null)
             {
-                throw new Exception($"User with username: {username} is exist");
+                throw new Exception($"User with username: {username} is exists");
             }
             var salt = _encrypter.GetSalt(password);
             var hash = _encrypter.GetHash(password, salt);

@@ -36,7 +36,7 @@ namespace Hated.Infrastructure.Repositories
         }
 
         public async Task<IEnumerable<User>> GetAllAsync()
-            => await _users.AsQueryable().ToListAsync();
+            => await _users.AsQueryable().ToListAsync() as IEnumerable<User>;
 
         public async Task<IEnumerable<User>> GetAllAsync(int from, int number)
             => await _users.PaginateMongo(from, number);
