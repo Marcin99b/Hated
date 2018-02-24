@@ -9,7 +9,7 @@ namespace Hated.Tests.EndToEnd
         [Fact]
         public async Task CreatedUserShouldCanGetToken()
         {
-            var email = Guid.NewGuid().ToString();
+            var email = testEmailGenerate;
             var password = Guid.NewGuid().ToString();
             await CreateNewUser(email, null, password);
             var token = await GetTokenByLoginUserAsync(email, password);
@@ -19,7 +19,7 @@ namespace Hated.Tests.EndToEnd
         [Fact]
         public async Task LoginShouldAddAuthorizationToRequest()
         {
-            var email = Guid.NewGuid().ToString();
+            var email = testEmailGenerate;
             var password = Guid.NewGuid().ToString();
             await CreateNewUser(email, null, password);
             await LoginUserAsync(email, password);
