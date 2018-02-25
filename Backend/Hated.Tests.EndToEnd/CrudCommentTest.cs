@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -13,7 +12,7 @@ namespace Hated.Tests.EndToEnd
         {
             var responsePost = await CreateNewPost();
             var post = await GetPostAsync(responsePost.Headers.Location.ToString());
-            var responseComment = await CreateNewComment(testUserGenerate.Id, post.Id, Guid.NewGuid().ToString());
+            var responseComment = await CreateNewComment(post.Id, await GetRandomTextAsync());
 
             Assert.Equal(HttpStatusCode.Created, responseComment.StatusCode);
             var comment = await GetCommentAsync(responseComment.Headers.Location.ToString());
@@ -25,7 +24,7 @@ namespace Hated.Tests.EndToEnd
         {
             var post = await CreateAndGetRandomPost(testUserGenerate);
             var comment = await CreateAndGetRandomComment(post, testUserGenerate);
-            string updatedContent = "testcontent";
+            string updatedContent = await GetRandomTextAsync();
             comment.Content = updatedContent;
             var payload = GetPayload(comment);
             var response = await Client.PutAsync($"comments/post/{post.Id}", payload);

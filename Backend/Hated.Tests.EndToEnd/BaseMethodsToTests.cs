@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -9,7 +11,10 @@ using Hated.Infrastructure.Commands.Comment;
 using Hated.Infrastructure.Commands.Posts;
 using Hated.Infrastructure.Commands.Users;
 using Hated.Infrastructure.DTO;
+using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Hated.Tests.EndToEnd
 {
@@ -86,10 +91,25 @@ namespace Hated.Tests.EndToEnd
         #endregion
 
         #region Post
+
+        protected async Task<string> GetRandomTextAsync(int? number = null)
+        {
+            var client = new HttpClient {BaseAddress = new Uri("http://api.icndb.com/")};
+            var jokes = "";
+            number = number ?? new Random().Next(0, 50);
+            for (var i = 0; i < number; i++)
+            {
+                var response = await client.GetAsync($"jokes/random");
+                var content = await response.Content.ReadAsStringAsync();
+                jokes += "\n\n" + JObject.Parse(content)["value"]["joke"];
+            }
+            return jokes;
+        }
+
         //Post
         protected async Task<HttpResponseMessage> CreateNewPost(string content = null)
         {
-            content = content ?? Guid.NewGuid() + Guid.NewGuid().ToString();
+            content = content ?? await GetRandomTextAsync();
             var payload = GetPayload(new CreatePost
             {
                 Content = content
@@ -114,13 +134,13 @@ namespace Hated.Tests.EndToEnd
 
         #region Comment
         //Comment
-        protected async Task<HttpResponseMessage> CreateNewComment(Guid userId, Guid postId, string content)
+        protected async Task<HttpResponseMessage> CreateNewComment(Guid postId, string content = null)
         {
             var payload = GetPayload(new CreateComment
             {
                 PostId = postId,
-                Content = content
-            });
+                Content = content ?? await GetRandomTextAsync()
+        });
             return await Client.PostAsync("comments", payload);
         }
 
@@ -134,7 +154,7 @@ namespace Hated.Tests.EndToEnd
 
         protected async Task<CommentDto> CreateAndGetRandomComment(PostDto post, UserDto user)
         {
-            var responseComment = await CreateNewComment(user.Id, post.Id, Guid.NewGuid().ToString());
+            var responseComment = await CreateNewComment(post.Id);
             return await GetCommentAsync(responseComment.Headers.Location.ToString());
         }
 
