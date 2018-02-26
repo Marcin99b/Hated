@@ -5,9 +5,12 @@ export default {
     if (payload.token) {
       state.user = {
         isLogged: true,
-        token: payload.token,
+        token: {
+          data: payload.token,
+          expiresInMiliseconds: (payload.expiry - (new Date().valueOf())),
+        }
       };
-      SessionStorageHandler.saveState(state);
+      SessionStorageHandler.saveState(state.user);
     } else {
       state.loginError = payload.error;
     }
@@ -25,7 +28,7 @@ export default {
   checkIsAlreadyLogged(state) {
     if (SessionStorageHandler.isLogged()) {
       const newState = SessionStorageHandler.getState();
-      state.user = newState.user;
+      state.user = newState;
     }
   },
   clearError(state) {

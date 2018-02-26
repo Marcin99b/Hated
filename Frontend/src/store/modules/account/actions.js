@@ -4,11 +4,7 @@ export default {
   logIn({ commit }, user) {
     Endpoints.logIn(user)
       .then(({ data }) => {
-        console.log(data);
         commit('logIn', data);
-      })
-      .catch((error) => {
-        alert(error);
       });
   },
   register({ dispatch, commit }, user) {
