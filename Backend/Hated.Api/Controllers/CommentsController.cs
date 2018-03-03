@@ -42,17 +42,13 @@ namespace Hated.Api.Controllers
         }
 
         //Read
-        //GET comments/guid
-        [HttpGet("{commentId}")]
-        public async Task<IActionResult> GetAsync(Guid commentId)
+        //GET comments/post/id/comment/id
+        [HttpGet("post/{postId}/comment/{commentId}")]
+        public async Task<IActionResult> GetAsyncFromPost(Guid postId, Guid commentId)
         {
             try
             {
-                var comment = await _postCommentService.GetAsync(commentId);
-                if (comment == null)
-                {
-                    return NotFound();
-                }
+                var comment = await _postCommentService.GetAsyncFromPost(postId, commentId);
                 return Json(comment);
             }
             catch (Exception e)
@@ -65,7 +61,7 @@ namespace Hated.Api.Controllers
             }
         }
         
-        //GET comments/post/guid
+        //GET comments/post/id
         [HttpGet("post/{postId}")]
         public async Task<IActionResult> GetAllAsyncFromPostAsync(Guid postId)
         {
@@ -76,25 +72,6 @@ namespace Hated.Api.Controllers
                 {
                     NotFound();
                 }
-                return Json(comments);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError($"Returning exception: {e.Message}");
-                return Json(new ExceptionDto
-                {
-                    Error = e.Message
-                });
-            }
-        }
-
-        //GET comments
-        [HttpGet]
-        public async Task<IActionResult> GetAllAsync()
-        {
-            try
-            {
-                var comments = await _postCommentService.GetAllAsync();
                 return Json(comments);
             }
             catch (Exception e)

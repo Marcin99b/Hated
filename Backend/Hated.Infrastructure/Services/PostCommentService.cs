@@ -29,15 +29,10 @@ namespace Hated.Infrastructure.Services
             return comment.Id;
         }
 
-        public async Task<CommentDto> GetAsync(Guid id)
+        public async Task<CommentDto> GetAsyncFromPost(Guid postId, Guid commentId)
         {
-            var posts = await _postRepository.GetAllAsync();
-            var comment = posts.SelectMany(x => x.Comments).SingleOrDefault(x => x.Id == id);
-            if (comment == null)
-            {
-                throw new Exception($"Comment with id: {id} isn't exist");
-            }
-            return _mapper.Map<Comment, CommentDto>(comment);
+            var comments = await GetAllFromPostAsync(postId);
+            return comments.SingleOrDefault(x => x.Id == commentId);
         }
 
         public async Task<IEnumerable<CommentDto>> GetAllFromPostAsync(Guid postId)
@@ -48,12 +43,6 @@ namespace Hated.Infrastructure.Services
                 throw new Exception($"Post with id: {postId} isn't exist");
             }
             return post.Comments.Select(x => _mapper.Map<Comment, CommentDto>(x));
-        }
-
-        public async Task<IEnumerable<CommentDto>> GetAllAsync()
-        {
-            var posts = await _postRepository.GetAllAsync();
-            return posts.SelectMany(x => x.Comments).Select(x => _mapper.Map<Comment, CommentDto>(x));
         }
 
         public async Task UpdateAsync(Guid postId, CommentDto updatedComment)
