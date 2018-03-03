@@ -18,11 +18,21 @@ export default {
   computed: {
     isLogged(){
       return this.$store.state.account.user.isLogged;
+    },
+    sessionExpires(){
+      return this.$store.state.account.user.token.expiresInMiliseconds;
     }
   },
   mounted() {
     this.$store.dispatch('checkIsAlreadyLogged');
   },
+  updated(){
+    if (this.isLogged ) {
+      setTimeout(()=>{
+        this.$store.dispatch('logOut');
+      }, this.sessionExpires);
+    }
+  }
 };
 </script>
 <style>
