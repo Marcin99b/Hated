@@ -6,16 +6,19 @@ using Hated.Infrastructure.Extensions;
 using Hated.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Hated.Api.Controllers
 {
     public class ActivationController : BaseController
     {
         private readonly IActivationService _activationService;
+        private readonly ILogger<ActivationController> _logger;
 
-        public ActivationController(IActivationService activationService)
+        public ActivationController(IActivationService activationService, ILogger<ActivationController> logger)
         {
             _activationService = activationService;
+            _logger = logger;
         }
 
         //Post activation
@@ -34,6 +37,7 @@ namespace Hated.Api.Controllers
             }
             catch (Exception e)
             {
+                _logger.LogError($"Returning exception: {e.Message}");
                 return Json(new ExceptionDto
                 {
                     Error = e.Message
@@ -57,6 +61,7 @@ namespace Hated.Api.Controllers
             }
             catch (Exception e)
             {
+                _logger.LogError($"Returning exception: {e.Message}");
                 return Json(new ExceptionDto
                 {
                     Error = e.Message

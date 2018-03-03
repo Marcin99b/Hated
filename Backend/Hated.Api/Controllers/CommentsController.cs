@@ -6,16 +6,19 @@ using Hated.Infrastructure.Extensions;
 using Hated.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Hated.Api.Controllers
 {
     public class CommentsController : BaseController
     {
         private readonly IPostCommentService _postCommentService;
+        private readonly ILogger<CommentsController> _logger;
 
-        public CommentsController(IPostCommentService postCommentService)
+        public CommentsController(IPostCommentService postCommentService, ILogger<CommentsController> logger)
         {
             _postCommentService = postCommentService;
+            _logger = logger;
         }
         //Create
         //POST comments
@@ -30,6 +33,7 @@ namespace Hated.Api.Controllers
             }
             catch (Exception e)
             {
+                _logger.LogError($"Returning exception: {e.Message}");
                 return Json(new ExceptionDto
                 {
                     Error = e.Message
@@ -53,6 +57,7 @@ namespace Hated.Api.Controllers
             }
             catch (Exception e)
             {
+                _logger.LogError($"Returning exception: {e.Message}");
                 return Json(new ExceptionDto
                 {
                     Error = e.Message
@@ -75,6 +80,7 @@ namespace Hated.Api.Controllers
             }
             catch (Exception e)
             {
+                _logger.LogError($"Returning exception: {e.Message}");
                 return Json(new ExceptionDto
                 {
                     Error = e.Message
@@ -93,6 +99,7 @@ namespace Hated.Api.Controllers
             }
             catch (Exception e)
             {
+                _logger.LogError($"Returning exception: {e.Message}");
                 return Json(new ExceptionDto
                 {
                     Error = e.Message
@@ -117,6 +124,7 @@ namespace Hated.Api.Controllers
             }
             catch (Exception e)
             {
+                _logger.LogError($"Returning exception: {e.Message}");
                 return Json(new ExceptionDto
                 {
                     Error = e.Message
@@ -142,6 +150,7 @@ namespace Hated.Api.Controllers
             }
             catch (Exception e)
             {
+                _logger.LogError($"Returning exception: {e.Message}");
                 return Json(new ExceptionDto
                 {
                     Error = e.Message

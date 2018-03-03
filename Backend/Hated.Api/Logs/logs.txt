@@ -1,0 +1,114 @@
+2018-03-03 14:59:05.597 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/  
+2018-03-03 14:59:06.111 +01:00 [INF] Request finished in 557.8268ms 404 
+2018-03-03 15:03:43.185 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/  
+2018-03-03 15:03:43.665 +01:00 [INF] Request finished in 511.9538ms 404 
+2018-03-03 15:03:47.292 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/  
+2018-03-03 15:03:47.311 +01:00 [INF] Sending file. Request path: '/index.html'. Physical path: 'N/A'
+2018-03-03 15:03:47.334 +01:00 [INF] Request finished in 42.0296ms 200 text/html
+2018-03-03 15:03:47.498 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+2018-03-03 15:03:47.662 +01:00 [INF] Request finished in 163.3079ms 200 application/json
+2018-03-03 15:03:56.171 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Users?from=1&number=1  
+2018-03-03 15:03:56.553 +01:00 [INF] Executing action method Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) with arguments (["1","1"]) - ModelState is "Valid"
+2018-03-03 15:03:58.537 +01:00 [INF] Executing JsonResult, writing value System.Linq.Enumerable+SelectListIterator`2[Hated.Core.Domain.User,Hated.Infrastructure.DTO.UserDto].
+2018-03-03 15:03:58.571 +01:00 [INF] Executed action Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) in 2312.8042ms
+2018-03-03 15:03:58.575 +01:00 [INF] Request finished in 2402.6476ms 200 application/json; charset=utf-8
+2018-03-03 15:04:27.301 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Users?from=1&number=1  
+2018-03-03 15:04:27.306 +01:00 [INF] Executing action method Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) with arguments (["1","1"]) - ModelState is "Valid"
+2018-03-03 15:04:27.368 +01:00 [INF] Executing JsonResult, writing value System.Linq.Enumerable+SelectListIterator`2[Hated.Core.Domain.User,Hated.Infrastructure.DTO.UserDto].
+2018-03-03 15:04:27.372 +01:00 [INF] Executed action Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) in 66.041800000000009ms
+2018-03-03 15:04:27.374 +01:00 [INF] Request finished in 73.0011ms 200 application/json; charset=utf-8
+2018-03-03 15:04:27.835 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Users?from=1&number=1  
+2018-03-03 15:04:27.837 +01:00 [INF] Executing action method Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) with arguments (["1","1"]) - ModelState is "Valid"
+2018-03-03 15:04:27.898 +01:00 [INF] Executing JsonResult, writing value System.Linq.Enumerable+SelectListIterator`2[Hated.Core.Domain.User,Hated.Infrastructure.DTO.UserDto].
+2018-03-03 15:04:27.901 +01:00 [INF] Executed action Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) in 63.0223ms
+2018-03-03 15:04:27.904 +01:00 [INF] Request finished in 68.9748ms 200 application/json; charset=utf-8
+2018-03-03 15:04:28.217 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Users?from=1&number=1  
+2018-03-03 15:04:28.219 +01:00 [INF] Executing action method Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) with arguments (["1","1"]) - ModelState is "Valid"
+2018-03-03 15:04:28.278 +01:00 [INF] Executing JsonResult, writing value System.Linq.Enumerable+SelectListIterator`2[Hated.Core.Domain.User,Hated.Infrastructure.DTO.UserDto].
+2018-03-03 15:04:28.282 +01:00 [INF] Executed action Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) in 61.1698ms
+2018-03-03 15:04:28.285 +01:00 [INF] Request finished in 67.8981ms 200 application/json; charset=utf-8
+2018-03-03 15:04:28.542 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Users?from=1&number=1  
+2018-03-03 15:04:28.544 +01:00 [INF] Executing action method Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) with arguments (["1","1"]) - ModelState is "Valid"
+2018-03-03 15:04:28.607 +01:00 [INF] Executing JsonResult, writing value System.Linq.Enumerable+SelectListIterator`2[Hated.Core.Domain.User,Hated.Infrastructure.DTO.UserDto].
+2018-03-03 15:04:28.609 +01:00 [INF] Executed action Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) in 65.3946ms
+2018-03-03 15:04:28.614 +01:00 [INF] Request finished in 70.2303ms 200 application/json; charset=utf-8
+2018-03-03 15:04:28.753 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Users?from=1&number=1  
+2018-03-03 15:04:28.755 +01:00 [INF] Executing action method Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) with arguments (["1","1"]) - ModelState is "Valid"
+2018-03-03 15:04:28.813 +01:00 [INF] Executing JsonResult, writing value System.Linq.Enumerable+SelectListIterator`2[Hated.Core.Domain.User,Hated.Infrastructure.DTO.UserDto].
+2018-03-03 15:04:28.815 +01:00 [INF] Executed action Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) in 59.689800000000005ms
+2018-03-03 15:04:28.817 +01:00 [INF] Request finished in 64.4634ms 200 application/json; charset=utf-8
+2018-03-03 15:04:28.941 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Users?from=1&number=1  
+2018-03-03 15:04:28.943 +01:00 [INF] Executing action method Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) with arguments (["1","1"]) - ModelState is "Valid"
+2018-03-03 15:04:29.003 +01:00 [INF] Executing JsonResult, writing value System.Linq.Enumerable+SelectListIterator`2[Hated.Core.Domain.User,Hated.Infrastructure.DTO.UserDto].
+2018-03-03 15:04:29.006 +01:00 [INF] Executed action Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) in 61.4728ms
+2018-03-03 15:04:29.008 +01:00 [INF] Request finished in 67.0465ms 200 application/json; charset=utf-8
+2018-03-03 15:04:29.108 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Users?from=1&number=1  
+2018-03-03 15:04:29.111 +01:00 [INF] Executing action method Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) with arguments (["1","1"]) - ModelState is "Valid"
+2018-03-03 15:04:29.173 +01:00 [INF] Executing JsonResult, writing value System.Linq.Enumerable+SelectListIterator`2[Hated.Core.Domain.User,Hated.Infrastructure.DTO.UserDto].
+2018-03-03 15:04:29.175 +01:00 [INF] Executed action Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) in 64.6042ms
+2018-03-03 15:04:29.178 +01:00 [INF] Request finished in 69.3217ms 200 application/json; charset=utf-8
+2018-03-03 15:04:29.279 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Users?from=1&number=1  
+2018-03-03 15:04:29.281 +01:00 [INF] Executing action method Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) with arguments (["1","1"]) - ModelState is "Valid"
+2018-03-03 15:04:29.342 +01:00 [INF] Executing JsonResult, writing value System.Linq.Enumerable+SelectListIterator`2[Hated.Core.Domain.User,Hated.Infrastructure.DTO.UserDto].
+2018-03-03 15:04:29.344 +01:00 [INF] Executed action Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) in 62.4956ms
+2018-03-03 15:04:29.345 +01:00 [INF] Request finished in 67.0248ms 200 application/json; charset=utf-8
+2018-03-03 15:04:29.441 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Users?from=1&number=1  
+2018-03-03 15:04:29.443 +01:00 [INF] Executing action method Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) with arguments (["1","1"]) - ModelState is "Valid"
+2018-03-03 15:04:29.503 +01:00 [INF] Executing JsonResult, writing value System.Linq.Enumerable+SelectListIterator`2[Hated.Core.Domain.User,Hated.Infrastructure.DTO.UserDto].
+2018-03-03 15:04:29.505 +01:00 [INF] Executed action Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) in 62.025200000000005ms
+2018-03-03 15:04:29.507 +01:00 [INF] Request finished in 67.0445ms 200 application/json; charset=utf-8
+2018-03-03 15:04:29.609 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Users?from=1&number=1  
+2018-03-03 15:04:29.611 +01:00 [INF] Executing action method Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) with arguments (["1","1"]) - ModelState is "Valid"
+2018-03-03 15:04:29.666 +01:00 [INF] Executing JsonResult, writing value System.Linq.Enumerable+SelectListIterator`2[Hated.Core.Domain.User,Hated.Infrastructure.DTO.UserDto].
+2018-03-03 15:04:29.668 +01:00 [INF] Executed action Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) in 56.9117ms
+2018-03-03 15:04:29.672 +01:00 [INF] Request finished in 62.1458ms 200 application/json; charset=utf-8
+2018-03-03 15:04:29.770 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Users?from=1&number=1  
+2018-03-03 15:04:29.772 +01:00 [INF] Executing action method Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) with arguments (["1","1"]) - ModelState is "Valid"
+2018-03-03 15:04:29.828 +01:00 [INF] Executing JsonResult, writing value System.Linq.Enumerable+SelectListIterator`2[Hated.Core.Domain.User,Hated.Infrastructure.DTO.UserDto].
+2018-03-03 15:04:29.830 +01:00 [INF] Executed action Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) in 57.916900000000005ms
+2018-03-03 15:04:29.832 +01:00 [INF] Request finished in 62.9822ms 200 application/json; charset=utf-8
+2018-03-03 15:04:29.939 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Users?from=1&number=1  
+2018-03-03 15:04:29.941 +01:00 [INF] Executing action method Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) with arguments (["1","1"]) - ModelState is "Valid"
+2018-03-03 15:04:30.001 +01:00 [INF] Executing JsonResult, writing value System.Linq.Enumerable+SelectListIterator`2[Hated.Core.Domain.User,Hated.Infrastructure.DTO.UserDto].
+2018-03-03 15:04:30.004 +01:00 [INF] Executed action Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) in 62.5255ms
+2018-03-03 15:04:30.006 +01:00 [INF] Request finished in 67.6103ms 200 application/json; charset=utf-8
+2018-03-03 15:04:30.119 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Users?from=1&number=1  
+2018-03-03 15:04:30.121 +01:00 [INF] Executing action method Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) with arguments (["1","1"]) - ModelState is "Valid"
+2018-03-03 15:04:30.185 +01:00 [INF] Executing JsonResult, writing value System.Linq.Enumerable+SelectListIterator`2[Hated.Core.Domain.User,Hated.Infrastructure.DTO.UserDto].
+2018-03-03 15:04:30.187 +01:00 [INF] Executed action Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) in 65.5017ms
+2018-03-03 15:04:30.190 +01:00 [INF] Request finished in 70.8494ms 200 application/json; charset=utf-8
+2018-03-03 15:04:30.299 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Users?from=1&number=1  
+2018-03-03 15:04:30.301 +01:00 [INF] Executing action method Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) with arguments (["1","1"]) - ModelState is "Valid"
+2018-03-03 15:04:30.362 +01:00 [INF] Executing JsonResult, writing value System.Linq.Enumerable+SelectListIterator`2[Hated.Core.Domain.User,Hated.Infrastructure.DTO.UserDto].
+2018-03-03 15:04:30.364 +01:00 [INF] Executed action Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) in 62.3671ms
+2018-03-03 15:04:30.367 +01:00 [INF] Request finished in 67.8155ms 200 application/json; charset=utf-8
+2018-03-03 15:04:30.458 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Users?from=1&number=1  
+2018-03-03 15:04:30.460 +01:00 [INF] Executing action method Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) with arguments (["1","1"]) - ModelState is "Valid"
+2018-03-03 15:04:30.518 +01:00 [INF] Executing JsonResult, writing value System.Linq.Enumerable+SelectListIterator`2[Hated.Core.Domain.User,Hated.Infrastructure.DTO.UserDto].
+2018-03-03 15:04:30.520 +01:00 [INF] Executed action Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) in 59.6359ms
+2018-03-03 15:04:30.523 +01:00 [INF] Request finished in 64.5664ms 200 application/json; charset=utf-8
+2018-03-03 15:04:30.627 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Users?from=1&number=1  
+2018-03-03 15:04:30.629 +01:00 [INF] Executing action method Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) with arguments (["1","1"]) - ModelState is "Valid"
+2018-03-03 15:04:30.720 +01:00 [INF] Executing JsonResult, writing value System.Linq.Enumerable+SelectListIterator`2[Hated.Core.Domain.User,Hated.Infrastructure.DTO.UserDto].
+2018-03-03 15:04:30.723 +01:00 [INF] Executed action Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) in 93.046500000000009ms
+2018-03-03 15:04:30.725 +01:00 [INF] Request finished in 98.6951ms 200 application/json; charset=utf-8
+2018-03-03 15:04:30.793 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Users?from=1&number=1  
+2018-03-03 15:04:30.795 +01:00 [INF] Executing action method Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) with arguments (["1","1"]) - ModelState is "Valid"
+2018-03-03 15:04:30.858 +01:00 [INF] Executing JsonResult, writing value System.Linq.Enumerable+SelectListIterator`2[Hated.Core.Domain.User,Hated.Infrastructure.DTO.UserDto].
+2018-03-03 15:04:30.860 +01:00 [INF] Executed action Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) in 65.3762ms
+2018-03-03 15:04:30.862 +01:00 [INF] Request finished in 69.7889ms 200 application/json; charset=utf-8
+2018-03-03 15:04:30.949 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Users?from=1&number=1  
+2018-03-03 15:04:30.951 +01:00 [INF] Executing action method Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) with arguments (["1","1"]) - ModelState is "Valid"
+2018-03-03 15:04:31.008 +01:00 [INF] Executing JsonResult, writing value System.Linq.Enumerable+SelectListIterator`2[Hated.Core.Domain.User,Hated.Infrastructure.DTO.UserDto].
+2018-03-03 15:04:31.011 +01:00 [INF] Executed action Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) in 59.078500000000005ms
+2018-03-03 15:04:31.014 +01:00 [INF] Request finished in 64.6824ms 200 application/json; charset=utf-8
+2018-03-03 15:04:31.115 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Users?from=1&number=1  
+2018-03-03 15:04:31.117 +01:00 [INF] Executing action method Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) with arguments (["1","1"]) - ModelState is "Valid"
+2018-03-03 15:04:31.174 +01:00 [INF] Executing JsonResult, writing value System.Linq.Enumerable+SelectListIterator`2[Hated.Core.Domain.User,Hated.Infrastructure.DTO.UserDto].
+2018-03-03 15:04:31.177 +01:00 [INF] Executed action Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) in 59.1983ms
+2018-03-03 15:04:31.179 +01:00 [INF] Request finished in 64.6311ms 200 application/json; charset=utf-8
+2018-03-03 15:04:31.301 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Users?from=1&number=1  
+2018-03-03 15:04:31.303 +01:00 [INF] Executing action method Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) with arguments (["1","1"]) - ModelState is "Valid"
+2018-03-03 15:04:31.363 +01:00 [INF] Executing JsonResult, writing value System.Linq.Enumerable+SelectListIterator`2[Hated.Core.Domain.User,Hated.Infrastructure.DTO.UserDto].
+2018-03-03 15:04:31.366 +01:00 [INF] Executed action Hated.Api.Controllers.UsersController.GetAllAsync (Hated.Api) in 62.3607ms
+2018-03-03 15:04:31.369 +01:00 [INF] Request finished in 67.6039ms 200 application/json; charset=utf-8

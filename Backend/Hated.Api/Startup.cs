@@ -11,7 +11,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Serilog;
+using Serilog.Sinks.Elasticsearch;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Hated.Api
@@ -75,8 +78,10 @@ namespace Hated.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApplicationLifetime appLifeTime)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApplicationLifetime appLifeTime, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddSerilog();
+            ConfigureSerilog(env);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -88,6 +93,16 @@ namespace Hated.Api
             app.UseSwagger();
             app.UseSwaggerUI(x => x.SwaggerEndpoint("/swagger/v1/swagger.json", "Hated.Api"));
             appLifeTime.ApplicationStopped.Register(() => ApplicationContainer.Dispose());
+        }
+
+        private void ConfigureSerilog(IHostingEnvironment env)
+        {
+            var config = new LoggerConfiguration();
+            Log.Logger = config.Enrich
+                .FromLogContext()
+                .WriteTo.File("Logs/logs.txt")
+                .WriteTo.Elasticsearch()
+                .CreateLogger();
         }
     }
 }

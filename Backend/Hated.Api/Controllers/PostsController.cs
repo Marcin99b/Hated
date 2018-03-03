@@ -6,14 +6,16 @@ using Hated.Infrastructure.Extensions;
 using Hated.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Hated.Api.Controllers
 {
     public class PostsController : BaseController
     {
         private readonly IPostService _postService;
+        private readonly ILogger<PostsController> _logger;
 
-        public PostsController(IPostService postService)
+        public PostsController(IPostService postService, ILogger<PostsController> logger)
         {
             _postService = postService;
         }
@@ -31,6 +33,7 @@ namespace Hated.Api.Controllers
             }
             catch (Exception e)
             {
+                _logger.LogError($"Returning exception: {e.Message}");
                 return Json(new ExceptionDto
                 {
                     Error = e.Message
@@ -54,6 +57,7 @@ namespace Hated.Api.Controllers
             }
             catch (Exception e)
             {
+                _logger.LogError($"Returning exception: {e.Message}");
                 return Json(new ExceptionDto
                 {
                     Error = e.Message
@@ -76,6 +80,7 @@ namespace Hated.Api.Controllers
             }
             catch (Exception e)
             {
+                _logger.LogError($"Returning exception: {e.Message}");
                 return Json(new ExceptionDto
                 {
                     Error = e.Message
@@ -100,6 +105,7 @@ namespace Hated.Api.Controllers
             }
             catch (Exception e)
             {
+                _logger.LogError($"Returning exception: {e.Message}");
                 return Json(new ExceptionDto
                 {
                     Error = e.Message
@@ -125,6 +131,7 @@ namespace Hated.Api.Controllers
             }
             catch (Exception e)
             {
+                _logger.LogError($"Returning exception: {e.Message}");
                 return Json(new ExceptionDto
                 {
                     Error = e.Message

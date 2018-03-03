@@ -5,16 +5,19 @@ using Hated.Infrastructure.Extensions;
 using Hated.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Hated.Api.Controllers
 {
     public class UsersController : BaseController
     {
         private readonly IUserService _userService;
+        private readonly ILogger<UsersController> _logger;
 
-        public UsersController(IUserService userService)
+        public UsersController(IUserService userService, ILogger<UsersController> logger)
         {
             _userService = userService;
+            _logger = logger;
         }
         
         //Read
@@ -33,6 +36,7 @@ namespace Hated.Api.Controllers
             }
             catch (Exception e)
             {
+                _logger.LogError($"Returning exception: {e.Message}");
                 return Json(new ExceptionDto
                 {
                     Error = e.Message
@@ -55,6 +59,7 @@ namespace Hated.Api.Controllers
             }
             catch (Exception e)
             {
+                _logger.LogError($"Returning exception: {e.Message}");
                 return Json(new ExceptionDto
                 {
                     Error = e.Message
@@ -79,6 +84,7 @@ namespace Hated.Api.Controllers
             }
             catch (Exception e)
             {
+                _logger.LogError($"Returning exception: {e.Message}");
                 return Json(new ExceptionDto
                 {
                     Error = e.Message
@@ -103,6 +109,7 @@ namespace Hated.Api.Controllers
             }
             catch (Exception e)
             {
+                _logger.LogError($"Returning exception: {e.Message}");
                 return Json(new ExceptionDto
                 {
                     Error = e.Message
