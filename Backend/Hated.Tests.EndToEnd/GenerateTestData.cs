@@ -6,7 +6,7 @@ namespace Hated.Tests.EndToEnd
 {
     public class GenerateTestData : BaseMethodsToTests
     {
-        [Fact]
+        //[Fact]
         public async Task CreatePostsWithComments()
         {
             var random = new Random();
@@ -21,7 +21,7 @@ namespace Hated.Tests.EndToEnd
             }
         }
 
-        [Fact]
+        //[Fact]
         public async Task CreatePostsWithoutComments()
         {
             for (var i = 0; i < 200; i++)
