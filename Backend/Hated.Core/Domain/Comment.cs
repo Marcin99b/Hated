@@ -2,7 +2,7 @@
 
 namespace Hated.Core.Domain
 {
-    public class Comment
+    public class Comment : ISort
     {
         public Guid Id { get; protected set; }
         public Guid UserId { get; protected set; }

@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 
 namespace Hated.Core.Domain
 {
-    public class User
+    public class User : ISort
     {
         public Guid Id { get; protected set; }
         public string Email { get; protected set; }

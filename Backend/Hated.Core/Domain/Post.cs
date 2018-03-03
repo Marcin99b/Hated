@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Hated.Core.Domain
 {
-    public class Post
+    public class Post : ISort
     {
         private ISet<Comment> _comments = new HashSet<Comment>();
 
