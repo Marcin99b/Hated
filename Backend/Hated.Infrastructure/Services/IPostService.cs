@@ -9,7 +9,7 @@ namespace Hated.Infrastructure.Services
     {
         Task<Guid> AddAsync(Guid userId, string content);
         Task<DetailPostDto> GetAsync(Guid id);
-        Task<IEnumerable<PostDto>> GetAllAsync(int? from, int? number);
+        Task<IEnumerable<PostDto>> GetAllAsync(int from, int number);
         Task UpdateAsync(PostDto updatedPost);
         Task DeleteAsync(Guid id);
     }

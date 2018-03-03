@@ -93,11 +93,10 @@ namespace Hated.Infrastructure.Services
             return _mapper.Map<User, UserDto>(user);
         }
 
-        public async Task<IEnumerable<UserDto>> GetAllAsync(int? from, int? number)
+        public async Task<IEnumerable<UserDto>> GetAllAsync(int from = 0, int number = 100)
         {
-            var users = from != null && number != null ?
-                await _userRepository.GetAllAsync((int)from, (int)number)
-                : await _userRepository.GetAllAsync();
+            number = number > 100 ? 100 : number;
+            var users = await _userRepository.GetAllAsync(from, number);
             return users.Select(user => _mapper.Map<User, UserDto>(user));
         }
         

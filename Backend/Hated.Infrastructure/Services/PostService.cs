@@ -47,11 +47,10 @@ namespace Hated.Infrastructure.Services
             return detailPost;
         }
 
-        public async Task<IEnumerable<PostDto>> GetAllAsync(int? from, int? number)
+        public async Task<IEnumerable<PostDto>> GetAllAsync(int from = 0, int number = 100)
         {
-            var posts = from != null && number != null ? 
-                await _postRepository.GetAllAsync((int)from, (int)number) 
-                : await _postRepository.GetAllAsync();
+            number = number > 100 ? 100 : number;
+            var posts = await _postRepository.GetAllAsync(from, number);
 
             var postsDto = new List<PostDto>();
             foreach (var post in posts)

@@ -32,9 +32,6 @@ namespace Hated.Infrastructure.Repositories
             throw new Exception($"Cannot return user where email: {email} or username: {username}");
         }
 
-        public async Task<IEnumerable<User>> GetAllAsync()
-            => await _users.AsQueryable().ToListAsync() as IEnumerable<User>;
-
         public async Task<IEnumerable<User>> GetAllAsync(int from, int number)
             => await _users.PaginateMongo(from, number);
 

@@ -11,8 +11,6 @@ namespace Hated.Core.Repositories
 
         Task<User> GetAsync(string email = null, string username = null);
 
-        Task<IEnumerable<User>> GetAllAsync();
-
         Task<IEnumerable<User>> GetAllAsync(int from, int number);
 
         Task AddAsync(User user);

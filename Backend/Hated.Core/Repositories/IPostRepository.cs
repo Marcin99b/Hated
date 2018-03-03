@@ -9,9 +9,6 @@ namespace Hated.Core.Repositories
     {
         Task<Post> GetAsync(Guid id);
 
-
-        Task<IEnumerable<Post>> GetAllAsync();
-
         Task<IEnumerable<Post>> GetAllAsync(int from, int number);
 
         Task AddAsync(Post post);

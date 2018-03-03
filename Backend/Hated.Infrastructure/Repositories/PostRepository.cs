@@ -22,9 +22,6 @@ namespace Hated.Infrastructure.Repositories
         public async Task<Post> GetAsync(Guid id)
             => await Task.FromResult(_posts.AsQueryable().SingleOrDefault(x => x.Id == id));
 
-        public async Task<IEnumerable<Post>> GetAllAsync()
-            => await _posts.AsQueryable().ToListAsync() as IEnumerable<Post>;
-
         public async Task<IEnumerable<Post>> GetAllAsync(int from, int number)
             => await _posts.PaginateMongo(from, number);
 
