@@ -18,6 +18,7 @@ namespace Hated.Api.Controllers
         public PostsController(IPostService postService, ILogger<PostsController> logger)
         {
             _postService = postService;
+            _logger = logger;
         }
 
         //Create
@@ -67,7 +68,7 @@ namespace Hated.Api.Controllers
 
         //GET posts
         [HttpGet]
-        public async Task<IActionResult> GetAllAsync(int? from, int? number)
+        public async Task<IActionResult> GetAllAsync(int from = 0, int number = 10)
         {
             try
             {

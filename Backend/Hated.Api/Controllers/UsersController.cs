@@ -46,7 +46,7 @@ namespace Hated.Api.Controllers
 
         // GET users
         [HttpGet]
-        public async Task<IActionResult> GetAllAsync(int? from, int? number)
+        public async Task<IActionResult> GetAllAsync(int from = 0, int number = 10)
         {
             try
             {

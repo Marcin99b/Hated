@@ -24,12 +24,12 @@ namespace Hated.Tests.EndToEnd
         {
             var post = await CreateAndGetRandomPost(testUserGenerate);
             var comment = await CreateAndGetRandomComment(post, testUserGenerate);
-            string updatedContent = await GetRandomTextAsync();
+            var updatedContent = await GetRandomTextAsync();
             comment.Content = updatedContent;
             var payload = GetPayload(comment);
             var response = await Client.PutAsync($"comments/post/{post.Id}", payload);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            var updatedComment = await GetCommentAsync($"comments/{comment.Id}");
+            var updatedComment = await GetCommentAsync($"comments/post/{post.Id}/comment/{comment.Id}");
             Assert.Equal(updatedContent, updatedComment.Content);
         }
 

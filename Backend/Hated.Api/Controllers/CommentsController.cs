@@ -29,7 +29,7 @@ namespace Hated.Api.Controllers
             try
             {
                 var commentId = await _postCommentService.AddAsync(User.GetUserId(), newComment.PostId, newComment.Content);
-                return Created($"comments/{commentId}", null);
+                return Created($"comments/post/{newComment.PostId}/comment/{commentId}", null);
             }
             catch (Exception e)
             {
@@ -117,7 +117,7 @@ namespace Hated.Api.Controllers
         {
             try
             {
-                var comment = await _postCommentService.GetAsync(commentId);
+                var comment = await _postCommentService.GetAsyncFromPost(postId, commentId);
                 if (!comment.UserId.HavePermissions(User))
                 {
                     return Unauthorized();
