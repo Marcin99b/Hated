@@ -13,4 +13,4 @@ Dla osób bardziej zaawansowanych technologiczne udostępnione zostało API, kt�
 Osoby zainteresowane rozwojem aplikacji prosimy o kierowanie wiadomości pod adres e-mail [hatedapp@gmail.com](mailto:hatedapp@email.com).
 Przydadzą się nie tylko zgłoszenia osób chcących współtworzyć projekt, ale też pojedyncze uwagi dotyczące projektu - **każda próba pomocy jest ważna**.
 
-Młody wiek osób dołączających jak i niski poziom doświadczenia nie są czymś, co skreśla was z osób mogących współtworzyć projekt - podstawa to spełnianie podstawowych wymagań przedstawionych poniżej.
+Młody wiek osób dołączających jak i niski poziom doświadczenia nie są czymś, co skreśla was z osób mogących współtworzyć projekt - jeśli macie wystarczające chęci i podstawową wiedzę, przez projekt możecie zdobyć doświadczenie, które w przyszłości będziecie mogli wykorzystać między innymi do rozwoju tego projektu.
