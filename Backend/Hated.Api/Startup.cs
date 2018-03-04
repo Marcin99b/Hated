@@ -63,11 +63,22 @@ namespace Hated.Api
                 });
             services.AddAuthorization(x => x.AddPolicy("admin", policy => policy.RequireRole("admin")));
             services.AddMvc();
-            services.AddSwaggerGen(x => x.SwaggerDoc("v1", new Info
-            {
-                Title = "Hated.Api",
-                Version = "v1"
-            }));
+            services.AddSwaggerGen(x =>
+                {
+                    x.SwaggerDoc("v1", new Info
+                    {
+                        Title = "Hated.Api",
+                        Version = "v1"
+                    });
+                    x.AddSecurityDefinition("Bearer", new ApiKeyScheme
+                    {
+                        Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+                        Name = "Authorization",
+                        In = "header",
+                        Type = "apiKey"
+                    });
+                }
+            );
 
             var builder = new ContainerBuilder();
             builder.Populate(services);
@@ -81,7 +92,7 @@ namespace Hated.Api
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApplicationLifetime appLifeTime, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddSerilog();
-            ConfigureSerilog(env);
+            ConfigureSerilog();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -95,10 +106,14 @@ namespace Hated.Api
             appLifeTime.ApplicationStopped.Register(() => ApplicationContainer.Dispose());
         }
 
-        private void ConfigureSerilog(IHostingEnvironment env)
+        private void AddSwaggerService(IServiceCollection services)
         {
-            var config = new LoggerConfiguration();
-            Log.Logger = config.Enrich
+            
+        }
+
+        private void ConfigureSerilog()
+        {
+            Log.Logger = new LoggerConfiguration().Enrich
                 .FromLogContext()
                 .WriteTo.File("Logs/logs.txt")
                 .WriteTo.Elasticsearch()
