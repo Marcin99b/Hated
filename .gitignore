@@ -50,7 +50,8 @@ BenchmarkDotNet.Artifacts/
 
 # .NET Core
 **/appsettings.json
-**/logs/
+**/logs.txt
+Logs/
 project.lock.json
 project.fragment.lock.json
 artifacts/
