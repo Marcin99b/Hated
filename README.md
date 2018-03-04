@@ -9,6 +9,11 @@ Warto wspomnieć również, że aplikacja jest projektem open source non profit 
 Aplikacja domyślnie dostępna jest w postaci strony internetowej pod adresem [(coming soon)](https://github.com/marcin99b/Hated). W przyszłości przewidywana jest również wersja na systemy mobilne.
 Dla osób bardziej zaawansowanych technologiczne udostępnione zostało API, którego dokumentacja jest dostępna pod adresem [(coming soon)](https://github.com/marcin99b/Hated). Dzięki API które udostępniamy, wszystkie aktywności staną się możliwe do wykonania z poziomu twojej zewnętrznej aplikacji.
 
+## Nasz zespół
+- Marcin - zarządzanie projektem i tworzenie backendu aplikacji, którym jest API w technologii ASP.NET Core
+- Mateusz i Paweł - tworzenie frontendu aplikacji, w frameworku Vue.js
+- Dawid - projektowanie wyglądu frontendu, między innymi projektowanie UI/UX
+
 ## Pomoc w rozwoju projektu
 Osoby zainteresowane rozwojem aplikacji prosimy o kierowanie wiadomości pod adres e-mail [hatedapp@gmail.com](mailto:hatedapp@email.com).
 Przydadzą się nie tylko zgłoszenia osób chcących współtworzyć projekt, ale też pojedyncze uwagi dotyczące projektu - **każda próba pomocy jest ważna**.
