@@ -5,6 +5,7 @@ using Hated.Infrastructure.Commands.Users;
 using Hated.Infrastructure.DTO;
 using Hated.Infrastructure.Extensions;
 using Hated.Infrastructure.Services;
+using Hated.Infrastructure.Services.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

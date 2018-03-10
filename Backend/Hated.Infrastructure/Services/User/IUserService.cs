@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Hated.Infrastructure.DTO;
 
-namespace Hated.Infrastructure.Services
+namespace Hated.Infrastructure.Services.User
 {
     public interface IUserService : IService
     {

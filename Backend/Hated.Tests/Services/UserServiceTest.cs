@@ -3,6 +3,7 @@ using AutoMapper;
 using Hated.Core.Domain;
 using Hated.Core.Repositories;
 using Hated.Infrastructure.Services;
+using Hated.Infrastructure.Services.User;
 using Moq;
 using Xunit;
 

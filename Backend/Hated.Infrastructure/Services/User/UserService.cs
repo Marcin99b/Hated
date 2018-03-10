@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Hated.Core.Domain;
 using Hated.Core.Repositories;
 using Hated.Infrastructure.DTO;
 using Hated.Infrastructure.Extensions;
 
-namespace Hated.Infrastructure.Services
+namespace Hated.Infrastructure.Services.User
 {
     public class UserService : IUserService
     {
