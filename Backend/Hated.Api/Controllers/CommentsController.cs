@@ -63,11 +63,11 @@ namespace Hated.Api.Controllers
         
         //GET comments/post/id
         [HttpGet("post/{postId}")]
-        public async Task<IActionResult> GetAllAsyncFromPostAsync(Guid postId)
+        public async Task<IActionResult> GetAllAsyncFromPostAsync(Guid postId, int from = 0, int number = 10)
         {
             try
             {
-                var comments = await _postCommentService.GetAllFromPostAsync(postId);
+                var comments = await _postCommentService.GetAllFromPostAsync(postId, from, number);
                 if (comments == null)
                 {
                     NotFound();
