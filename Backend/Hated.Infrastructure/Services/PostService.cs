@@ -33,7 +33,7 @@ namespace Hated.Infrastructure.Services
         }
         
         //Read
-        public async Task<DetailPostDto> GetAsync(Guid id)
+        public async Task<DetailPostDto> GetAsync(Guid id, int commentsFrom, int commentsNumber)
         {
             var post = await _postRepository.GetAsync(id);
             if (post == null)
@@ -43,6 +43,9 @@ namespace Hated.Infrastructure.Services
             var user = await _userRepository.GetAsync(post.UserId);
             var userDto = _mapper.Map<User, UserDto>(user);
             var detailPost = _mapper.Map<Post, DetailPostDto>(post);
+            detailPost.Comments = post.Comments
+                .Paginate(commentsFrom, commentsNumber)
+                .Select(x => _mapper.Map<Comment, CommentDto>(x));
             detailPost.Author = userDto;
             return detailPost;
         }

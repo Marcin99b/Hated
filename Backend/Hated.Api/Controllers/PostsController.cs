@@ -45,11 +45,11 @@ namespace Hated.Api.Controllers
         //Read
         //GET posts/guid
         [HttpGet("{postId}")]
-        public async Task<IActionResult> GetAsync(Guid postId)
+        public async Task<IActionResult> GetAsync(Guid postId, int commentsFrom = 0, int commentsNumber = 10)
         {
             try
             {
-                var post = await _postService.GetAsync(postId);
+                var post = await _postService.GetAsync(postId, commentsFrom, commentsNumber);
                 if (post == null)
                 {
                     return NotFound();
@@ -122,7 +122,7 @@ namespace Hated.Api.Controllers
         {
             try
             {
-                var post = await _postService.GetAsync(postId);
+                var post = await _postService.GetAsync(postId, 0, 0);
                 if (!post.Author.Id.HavePermissions(User))
                 {
                     return Unauthorized();
