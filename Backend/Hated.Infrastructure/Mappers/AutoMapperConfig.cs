@@ -13,6 +13,7 @@ namespace Hated.Infrastructure.Mappers
                     cfg.CreateMap<Post, PostDto>();
                     cfg.CreateMap<Post, DetailPostDto>();
                     cfg.CreateMap<Comment, CommentDto>();
+                    cfg.CreateMap<Like, LikeDto>();
                 })
                 .CreateMapper();
     }

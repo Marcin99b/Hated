@@ -2,11 +2,10 @@
 
 namespace Hated.Infrastructure.DTO
 {
-    public class CommentDto
+    public class LikeDto
     {
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
-        public string Content { get; set; }
-        public int CountLikes { get; set; }
+        public DateTime CreateAt { get; set; }
     }
 }

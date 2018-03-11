@@ -7,6 +7,7 @@ namespace Hated.Core.Domain
     public class Post : ISort
     {
         private ISet<Comment> _comments = new HashSet<Comment>();
+        private ISet<Like> _likes = new HashSet<Like>();
 
         public Guid Id { get; protected set; }
         public Guid UserId { get; protected set; }
@@ -14,8 +15,14 @@ namespace Hated.Core.Domain
         public IEnumerable<Comment> Comments
         {
             get => _comments;
-            set => _comments = new HashSet<Comment>(value);
+            protected set => _comments = new HashSet<Comment>(value);
         }
+        public IEnumerable<Like> Likes
+        {
+            get => _likes;
+            protected set => _likes = new HashSet<Like>(value);
+        }
+        public int CountLikes => _likes.Count;
         public bool Activated { get; protected set; }
         public DateTime ChangedAt { get; protected set; }
         public DateTime CreatedAt { get; protected set; }
@@ -68,6 +75,17 @@ namespace Hated.Core.Domain
             _comments.Remove(comment);
 
             CreatedAt = DateTime.UtcNow;
+        }
+
+        public void AddLike(Guid userId)
+        {
+            _likes.Add(new Like(userId));
+        }
+
+        public void DeleteLike(Guid userId)
+        {
+            var like = Likes.FirstOrDefault(x => x.Id == userId);
+            _likes.Remove(like);
         }
     }
 }

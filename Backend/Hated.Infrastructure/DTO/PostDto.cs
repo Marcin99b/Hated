@@ -6,6 +6,7 @@ namespace Hated.Infrastructure.DTO
     {
         public Guid Id { get; set; }
         public UserDto Author { get; set; }
+        public int CountLikes { get; set; }
         public bool Activated { get; set; }
         public string Content { get; set; }
     }
