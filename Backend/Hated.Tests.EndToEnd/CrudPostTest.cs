@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
+using Hated.Infrastructure.Commands.Posts;
 using Xunit;
 
 namespace Hated.Tests.EndToEnd
@@ -31,8 +32,13 @@ namespace Hated.Tests.EndToEnd
             var response = await CreateNewPost();
             var post = await GetPostAsync(response.Headers.Location.ToString());
             string updatedPostContent = await GetRandomTextAsync();
-            post.Content = updatedPostContent;
-            var payload = GetPayload(post);
+            var postUpdatePayload = new UpdatePost
+            {
+                Id = post.Id,
+                Author = post.Author.Id,
+                Content = updatedPostContent
+            };
+            var payload = GetPayload(postUpdatePayload);
             await Client.PutAsync("posts", payload);
             var updatedPost = await GetPostAsync(response.Headers.Location.ToString());
             Assert.Equal(updatedPostContent, updatedPost.Content);
