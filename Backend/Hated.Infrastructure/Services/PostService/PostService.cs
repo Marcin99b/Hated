@@ -8,7 +8,7 @@ using Hated.Core.Repositories;
 using Hated.Infrastructure.DTO;
 using Hated.Infrastructure.Extensions;
 
-namespace Hated.Infrastructure.Services
+namespace Hated.Infrastructure.Services.PostService
 {
     public class PostService : IPostService
     {
@@ -27,7 +27,7 @@ namespace Hated.Infrastructure.Services
         public async Task<Guid> AddAsync(Guid userId, string content)
         {
             content.PostContentValidation();
-            var post = new Post(userId, content);
+            var post = new Core.Domain.Post(userId, content);
             await _postRepository.AddAsync(post);
             return post.Id;
         }
@@ -67,15 +67,29 @@ namespace Hated.Infrastructure.Services
         }
 
         //Update
-        public async Task UpdateAsync(PostDto updatedPost)
+        public async Task UpdateAsync(Guid postId, string content)
         {
-            updatedPost.Content.PostContentValidation();
-            var post = await _postRepository.GetAsync(updatedPost.Id);
+            content.PostContentValidation();
+            var post = await _postRepository.GetAsync(postId);
             if (post == null)
             {
-                throw new Exception($"Post with id: {updatedPost.Id} isn't exist");
+                throw new Exception($"Post with id: {postId} isn't exist");
             }
-            post.SetContent(updatedPost.Content);
+            post.SetContent(content);
+            await _postRepository.UpdateAsync(post);
+        }
+
+        //Update
+        public async Task UpdateByAdminAsync(Guid postId, string content, Guid adminId, string comment)
+        {
+            content.PostContentValidation();
+            var post = await _postRepository.GetAsync(postId);
+            if (post == null)
+            {
+                throw new Exception($"Post with id: {postId} isn't exist");
+            }
+            post.SetContent(content);
+            post.UpdateByAdmin(adminId, comment);
             await _postRepository.UpdateAsync(post);
         }
 
