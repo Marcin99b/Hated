@@ -5,9 +5,10 @@ using System.Linq;
 namespace Hated.Core.Domain
 {
     public class Post : ISort
-    {
+    { 
         private ISet<Comment> _comments = new HashSet<Comment>();
         private ISet<Like> _likes = new HashSet<Like>();
+        private ISet<UpdateByAdmin> _updatesByAdmins = new HashSet<UpdateByAdmin>();
 
         public Guid Id { get; protected set; }
         public Guid UserId { get; protected set; }
@@ -24,6 +25,11 @@ namespace Hated.Core.Domain
         }
         public int CountLikes => _likes.Count;
         public bool Activated { get; protected set; }
+        public IEnumerable<UpdateByAdmin> UpdatesByAdmins
+        {
+            get => _updatesByAdmins;
+            protected set => _updatesByAdmins = new HashSet<UpdateByAdmin>(value);
+        }
         public DateTime ChangedAt { get; protected set; }
         public DateTime CreatedAt { get; protected set; }
 
@@ -51,6 +57,12 @@ namespace Hated.Core.Domain
         public void Deactivate()
         {
             Activated = false;
+            ChangedAt = DateTime.UtcNow;
+        }
+
+        public void UpdateByAdmin(Guid adminId, string comment)
+        {
+            _updatesByAdmins.Add(new UpdateByAdmin(adminId, comment));
             ChangedAt = DateTime.UtcNow;
         }
 

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Hated.Infrastructure.Commands.Posts;
 using Hated.Infrastructure.DTO;
 using Hated.Infrastructure.Extensions;
-using Hated.Infrastructure.Services;
+using Hated.Infrastructure.Services.PostService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -93,15 +93,19 @@ namespace Hated.Api.Controllers
         //PUT posts
         [Authorize]
         [HttpPut]
-        public async Task<IActionResult> UpdateAsync([FromBody]PostDto updatedPost)
+        public async Task<IActionResult> UpdateAsync([FromBody]UpdatePost updatedPost, string adminComment = "")
         {
             try
             {
-                if (!updatedPost.Author.Id.HavePermissions(User))
+                if (!updatedPost.Author.IsAuthor(User))
                 {
                     return Unauthorized();
                 }
-                await _postService.UpdateAsync(updatedPost);
+                if (User.IsAdmin())
+                {
+                    await _postService.UpdateByAdminAsync(updatedPost.Id, updatedPost.Content, User.GetUserId(), adminComment);
+                }
+                await _postService.UpdateAsync(updatedPost.Id, updatedPost.Content);
                 return Ok();
             }
             catch (Exception e)
