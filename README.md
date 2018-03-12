@@ -1,4 +1,5 @@
 
+
 ## Czym jest Hated?
 Hated to aplikacja z elementami społecznościowymi, pozwalająca użytkownikom na dzielenie się negatywnymi opiniami na różne tematy życia codziennego.
 Pozwala nie tylko na dzielenie się własnymi negatywnymi przemyśleniami, ale też na sprawdzenie zdania innych osób na różne tematy.
@@ -10,8 +11,9 @@ Aplikacja domyślnie dostępna jest w postaci strony internetowej pod adresem [(
 Dla osób bardziej zaawansowanych technologiczne udostępnione zostało API, którego dokumentacja jest dostępna pod adresem [(coming soon)](https://github.com/marcin99b/Hated). Dzięki API które udostępniamy, wszystkie aktywności staną się możliwe do wykonania z poziomu twojej zewnętrznej aplikacji.
 
 ## Nasz zespół
-- Marcin - zarządzanie projektem i tworzenie backendu aplikacji, którym jest API w technologii ASP.NET Core
-- Mateusz i Wojtek - tworzenie frontendu aplikacji, w frameworku Vue.js
+- Marcin ([GitHub](https://github.com/Marcin99b)) - zarządzanie projektem i tworzenie backendu aplikacji, którym jest API w technologii ASP.NET Core
+- Mateusz ([GitHub](https://github.com/Stepek123)) - tworzenie frontendu aplikacji, w frameworku Vue.js
+- Wojtek ([GitHub](https://github.com/wojtekhorembala)) - tworzenie frontendu aplikacji, w frameworku Vue.js
 - Dawid - projektowanie wyglądu frontendu, między innymi projektowanie UI/UX
 
 ## Pomoc w rozwoju projektu
