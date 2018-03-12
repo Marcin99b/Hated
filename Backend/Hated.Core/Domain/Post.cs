@@ -10,8 +10,9 @@ namespace Hated.Core.Domain
         private ISet<Like> _likes = new HashSet<Like>();
         private ISet<UpdateByAdmin> _updatesByAdmins = new HashSet<UpdateByAdmin>();
 
-        public Guid Id { get; protected set; }
+        public int Id { get; protected set; }
         public Guid UserId { get; protected set; }
+        public string Title { get; protected set; }
         public string Content { get; protected set; }
         public IEnumerable<Comment> Comments
         {
@@ -33,13 +34,20 @@ namespace Hated.Core.Domain
         public DateTime ChangedAt { get; protected set; }
         public DateTime CreatedAt { get; protected set; }
 
-        public Post(Guid userId, string content)
+        public Post(int postId, Guid userId, string title , string content)
         {
-            Id = Guid.NewGuid();
+            Id = postId;
             UserId = userId;
+            SetTitle(title);
             SetContent(content);
             Deactivate();
             CreatedAt = DateTime.UtcNow;
+        }
+
+        public void SetTitle(string title)
+        {
+            Title = title;
+            ChangedAt = DateTime.UtcNow;
         }
 
         public void SetContent(string content)

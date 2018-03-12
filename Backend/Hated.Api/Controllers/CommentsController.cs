@@ -44,7 +44,7 @@ namespace Hated.Api.Controllers
         //Read
         //GET comments/post/id/comment/id
         [HttpGet("post/{postId}/comment/{commentId}")]
-        public async Task<IActionResult> GetAsyncFromPost(Guid postId, Guid commentId)
+        public async Task<IActionResult> GetAsyncFromPost(int postId, Guid commentId)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace Hated.Api.Controllers
         
         //GET comments/post/id
         [HttpGet("post/{postId}")]
-        public async Task<IActionResult> GetAllAsyncFromPostAsync(Guid postId, int from = 0, int number = 10)
+        public async Task<IActionResult> GetAllAsyncFromPostAsync(int postId, int from = 0, int number = 10)
         {
             try
             {
@@ -88,7 +88,7 @@ namespace Hated.Api.Controllers
         //PUT comments/post/guid
         [Authorize]
         [HttpPut("post/{postId}")]
-        public async Task<IActionResult> UpdateAsync(Guid postId, [FromBody] CommentDto updatedComment)
+        public async Task<IActionResult> UpdateAsync(int postId, [FromBody]CommentDto updatedComment)
         {
             if (!updatedComment.UserId.IsAuthor(User))
             {
@@ -113,7 +113,7 @@ namespace Hated.Api.Controllers
         //DELETE comments/post/guid/comment/guid
         [Authorize]
         [HttpDelete("post/{postId}/comment/{commentId}")]
-        public async Task<IActionResult> DeleteAsync(Guid postId, Guid commentId)
+        public async Task<IActionResult> DeleteAsync(int postId, Guid commentId)
         {
             try
             {

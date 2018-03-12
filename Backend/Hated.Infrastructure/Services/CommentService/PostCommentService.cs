@@ -21,7 +21,7 @@ namespace Hated.Infrastructure.Services
             _mapper = mapper;
         }
 
-        public async Task<Guid> AddAsync(Guid userId, Guid postId, string content)
+        public async Task<Guid> AddAsync(Guid userId, int postId, string content)
         {
             var post = await _postRepository.GetAsync(postId);
             var comment = new Comment(userId, content);
@@ -30,7 +30,7 @@ namespace Hated.Infrastructure.Services
             return comment.Id;
         }
 
-        public async Task<CommentDto> GetAsyncFromPost(Guid postId, Guid commentId)
+        public async Task<CommentDto> GetAsyncFromPost(int postId, Guid commentId)
         {
             var post = await _postRepository.GetAsync(postId);
             if (post == null)
@@ -41,7 +41,7 @@ namespace Hated.Infrastructure.Services
             return comments.FirstOrDefault(x => x.Id == commentId);
         }
 
-        public async Task<IEnumerable<CommentDto>> GetAllFromPostAsync(Guid postId, int from, int number)
+        public async Task<IEnumerable<CommentDto>> GetAllFromPostAsync(int postId, int from, int number)
         {
             var post = await _postRepository.GetAsync(postId);
             if (post == null)
@@ -53,7 +53,7 @@ namespace Hated.Infrastructure.Services
                 .Select(x => _mapper.Map<Comment, CommentDto>(x));
         }
 
-        public async Task UpdateAsync(Guid postId, CommentDto updatedComment)
+        public async Task UpdateAsync(int postId, CommentDto updatedComment)
         {
             var post = await _postRepository.GetAsync(postId);
             var comment = post.GetComment(updatedComment.Id);
@@ -62,7 +62,7 @@ namespace Hated.Infrastructure.Services
             await _postRepository.UpdateAsync(post);
         }
 
-        public async Task DeleteAsync(Guid postId, Guid commentId)
+        public async Task DeleteAsync(int postId, Guid commentId)
         {
             var post = await _postRepository.GetAsync(postId);
             var comment = post.GetComment(commentId);
