@@ -6,7 +6,10 @@ export default {
     state: {
         user: {
             isLogged: false,
-            token: '',
+            token: {
+                data: '',
+                expiresInMiliseconds: null
+            },
         },
         loginError: '',
         registerError: ''
