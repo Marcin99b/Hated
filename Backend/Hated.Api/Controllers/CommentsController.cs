@@ -90,7 +90,7 @@ namespace Hated.Api.Controllers
         [HttpPut("post/{postId}")]
         public async Task<IActionResult> UpdateAsync(Guid postId, [FromBody] CommentDto updatedComment)
         {
-            if (!updatedComment.UserId.HavePermissions(User))
+            if (!updatedComment.UserId.IsAuthor(User))
             {
                 return Unauthorized();
             }
