@@ -12,6 +12,11 @@
 import Header from '@/components/Header';
 
 export default {
+  data(){
+    return {
+      timeout: null
+    }
+  },
   components: {
     Header,
   },
@@ -28,7 +33,7 @@ export default {
   },
   updated(){
     if (this.isLogged ) {
-      setTimeout(()=>{
+      this.timeout = setTimeout(()=>{
         this.$store.dispatch('logOut');
       }, this.sessionExpires);
     }

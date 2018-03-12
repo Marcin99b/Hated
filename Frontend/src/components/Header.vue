@@ -2,7 +2,7 @@
   <header class="header">
     <div class="header__heading">
       <h1>Hated</h1>
-      <h2>Hejtuj jak chcesz</h2>
+      <!-- <h2>Hejtuj jak chcesz</h2> -->
     </div>
     <router-link to="/" tag="img" class="header__image" src="http://via.placeholder.com/200x150" alt="Logo"></router-link>
     <router-link to="/login" tag="button" v-if="!user.isLogged" class="header__login global-button">
@@ -22,20 +22,20 @@
 export default {
   methods: {
     logOut() {
-      this.$store.dispatch('logOut');
-    },
+      this.$store.dispatch("logOut");
+    }
   },
   computed: {
     isTouchDevice() {
       return window.innerWidth < 1024;
     },
-    user() { 
+    user() {
       return this.$store.state.account.user;
     }
   },
   updated() {
     if (this.user.isLogged) {
-      this.$router.push('/');
+      this.$router.push("/");
     }
   }
 };
@@ -43,32 +43,32 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.header{
+.header {
   position: relative;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 10vh;
   max-height: 15vh;
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
   background-color: var(--main-color);
   color: white;
   box-shadow: 2px 2px 5px gray;
 }
-.header__image{
+.header__image {
   position: absolute;
-  left:0;
-  right:0;
+  left: 0;
+  right: 0;
   margin: auto;
   height: 100%;
   padding: 1vh;
 }
-.header__image:hover{
+.header__image:hover {
   cursor: pointer;
 }
 .header__login,
-.header__logout{
+.header__logout {
   position: absolute;
   top: 0;
   right: 0vw;
@@ -77,40 +77,40 @@ export default {
 .header__login:hover,
 .header__login:active,
 .header__logout:hover,
-.header__logout:active{
+.header__logout:active {
   cursor: pointer;
   background-color: white;
   color: var(--main-color);
 }
-.header__heading{
+.header__heading {
   position: absolute;
-  top:0;
+  top: 0;
   left: 4vw;
   height: 100%;
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.header__heading h1{
+.header__heading h1 {
   font-size: 2rem;
 }
-.header__heading h2{
+.header__heading h2 {
   font-size: 1rem;
 }
-@media (max-width: 1024px){
+@media (max-width: 1024px) {
   .header__login,
-  .header__logout{
+  .header__logout {
     width: 20vw;
     font-size: 1.5rem;
   }
-  .header__heading h1{
+  .header__heading h1 {
     font-size: 1.4rem;
   }
-  .header__heading h2{
-    font-size: .9rem;
+  .header__heading h2 {
+    font-size: 0.9rem;
   }
-  .header__image{
+  .header__image {
     left: 10vw;
   }
 }
