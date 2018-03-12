@@ -11,7 +11,7 @@ Dla osób bardziej zaawansowanych technologiczne udostępnione zostało API, kt�
 
 ## Nasz zespół
 - Marcin - zarządzanie projektem i tworzenie backendu aplikacji, którym jest API w technologii ASP.NET Core
-- Mateusz i Paweł - tworzenie frontendu aplikacji, w frameworku Vue.js
+- Mateusz i Wojtek - tworzenie frontendu aplikacji, w frameworku Vue.js
 - Dawid - projektowanie wyglądu frontendu, między innymi projektowanie UI/UX
 
 ## Pomoc w rozwoju projektu
