@@ -1,29 +1,27 @@
-import Endpoints from '@/services/Endpoints';
+import Endpoints from "@/services/Endpoints";
 
 export default {
-  logIn({ commit }, user) {
-    Endpoints.logIn(user)
-      .then(({ data }) => {
-        commit('logIn', data);
-      });
+  login({ commit }, user) {
+    Endpoints.login(user).then(({ data }) => {
+      commit("login", data);
+    });
   },
   register({ dispatch, commit }, user) {
-    Endpoints.register(user)
-      .then(({ data }) => {
-        if (!data.error) {
-          dispatch('logIn', user);
-        } else {
-          commit('registerFailed', `Użytkownik o podanych danych już istnieje`);
-        }
-      });
+    Endpoints.register(user).then(({ data }) => {
+      if (!data.error) {
+        dispatch("login", user);
+      } else {
+        commit("registerFailed", `Użytkownik o podanych danych już istnieje`);
+      }
+    });
   },
-  logOut({ commit }) {
-    commit('logOut');
+  logout({ commit }) {
+    commit("logout");
   },
   checkIsAlreadyLogged({ commit }) {
-    commit('checkIsAlreadyLogged');
+    commit("checkIsAlreadyLogged");
   },
   clearError({ commit }) {
-    commit('clearError');
+    commit("clearError");
   }
 };

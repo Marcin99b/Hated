@@ -1,13 +1,13 @@
-import SessionStorageHandler from '../../sessionStorage';
+import SessionStorageHandler from "../../sessionStorage";
 
 export default {
-  logIn(state, payload) {
+  login(state, payload) {
     if (payload.token) {
       state.user = {
         isLogged: true,
         token: {
           data: payload.token,
-          expiresInMiliseconds: (payload.expiry - (new Date().valueOf())),
+          expiresInMiliseconds: payload.expiry - new Date().valueOf()
         }
       };
       SessionStorageHandler.saveState(state.user);
@@ -15,13 +15,13 @@ export default {
       state.loginError = payload.error;
     }
   },
-  registerFailed(state, error){
+  registerFailed(state, error) {
     state.registerError = error;
   },
-  logOut(state) {
+  logout(state) {
     state.user = {
       isLogged: false,
-      token: '',
+      token: ""
     };
     SessionStorageHandler.removeState();
   },

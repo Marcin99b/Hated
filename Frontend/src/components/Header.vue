@@ -10,7 +10,7 @@
       <span v-else class="fa fa-sign-in"></span>
     </router-link>
     <div v-else class="header__login--logged">
-      <button class="header__logout global-button" @click="logOut">
+      <button class="header__logout global-button" @click="logout">
         <span v-if="!isTouchDevice">Wyloguj się</span>
         <span v-else class="fa fa-sign-out"></span> 
       </button>
@@ -21,8 +21,8 @@
 <script>
 export default {
   methods: {
-    logOut() {
-      this.$store.dispatch("logOut");
+    logout() {
+      this.$store.dispatch("logout");
     }
   },
   computed: {

@@ -1,5 +1,5 @@
 <template>
-  <form class="login-form" @submit.prevent="logIn">
+  <form class="login-form" @submit.prevent="login">
     <div class="login-form__field">
       <label for="email">Email</label>
       <input name="email" v-model="user.email" autocomplete="current-password" type="email">
@@ -33,8 +33,8 @@ export default {
   data() {
     return {
       user: {
-        email: 'qwerty@qwerty.com',
-        password: 'qwerty',
+        email: "qwerty@qwerty.com",
+        password: "qwerty"
       },
       loading: false
     };
@@ -45,25 +45,25 @@ export default {
     },
     error() {
       return this.$store.state.account.loginError;
-    },
+    }
   },
   methods: {
-    logIn() {
+    login() {
       this.loading = true;
-      this.$store.dispatch('logIn', this.user);
-    },
+      this.$store.dispatch("login", this.user);
+    }
   },
   created() {
     if (this.isLogged) {
-      this.$router.push('/');
+      this.$router.push("/");
     }
   },
   updated() {
-    if(this.error){
+    if (this.error) {
       this.loading = false;
-      setTimeout(()=> {
-        this.$store.dispatch('clearError');
-      },3000);
+      setTimeout(() => {
+        this.$store.dispatch("clearError");
+      }, 3000);
     }
   }
 };
@@ -71,30 +71,30 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.login-form{
+.login-form {
   position: absolute;
-  left:0;
-  right:0;
+  left: 0;
+  right: 0;
   width: 50vw;
   height: 50vh;
   background-color: var(--main-color);
   margin: 15vh auto 0 auto;
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: white;
   box-shadow: 2px 2px 5px gray;
 }
-.login-form__field{
+.login-form__field {
   margin: 1vh 0;
   text-align: center;
 }
-.login-form__field input{
-  border:0;
-  font-size: .8rem;
+.login-form__field input {
+  border: 0;
+  font-size: 0.8rem;
 }
-.error-message{
+.error-message {
   font-size: 1rem;
 }
 /* Spinner */
@@ -111,7 +111,7 @@ export default {
   height: 100%;
   width: 6px;
   display: inline-block;
-  
+
   -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
   animation: sk-stretchdelay 1.2s infinite ease-in-out;
 }
@@ -122,8 +122,8 @@ export default {
 }
 
 .spinner .rect3 {
-  -webkit-animation-delay: -1.0s;
-  animation-delay: -1.0s;
+  -webkit-animation-delay: -1s;
+  animation-delay: -1s;
 }
 
 .spinner .rect4 {
@@ -137,33 +137,42 @@ export default {
 }
 
 @-webkit-keyframes sk-stretchdelay {
-  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
-  20% { -webkit-transform: scaleY(1.0) }
+  0%,
+  40%,
+  100% {
+    -webkit-transform: scaleY(0.4);
+  }
+  20% {
+    -webkit-transform: scaleY(1);
+  }
 }
 
 @keyframes sk-stretchdelay {
-  0%, 40%, 100% { 
+  0%,
+  40%,
+  100% {
     transform: scaleY(0.4);
     -webkit-transform: scaleY(0.4);
-  }  20% { 
-    transform: scaleY(1.0);
-    -webkit-transform: scaleY(1.0);
+  }
+  20% {
+    transform: scaleY(1);
+    -webkit-transform: scaleY(1);
   }
 }
 /*Spinner end*/
-@media (max-width: 1024px){
-  .login-form{
+@media (max-width: 1024px) {
+  .login-form {
     width: 80vw;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
   }
-  .login-form__field button{
+  .login-form__field button {
     width: 30vw;
-    padding: .3rem;
+    padding: 0.3rem;
   }
-  .login-form__field a{
-    font-size: .9rem;
+  .login-form__field a {
+    font-size: 0.9rem;
   }
 }
 </style>
