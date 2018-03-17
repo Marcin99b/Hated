@@ -1,9 +1,9 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-import Main from "@/views/Main";
-import Login from "@/views/Login";
-import Register from "@/views/Register";
+import MainPage from "@/views/MainPage";
+import LoginPage from "@/views/LoginPage";
+import RegisterPage from "@/views/RegisterPage";
 import SinglePost from "@/views/SinglePost";
 
 Vue.use(Router);
@@ -13,15 +13,15 @@ export default new Router({
   routes: [
     {
       path: "/",
-      component: Main
+      component: MainPage
     },
     {
       path: "/login",
-      component: Login
+      component: LoginPage
     },
     {
       path: "/register",
-      component: Register
+      component: RegisterPage
     },
     {
       path: "/post/:id",

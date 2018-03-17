@@ -1,5 +1,5 @@
 <template>
-  <Post :post="post" isShorter="false"/>
+  <Post :post="post" :isShorter="isShorter"/>
 </template>
 
 <script>
@@ -8,7 +8,8 @@ import Post from "@/components/Post";
 export default {
   data() {
     return {
-      postId: this.$route.params.id
+      postId: this.$route.params.id,
+      isShorter: false
     };
   },
   computed: {

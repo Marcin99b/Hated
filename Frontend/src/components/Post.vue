@@ -3,7 +3,7 @@
       <div class="post__id">Id: {{post.id}}</div>
       <div class="post__author">Autor: {{post.userId}}</div>
       <div class="post__content">Treść: {{shorterText}}</div>
-      <router-link class="post__read-more" v-if="!isShorter" :to="postURL">Czytaj dalej</router-link>
+      <router-link class="post__read-more" v-if="isShorter" :to="postURL">Czytaj dalej</router-link>
       <br><br> Komentarze <br><br>
       <ul>
           <li v-for="(comment, index) in post.comments" :key="index">
@@ -22,7 +22,16 @@ export default {
       postURL: `/post/${this.post.id}`
     };
   },
-  props: ["post", "isShorter"],
+  props: {
+    post: {
+      type: Object,
+      required: true
+    },
+    isShorter: {
+      type: Boolean,
+      required: true
+    }
+  },
   computed: {
     shorterText() {
       if (!this.post.content) return;
