@@ -9,85 +9,93 @@
   </div>
 </template>
 <script>
-import Header from '@/components/Header';
+import Header from "@/components/Header";
 
 export default {
-  data(){
+  data() {
     return {
-      timeout: null
-    }
+      timeout: null,
+      component: "Login"
+    };
   },
   components: {
-    Header,
+    Header
   },
   computed: {
-    isLogged(){
+    isLogged() {
       return this.$store.state.account.user.isLogged;
     },
-    sessionExpires(){
+    sessionExpires() {
       return this.$store.state.account.user.token.expiresInMiliseconds;
     }
   },
   mounted() {
-    this.$store.dispatch('checkIsAlreadyLogged');
+    this.$store.dispatch("checkIsAlreadyLogged");
   },
-  updated(){
-    if (this.isLogged ) {
-      this.timeout = setTimeout(()=>{
-        this.$store.dispatch('logOut');
+  updated() {
+    if (this.isLogged) {
+      this.timeout = setTimeout(() => {
+        this.$store.dispatch("logOut");
       }, this.sessionExpires);
     }
   }
 };
 </script>
 <style>
-:root{
-  --main-color: rgba(179, 9, 9, 0.795);
-  --main-font: 'Lato', sans-serif;
-  --button-font-size: .9rem;
-  --hand1: 'Caveat', cursive;
-  --hand2: 'Kalam', cursive;
+:root {
+  --main-color: rgb(154, 3, 30);
+  --main-font: "Lato", sans-serif;
+  --button-font-size: 0.9rem;
+  --hand1: "Caveat", cursive;
+  --hand2: "Kalam", cursive;
 }
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   font-family: var(--main-font);
   font-size: 1.3rem;
   overflow-x: hidden;
 }
-.global-button{
+dialog {
+  border: none;
+}
+.global-button {
   width: 10vw;
-  font-size: .9rem;
+  font-size: 0.9rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 0.5vw solid transparent;
   background-color: var(--main-color);
-  color:  white;
+  color: white;
 }
-.global-button:hover{
+.global-button:hover {
   color: var(--main-color);
   background-color: white;
   cursor: pointer;
 }
-*{
+* {
   box-sizing: border-box;
 }
-.fade-enter-to, .fade-leave{
+.fade-enter-to,
+.fade-leave {
   transform: scale(1);
 }
-.fade-enter-active, .fade-leave-active {
-  transition: transform .5s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: transform 0.5s;
 }
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   transform: scale(0);
 }
-a{
+a {
   color: white;
   text-decoration: none;
 }
 a:focus,
-a:hover{
-  text-decoration:underline;
+a:hover {
+  text-decoration: underline;
 }
 </style>

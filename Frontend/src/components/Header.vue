@@ -1,10 +1,11 @@
 <template>
   <header class="header">
     <div class="header__heading">
-      <h1>Hated</h1>
-      <!-- <h2>Hejtuj jak chcesz</h2> -->
+      <router-link to="/" tag="h1">Hated</router-link>
     </div>
-    <router-link to="/" tag="img" class="header__image" src="http://via.placeholder.com/200x150" alt="Logo"></router-link>
+    <router-link to="/">Strona główna</router-link>
+    <router-link to="/poczekalnia">Poczekalnia</router-link>
+    <router-link to="/o-nas">O Nas</router-link>
     <router-link to="/login" tag="button" v-if="!user.isLogged" class="header__login global-button">
       <span v-if="!isTouchDevice">Zaloguj się</span>
       <span v-else class="fa fa-sign-in"></span>

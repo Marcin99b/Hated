@@ -1,16 +1,27 @@
 <template>
-  <article class="posts">
-    <Post v-for="(post, index) in posts" :key="index" :post="post" :isShorter="isShorter"/>
-  </article>
+  <div>
+    <dialog ref="modal">
+      <component :is="component"/>
+    </dialog>  
+    <article class="posts">
+      <Post v-for="(post, index) in posts" :key="index" :post="post" :isShorter="isShorter"/>
+    </article>
+    <nav class="pagination">
+      <!-- TODO: Paginacja strony głównej -->
+    </nav>
+  </div>
 </template>
 
 <script>
 import Post from "@/components/Post";
+import Register from "@/components/Register";
+import Login from "@/components/Login";
 
 export default {
   data() {
     return {
-      isShorter: true
+      isShorter: true,
+      component: "Login"
     };
   },
   computed: {
@@ -24,8 +35,16 @@ export default {
       number: 10
     });
   },
+  mounted() {
+    this.$refs.modal.setAttribute("open", "");
+    setTimeout(() => {
+      this.$refs.modal.removeAttribute("open");
+    }, 2000);
+  },
   components: {
-    Post
+    Post,
+    Register,
+    Login
   }
 };
 </script>
