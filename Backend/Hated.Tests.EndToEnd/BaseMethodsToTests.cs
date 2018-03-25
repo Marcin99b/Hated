@@ -93,14 +93,13 @@ namespace Hated.Tests.EndToEnd
         #region Post
 
         protected string GetRandomTextAsync(int? number = null)
-        {
-            var client = new HttpClient {BaseAddress = new Uri("http://api.icndb.com/")};
+        { 
             var texts = "";
             number = number ?? new Random().Next(0, 50);
             for (var i = 0; i < number; i++)
             {
                 var content = RandomString(50);
-                texts += "\n\n" + JObject.Parse(content)["value"]["joke"];
+                texts += "\n\n" + content;
             }
             return texts;
         }
