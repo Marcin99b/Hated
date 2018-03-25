@@ -139,8 +139,9 @@ namespace Hated.Tests.EndToEnd
         {
             var payload = GetPayload(new CreateComment
             {
+                PostId = postId,
                 Content = content ?? await GetRandomTextAsync()
-        });
+            });
             return await Client.PostAsync("comments", payload);
         }
 
