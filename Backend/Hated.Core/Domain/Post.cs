@@ -39,6 +39,7 @@ namespace Hated.Core.Domain
         {
             Id = Regex.Replace(Convert.ToBase64String(Guid.NewGuid().ToByteArray()), "[/+=]", "");
             UserId = userId;
+            SetTitle(title);
             SetContent(content);
             Deactivate();
             CreatedAt = DateTime.UtcNow;
