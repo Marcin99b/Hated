@@ -7,7 +7,7 @@ namespace Hated.Core.Repositories
 {
     public interface IPostRepository : IRepository
     {
-        Task<Post> GetAsync(Guid id);
+        Task<Post> GetAsync(string id);
 
         Task<IEnumerable<Post>> GetAllAsync(int from, int number);
 

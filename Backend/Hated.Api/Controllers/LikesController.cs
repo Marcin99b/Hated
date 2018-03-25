@@ -24,7 +24,7 @@ namespace Hated.Api.Controllers
 
         [Authorize]
         [HttpPost("post{postId}/like")]
-        public async Task<IActionResult> LikePostAsync(Guid postId)
+        public async Task<IActionResult> LikePostAsync(string postId)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace Hated.Api.Controllers
 
         [Authorize]
         [HttpPost("post{postId}/dislike")]
-        public async Task<IActionResult> DisikePostAsync(Guid postId)
+        public async Task<IActionResult> DisikePostAsync(string postId)
         {
             try
             {
@@ -64,7 +64,7 @@ namespace Hated.Api.Controllers
 
         [Authorize]
         [HttpPost("post{postId}/comment/{commentId}/like")]
-        public async Task<IActionResult> LikeCommentAsync(Guid postId, Guid commentId)
+        public async Task<IActionResult> LikeCommentAsync(string postId, Guid commentId)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace Hated.Api.Controllers
 
         [Authorize]
         [HttpPost("post{postId}/comment/{commentId}/dislike")]
-        public async Task<IActionResult> DislikeCommentAsync(Guid postId, Guid commentId)
+        public async Task<IActionResult> DislikeCommentAsync(string postId, Guid commentId)
         {
             try
             {

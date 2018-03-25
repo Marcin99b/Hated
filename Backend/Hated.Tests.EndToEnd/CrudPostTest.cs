@@ -31,11 +31,13 @@ namespace Hated.Tests.EndToEnd
         {
             var response = await CreateNewPost();
             var post = await GetPostAsync(response.Headers.Location.ToString());
+            string updatedPostTitle = await GetRandomTextAsync();
             string updatedPostContent = await GetRandomTextAsync();
             var postUpdatePayload = new UpdatePost
             {
                 Id = post.Id,
                 Author = post.Author.Id,
+                Title = updatedPostTitle,
                 Content = updatedPostContent
             };
             var payload = GetPayload(postUpdatePayload);

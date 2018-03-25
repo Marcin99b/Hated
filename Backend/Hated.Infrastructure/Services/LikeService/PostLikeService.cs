@@ -13,14 +13,14 @@ namespace Hated.Infrastructure.Services.Like
             _postRepository = postRepository;
         }
 
-        public async Task LikePostAsync(Guid postId, Guid userId)
+        public async Task LikePostAsync(string postId, Guid userId)
         {
             var post = await _postRepository.GetAsync(postId);
             post.AddLike(userId);
             await _postRepository.UpdateAsync(post);
         }
 
-        public async Task DislikePostAsync(Guid postId, Guid userId)
+        public async Task DislikePostAsync(string postId, Guid userId)
         {
             var post = await _postRepository.GetAsync(postId);
             post.DeleteLike(userId);

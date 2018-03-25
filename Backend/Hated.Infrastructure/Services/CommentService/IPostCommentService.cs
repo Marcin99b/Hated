@@ -7,10 +7,10 @@ namespace Hated.Infrastructure.Services
 {
     public interface IPostCommentService : IService
     {
-        Task<Guid> AddAsync(Guid userId, Guid postId, string content);
-        Task<CommentDto> GetAsyncFromPost(Guid postId, Guid commentId);
-        Task<IEnumerable<CommentDto>> GetAllFromPostAsync(Guid postId, int from, int number);
-        Task UpdateAsync(Guid postId, CommentDto updatedComment);
-        Task DeleteAsync(Guid postId, Guid commentId);
+        Task<Guid> AddAsync(Guid userId, string postId, string content);
+        Task<CommentDto> GetAsyncFromPost(string postId, Guid commentId);
+        Task<IEnumerable<CommentDto>> GetAllFromPostAsync(string postId, int from, int number);
+        Task UpdateAsync(string postId, CommentDto updatedComment);
+        Task DeleteAsync(string postId, Guid commentId);
     }
 }

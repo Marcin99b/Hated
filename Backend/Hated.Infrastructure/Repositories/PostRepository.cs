@@ -19,7 +19,7 @@ namespace Hated.Infrastructure.Repositories
             _mongoDatabase = mongoDatabase;
         }
 
-        public async Task<Post> GetAsync(Guid id)
+        public async Task<Post> GetAsync(string id)
             => await Task.FromResult(_posts.AsQueryable().SingleOrDefault(x => x.Id == id));
 
         public async Task<IEnumerable<Post>> GetAllAsync(int from, int number)

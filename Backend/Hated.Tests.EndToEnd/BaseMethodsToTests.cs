@@ -112,6 +112,7 @@ namespace Hated.Tests.EndToEnd
             content = content ?? await GetRandomTextAsync();
             var payload = GetPayload(new CreatePost
             {
+                Title = await GetRandomTextAsync(),
                 Content = content
             });
             return await Client.PostAsync("posts", payload);
@@ -134,11 +135,10 @@ namespace Hated.Tests.EndToEnd
 
         #region Comment
         //Comment
-        protected async Task<HttpResponseMessage> CreateNewComment(Guid postId, string content = null)
+        protected async Task<HttpResponseMessage> CreateNewComment(string postId, string content = null)
         {
             var payload = GetPayload(new CreateComment
             {
-                PostId = postId,
                 Content = content ?? await GetRandomTextAsync()
         });
             return await Client.PostAsync("comments", payload);

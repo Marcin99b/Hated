@@ -15,7 +15,7 @@ namespace Hated.Tests.Domain
 
             var user = new User("test@test.com", "secret", "secret123", "salt");
 
-            var post = new Post(user.Id, Guid.NewGuid().ToString() + Guid.NewGuid());
+            var post = new Post(user.Id, Guid.NewGuid().ToString(), Guid.NewGuid().ToString() + Guid.NewGuid());
             var comment = new Comment(user.Id, beforeText);
 
             post.AddComment(comment);
