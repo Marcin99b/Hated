@@ -92,27 +92,33 @@ namespace Hated.Tests.EndToEnd
 
         #region Post
 
-        protected async Task<string> GetRandomTextAsync(int? number = null)
+        protected string GetRandomTextAsync(int? number = null)
         {
             var client = new HttpClient {BaseAddress = new Uri("http://api.icndb.com/")};
-            var jokes = "";
+            var texts = "";
             number = number ?? new Random().Next(0, 50);
             for (var i = 0; i < number; i++)
             {
-                var response = await client.GetAsync($"jokes/random");
-                var content = await response.Content.ReadAsStringAsync();
-                jokes += "\n\n" + JObject.Parse(content)["value"]["joke"];
+                var content = RandomString(50);
+                texts += "\n\n" + JObject.Parse(content)["value"]["joke"];
             }
-            return jokes;
+            return texts;
+        }
+
+        protected string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+                .Select(s => s[new Random().Next(s.Length)]).ToArray());
         }
 
         //Post
         protected async Task<HttpResponseMessage> CreateNewPost(string content = null)
         {
-            content = content ?? await GetRandomTextAsync();
+            content = content ?? GetRandomTextAsync();
             var payload = GetPayload(new CreatePost
             {
-                Title = await GetRandomTextAsync(),
+                Title = GetRandomTextAsync(),
                 Content = content
             });
             return await Client.PostAsync("posts", payload);
@@ -140,7 +146,7 @@ namespace Hated.Tests.EndToEnd
             var payload = GetPayload(new CreateComment
             {
                 PostId = postId,
-                Content = content ?? await GetRandomTextAsync()
+                Content = content ?? GetRandomTextAsync()
             });
             return await Client.PostAsync("comments", payload);
         }

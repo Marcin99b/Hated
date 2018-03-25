@@ -12,7 +12,7 @@ namespace Hated.Tests.EndToEnd
         {
             var responsePost = await CreateNewPost();
             var post = await GetPostAsync(responsePost.Headers.Location.ToString());
-            var responseComment = await CreateNewComment(post.Id, await GetRandomTextAsync());
+            var responseComment = await CreateNewComment(post.Id, GetRandomTextAsync());
 
             Assert.Equal(HttpStatusCode.Created, responseComment.StatusCode);
             var comment = await GetCommentAsync(responseComment.Headers.Location.ToString());
@@ -24,7 +24,7 @@ namespace Hated.Tests.EndToEnd
         {
             var post = await CreateAndGetRandomPost(testUserGenerate);
             var comment = await CreateAndGetRandomComment(post, testUserGenerate);
-            var updatedContent = await GetRandomTextAsync();
+            var updatedContent = GetRandomTextAsync();
             comment.Content = updatedContent;
             var payload = GetPayload(comment);
             var response = await Client.PutAsync($"comments/post/{post.Id}", payload);
