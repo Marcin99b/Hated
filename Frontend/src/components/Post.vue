@@ -1,17 +1,9 @@
 <template>
   <article class="post">
-      <div class="post__id">Id: {{post.id}}</div>
+      <div class="post__date">{{moment().format('dddd DD MMMM YYYY')}}</div>
       <div class="post__author">Autor: {{post.userId}}</div>
       <div class="post__content">Treść: {{shorterText}}</div>
       <router-link class="post__read-more" v-if="isShorter" :to="postURL">Czytaj dalej</router-link>
-      <br><br> Komentarze <br><br>
-      <ul>
-          <li v-for="(comment, index) in post.comments" :key="index">
-              Id: {{comment.id}}
-              Autor: {{comment.userId}}
-              Treść: {{comment.content}}
-          </li>
-      </ul>
   </article>
 </template>
 
