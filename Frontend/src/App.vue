@@ -14,8 +14,7 @@ import Header from "@/components/Header";
 export default {
   data() {
     return {
-      timeout: null,
-      component: "Login"
+      timeout: null
     };
   },
   components: {
@@ -59,21 +58,6 @@ html {
 }
 dialog {
   border: none;
-}
-.global-button {
-  width: 10vw;
-  font-size: 0.9rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 0.5vw solid transparent;
-  background-color: var(--main-color);
-  color: white;
-}
-.global-button:hover {
-  color: var(--main-color);
-  background-color: white;
-  cursor: pointer;
 }
 * {
   box-sizing: border-box;

@@ -34,12 +34,10 @@ export default {
       from: 0,
       number: 10
     });
-  },
-  mounted() {
-    this.$refs.modal.setAttribute("open", "");
-    setTimeout(() => {
-      this.$refs.modal.removeAttribute("open");
-    }, 2000);
+    this.$bus.$on("openLoginModal", () => {
+      this.component = "Login";
+      this.$refs.modal.setAttribute("open", "");
+    });
   },
   components: {
     Post,

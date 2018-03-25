@@ -1,14 +1,20 @@
 import Endpoints from "@/services/Endpoints";
 
 export default {
-  getPosts({ commit }, { from, number }) {
-    Endpoints.getPostsFrom(from, number).then(({ data }) => {
+  async getPosts({ commit }, { from, number }) {
+    try {
+      const { data } = await Endpoints.getPostsFrom(from, number);
       commit("getPosts", data);
-    });
+    } catch (error) {
+      //TODO: Sensowna obsługa błędów
+    }
   },
-  getSinglePost({ commit }, postId) {
-    Endpoints.getSinglePost(postId).then(({ data }) => {
+  async getSinglePost({ commit }, postId) {
+    try {
+      const data = await Endpoints.getSinglePost(postId);
       commit("getSinglePost", data);
-    });
+    } catch (error) {
+      //TODO: Sensowna obsługa błędów
+    }
   }
 };

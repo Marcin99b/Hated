@@ -1,19 +1,18 @@
-import actions from './actions';
-import mutations from './mutations';
-import getters from './getters';
+import actions from "./actions";
+import mutations from "./mutations";
 
 export default {
-    state: {
-        user: {
-            isLogged: false,
-            token: {
-                data: '',
-                expiresInMiliseconds: null
-            },
-        },
-        loginError: '',
-        registerError: ''
+  state: {
+    user: {
+      isLogged: false,
+      token: {
+        data: "",
+        expiresInMiliseconds: null
+      }
     },
-    actions,
-    mutations
-}
+    loginError: "",
+    registerError: ""
+  },
+  actions,
+  mutations
+};

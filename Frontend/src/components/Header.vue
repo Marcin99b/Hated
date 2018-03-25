@@ -1,21 +1,17 @@
 <template>
   <header class="header">
-    <div class="header__heading">
-      <router-link to="/" tag="h1">Hated</router-link>
-    </div>
-    <router-link to="/">Strona główna</router-link>
-    <router-link to="/poczekalnia">Poczekalnia</router-link>
-    <router-link to="/o-nas">O Nas</router-link>
-    <router-link to="/login" tag="button" v-if="!user.isLogged" class="header__login global-button">
+    <router-link class="header__heading header__item" to="/" tag="h1">Hated</router-link>
+    <router-link class="header__item" to="/">Strona główna</router-link>
+    <router-link class="header__item" to="/poczekalnia">Poczekalnia</router-link>
+    <router-link class="header__item" to="/o-nas">O Nas</router-link>
+    <button v-if="!user.isLogged" @click="openLoginModal" class="header__login header__item">
       <span v-if="!isTouchDevice">Zaloguj się</span>
       <span v-else class="fa fa-sign-in"></span>
-    </router-link>
-    <div v-else class="header__login--logged">
-      <button class="header__logout global-button" @click="logout">
-        <span v-if="!isTouchDevice">Wyloguj się</span>
-        <span v-else class="fa fa-sign-out"></span> 
-      </button>
-    </div>
+    </button>
+    <button v-else class="header__logout header__item" @click="logout">
+      <span v-if="!isTouchDevice">Wyloguj się</span>
+      <span v-else class="fa fa-sign-out"></span> 
+    </button>
   </header>
 </template>
 
@@ -24,6 +20,9 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("logout");
+    },
+    openLoginModal() {
+      this.$bus.$emit("openLoginModal");
     }
   },
   computed: {
@@ -53,66 +52,44 @@ export default {
   max-height: 15vh;
   display: flex;
   flex-direction: row;
+  align-items: center;
   background-color: var(--main-color);
   color: white;
   box-shadow: 2px 2px 5px gray;
+  font-size: 0.9rem;
 }
-.header__image {
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
-  height: 100%;
-  padding: 1vh;
+.header__item {
+  width: 11vw;
+  padding: 0.6rem;
+  text-align: center;
+  margin: 0 1vw;
 }
-.header__image:hover {
-  cursor: pointer;
-}
-.header__login,
-.header__logout {
-  position: absolute;
-  top: 0;
-  right: 0vw;
-  height: 100%;
-}
-.header__login:hover,
-.header__login:active,
-.header__logout:hover,
-.header__logout:active {
-  cursor: pointer;
-  background-color: white;
-  color: var(--main-color);
+.header__item:hover:not(h1) {
+  border: 2px solid white;
+  border-radius: 20px;
+  text-decoration: none;
 }
 .header__heading {
-  position: absolute;
-  top: 0;
-  left: 4vw;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  margin-left: 5vw;
+  margin-right: auto;
+  font-size: 1.5rem;
 }
-.header__heading h1 {
-  font-size: 2rem;
+.header__login {
+  background-color: white;
+  color: var(--main-color);
+  margin-right: 5vw;
+  border: none;
+  border-radius: 20px;
+  font-family: var(--main-font);
+  font-size: 0.9rem;
+  border: 2px solid transparent;
 }
-.header__heading h2 {
-  font-size: 1rem;
-}
-@media (max-width: 1024px) {
-  .header__login,
-  .header__logout {
-    width: 20vw;
-    font-size: 1.5rem;
-  }
-  .header__heading h1 {
-    font-size: 1.4rem;
-  }
-  .header__heading h2 {
-    font-size: 0.9rem;
-  }
-  .header__image {
-    left: 10vw;
-  }
+.header__login:hover,
+.header__login:focus {
+  color: white;
+  background-color: var(--main-color);
+  cursor: pointer;
+  border: 2px solid white;
+  outline: none;
 }
 </style>

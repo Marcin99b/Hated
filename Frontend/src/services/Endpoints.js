@@ -1,19 +1,19 @@
 import Api from "./Api";
 
 export default {
-  login(user) {
-    return Api().post("/Account/login", user);
+  async login(user) {
+    return await Api().post("/Account/login", user);
   },
-  register(user) {
-    return Api().post("Account/register", user);
+  async register(user) {
+    return await Api().post("Account/register", user);
   },
-  newToken() {
-    return Api().post("/Account/token");
+  async newToken() {
+    return await Api().post("/Account/token");
   },
-  getPostsFrom(x, y) {
-    return Api().get(`/Posts?from=${x}&number=${y}`);
+  async getPostsFrom(x, y) {
+    return await Api().get(`/Posts?from=${x}&number=${y}`);
   },
-  getSinglePost(postId) {
-    return Api().get(`/Posts/${postId}`);
+  async getSinglePost(postId) {
+    return await Api().get(`/Posts/${postId}`);
   }
 };
