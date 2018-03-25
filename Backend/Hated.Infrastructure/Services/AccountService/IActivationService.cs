@@ -5,7 +5,7 @@ namespace Hated.Infrastructure.Services
 {
     public interface IActivationService : IService
     {
-        Task ActivatePost(int postId);
-        Task DeactivatePost(int postId);
+        Task ActivatePost(string postId);
+        Task DeactivatePost(string postId);
     }
 }

@@ -5,7 +5,7 @@ namespace Hated.Infrastructure.Services.Like
 {
     public interface IPostCommentLikeService : IService
     {
-        Task LikePostCommentAsync(int postId, Guid commentId, Guid userId);
-        Task DislikePostCommentAsync(int postId, Guid commentId, Guid userId);
+        Task LikePostCommentAsync(string postId, Guid commentId, Guid userId);
+        Task DislikePostCommentAsync(string postId, Guid commentId, Guid userId);
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Hated.Infrastructure.Commands.Posts
+﻿namespace Hated.Infrastructure.Commands.Posts
 {
     public class CreatePost
     {

@@ -24,19 +24,16 @@ namespace Hated.Infrastructure.Services.PostService
         }
 
         //Create
-        public async Task<int> AddAsync(Guid userId, string title, string content)
+        public async Task<string> AddAsync(Guid userId, string title, string content)
         {
-            title.PostTitleValidation();
             content.PostContentValidation();
-            var numberOfPosts = await _postRepository.GetNumberOfPosts();
-            var postId = numberOfPosts + 1;
-            var post = new Post(postId, userId, title, content);
+            var post = new Post(userId, title, content);
             await _postRepository.AddAsync(post);
-            return postId;
+            return post.Id;
         }
         
         //Read
-        public async Task<DetailPostDto> GetAsync(int id, int commentsFrom, int commentsNumber)
+        public async Task<DetailPostDto> GetAsync(string id, int commentsFrom, int commentsNumber)
         {
             var post = await _postRepository.GetAsync(id);
             if (post == null)
@@ -70,9 +67,8 @@ namespace Hated.Infrastructure.Services.PostService
         }
 
         //Update
-        public async Task UpdateAsync(int postId, string title, string content)
+        public async Task UpdateAsync(string postId, string title, string content)
         {
-            title.PostTitleValidation();
             content.PostContentValidation();
             var post = await _postRepository.GetAsync(postId);
             if (post == null)
@@ -85,9 +81,8 @@ namespace Hated.Infrastructure.Services.PostService
         }
 
         //Update
-        public async Task UpdateByAdminAsync(int postId, string title, string content, Guid adminId, string comment)
+        public async Task UpdateByAdminAsync(string postId, string title, string content, Guid adminId, string comment)
         {
-            title.PostTitleValidation();
             content.PostContentValidation();
             var post = await _postRepository.GetAsync(postId);
             if (post == null)
@@ -101,7 +96,7 @@ namespace Hated.Infrastructure.Services.PostService
         }
 
         //Delete
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(string id)
         {
             var post = await _postRepository.GetAsync(id);
             if (post == null)

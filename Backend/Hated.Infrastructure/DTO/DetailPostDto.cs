@@ -6,7 +6,7 @@ namespace Hated.Infrastructure.DTO
 {
 	public class DetailPostDto
 	{
-	    public int Id { get; set; }
+	    public string Id { get; set; }
 	    public UserDto Author { get; set; }
 	    public string Title { get; set; }
 	    public string Content { get; set; }

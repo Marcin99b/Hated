@@ -14,7 +14,7 @@ namespace Hated.Infrastructure.Services.Like
             _postRepository = postRepository;
         }
 
-        public async Task LikePostCommentAsync(int postId, Guid commentId, Guid userId)
+        public async Task LikePostCommentAsync(string postId, Guid commentId, Guid userId)
         {
             var post = await _postRepository.GetAsync(postId);
             var comment = post.Comments.FirstOrDefault(x => x.Id == commentId);
@@ -23,7 +23,7 @@ namespace Hated.Infrastructure.Services.Like
             await _postRepository.UpdateAsync(post);
         }
 
-        public async Task DislikePostCommentAsync(int postId, Guid commentId, Guid userId)
+        public async Task DislikePostCommentAsync(string postId, Guid commentId, Guid userId)
         {
             var post = await _postRepository.GetAsync(postId);
             var comment = post.Comments.FirstOrDefault(x => x.Id == commentId);

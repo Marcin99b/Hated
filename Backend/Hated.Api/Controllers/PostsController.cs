@@ -43,9 +43,9 @@ namespace Hated.Api.Controllers
         }
 
         //Read
-        //GET posts/id
+        //GET posts/guid
         [HttpGet("{postId}")]
-        public async Task<IActionResult> GetAsync(int postId, int commentsFrom = 0, int commentsNumber = 10)
+        public async Task<IActionResult> GetAsync(string postId, int commentsFrom = 0, int commentsNumber = 10)
         {
             try
             {
@@ -122,7 +122,7 @@ namespace Hated.Api.Controllers
         //DELETE posts/guid
         [Authorize]
         [HttpDelete("{postId}")]
-        public async Task<IActionResult> DeleteAsync(int postId)
+        public async Task<IActionResult> DeleteAsync(string postId)
         {
             try
             {

@@ -41,13 +41,5 @@ namespace Hated.Infrastructure.Extensions
                 throw new Exception($"Content lenght is lower than {min}");
             }
         }
-
-        public static void PostTitleValidation(this string title, int min = 10)
-        {
-            if (title.Length < min)
-            {
-                throw new Exception($"Title lenght is lower than {min}");
-            }
-        }
     }
 }

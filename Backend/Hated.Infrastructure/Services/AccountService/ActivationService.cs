@@ -15,14 +15,14 @@ namespace Hated.Infrastructure.Services
             _postRepository = postRepository;
         }
 
-        public async Task ActivatePost(int postId)
+        public async Task ActivatePost(string postId)
         {
             var post = await _postRepository.GetAsync(postId);
             post.Activate();
             await _postRepository.UpdateAsync(post);
         }
 
-        public async Task DeactivatePost(int postId)
+        public async Task DeactivatePost(string postId)
         {
             var post = await _postRepository.GetAsync(postId);
             post.Deactivate();

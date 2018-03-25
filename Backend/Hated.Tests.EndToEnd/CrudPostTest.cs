@@ -18,13 +18,11 @@ namespace Hated.Tests.EndToEnd
         [Fact]
         public async Task CreatedPostShouldBeValid()
         {
-            string title = await GetRandomTextAsync(1);
             string content = await GetRandomTextAsync();
-            var response = await CreateNewPost(title, content);
+            var response = await CreateNewPost(content);
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
             var post = await GetPostAsync(response.Headers.Location.ToString());
             Assert.Equal(testUserGenerate.Id, post.Author.Id);
-            Assert.Equal(title, post.Title);
             Assert.Equal(content, post.Content);
         }
 
@@ -45,7 +43,6 @@ namespace Hated.Tests.EndToEnd
             var payload = GetPayload(postUpdatePayload);
             await Client.PutAsync("posts", payload);
             var updatedPost = await GetPostAsync(response.Headers.Location.ToString());
-            Assert.Equal(updatedPostTitle, updatedPost.Title);
             Assert.Equal(updatedPostContent, updatedPost.Content);
 
         }
