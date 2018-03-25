@@ -6,7 +6,6 @@ using Hated.Core.Domain;
 using Hated.Core.Repositories;
 using Hated.Infrastructure.Extensions;
 using MongoDB.Driver;
-using MongoDB.Driver.Linq;
 
 namespace Hated.Infrastructure.Repositories
 {
@@ -20,7 +19,7 @@ namespace Hated.Infrastructure.Repositories
             _mongoDatabase = mongoDatabase;
         }
 
-        public async Task<Post> GetAsync(int id)
+        public async Task<Post> GetAsync(Guid id)
             => await Task.FromResult(_posts.AsQueryable().SingleOrDefault(x => x.Id == id));
 
         public async Task<IEnumerable<Post>> GetAllAsync(int from, int number)
@@ -34,8 +33,5 @@ namespace Hated.Infrastructure.Repositories
 
         public async Task RemoveAsync(Post post)
             => await _posts.DeleteOneAsync(x => x.Id == post.Id);
-
-        public async Task<int> GetNumberOfPosts()
-            => await _posts.AsQueryable().CountAsync();
     }
 }

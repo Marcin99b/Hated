@@ -24,19 +24,16 @@ namespace Hated.Infrastructure.Services.PostService
         }
 
         //Create
-        public async Task<int> AddAsync(Guid userId, string title, string content)
+        public async Task<Guid> AddAsync(Guid userId, string content)
         {
-            title.PostTitleValidation();
             content.PostContentValidation();
-            var numberOfPosts = await _postRepository.GetNumberOfPosts();
-            var postId = numberOfPosts + 1;
-            var post = new Post(postId, userId, title, content);
+            var post = new Core.Domain.Post(userId, content);
             await _postRepository.AddAsync(post);
-            return postId;
+            return post.Id;
         }
         
         //Read
-        public async Task<DetailPostDto> GetAsync(int id, int commentsFrom, int commentsNumber)
+        public async Task<DetailPostDto> GetAsync(Guid id, int commentsFrom, int commentsNumber)
         {
             var post = await _postRepository.GetAsync(id);
             if (post == null)
@@ -70,38 +67,34 @@ namespace Hated.Infrastructure.Services.PostService
         }
 
         //Update
-        public async Task UpdateAsync(int postId, string title, string content)
+        public async Task UpdateAsync(Guid postId, string content)
         {
-            title.PostTitleValidation();
             content.PostContentValidation();
             var post = await _postRepository.GetAsync(postId);
             if (post == null)
             {
                 throw new Exception($"Post with id: {postId} isn't exist");
             }
-            post.SetTitle(title);
             post.SetContent(content);
             await _postRepository.UpdateAsync(post);
         }
 
         //Update
-        public async Task UpdateByAdminAsync(int postId, string title, string content, Guid adminId, string comment)
+        public async Task UpdateByAdminAsync(Guid postId, string content, Guid adminId, string comment)
         {
-            title.PostTitleValidation();
             content.PostContentValidation();
             var post = await _postRepository.GetAsync(postId);
             if (post == null)
             {
                 throw new Exception($"Post with id: {postId} isn't exist");
             }
-            post.SetTitle(title);
             post.SetContent(content);
             post.UpdateByAdmin(adminId, comment);
             await _postRepository.UpdateAsync(post);
         }
 
         //Delete
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(Guid id)
         {
             var post = await _postRepository.GetAsync(id);
             if (post == null)

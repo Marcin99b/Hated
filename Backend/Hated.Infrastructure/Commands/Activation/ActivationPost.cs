@@ -4,6 +4,6 @@ namespace Hated.Infrastructure.Commands.Activation
 {
     public class ActivationPost
     {
-        public int PostId { get; set; }
+        public Guid PostId { get; set; }
     }
 }

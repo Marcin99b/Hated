@@ -29,7 +29,7 @@ namespace Hated.Api.Controllers
         {
             try
             {
-                var postId = await _postService.AddAsync(User.GetUserId(), newPost.Title, newPost.Content);
+                var postId = await _postService.AddAsync(User.GetUserId(), newPost.Content);
                 return Created($"posts/{postId}", null);
             }
             catch (Exception e)
@@ -43,9 +43,9 @@ namespace Hated.Api.Controllers
         }
 
         //Read
-        //GET posts/id
+        //GET posts/guid
         [HttpGet("{postId}")]
-        public async Task<IActionResult> GetAsync(int postId, int commentsFrom = 0, int commentsNumber = 10)
+        public async Task<IActionResult> GetAsync(Guid postId, int commentsFrom = 0, int commentsNumber = 10)
         {
             try
             {
@@ -103,9 +103,9 @@ namespace Hated.Api.Controllers
                 }
                 if (User.IsAdmin())
                 {
-                    await _postService.UpdateByAdminAsync(updatedPost.Id, updatedPost.Title, updatedPost.Content, User.GetUserId(), adminComment);
+                    await _postService.UpdateByAdminAsync(updatedPost.Id, updatedPost.Content, User.GetUserId(), adminComment);
                 }
-                await _postService.UpdateAsync(updatedPost.Id, updatedPost.Title, updatedPost.Content);
+                await _postService.UpdateAsync(updatedPost.Id, updatedPost.Content);
                 return Ok();
             }
             catch (Exception e)
@@ -122,7 +122,7 @@ namespace Hated.Api.Controllers
         //DELETE posts/guid
         [Authorize]
         [HttpDelete("{postId}")]
-        public async Task<IActionResult> DeleteAsync(int postId)
+        public async Task<IActionResult> DeleteAsync(Guid postId)
         {
             try
             {
