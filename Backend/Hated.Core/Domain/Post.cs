@@ -37,8 +37,9 @@ namespace Hated.Core.Domain
 
         public Post(Guid userId, string title, string content)
         {
-            Id = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+            Id = Regex.Replace(Convert.ToBase64String(Guid.NewGuid().ToByteArray()), "[/+=]", "");
             UserId = userId;
+            SetTitle(title);
             SetContent(content);
             Deactivate();
             CreatedAt = DateTime.UtcNow;

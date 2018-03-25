@@ -18,7 +18,7 @@ namespace Hated.Tests.EndToEnd
         [Fact]
         public async Task CreatedPostShouldBeValid()
         {
-            string content = await GetRandomTextAsync();
+            string content = GetRandomTextAsync();
             var response = await CreateNewPost(content);
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
             var post = await GetPostAsync(response.Headers.Location.ToString());
@@ -31,8 +31,8 @@ namespace Hated.Tests.EndToEnd
         {
             var response = await CreateNewPost();
             var post = await GetPostAsync(response.Headers.Location.ToString());
-            string updatedPostTitle = await GetRandomTextAsync();
-            string updatedPostContent = await GetRandomTextAsync();
+            string updatedPostTitle = GetRandomTextAsync();
+            string updatedPostContent = GetRandomTextAsync();
             var postUpdatePayload = new UpdatePost
             {
                 Id = post.Id,
