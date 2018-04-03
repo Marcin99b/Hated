@@ -17,10 +17,14 @@ export default {
     return await Api().get(`/Posts/${postId}`);
   },
   async like({ postId, token }) {
-    return await Api().post(`/Likes/post${postId}/like`);
+    return await Api().post(`/Likes/post/${postId}/like`, params, {
+      headers: {
+        Authentication: `Bearer ${token}`
+      }
+    });
   },
   async unlike({ postId, token }) {
-    return await Api().post(`/Likes/post${postId}/dislike`, {
+    return await Api().post(`/Likes/post/${postId}/dislike`, params, {
       headers: {
         Authentication: `Bearer ${token}`
       }

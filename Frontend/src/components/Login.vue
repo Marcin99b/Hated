@@ -10,14 +10,14 @@
       <input name="password" autocomplete="current-password" v-model="user.password" type="password">
     </div>
     <span class="error-message" v-show="error">Niepoprawny email lub hasło</span>
+      <button type="submit" class="global-button">
+        Zaloguj się
+      </button>
     <div class="login-form__field">
       <router-link to="/register">
       Nie masz konta?
       </router-link></div>
     <div class="login-form__field">
-      <button type="submit" class="global-button">
-        Zaloguj się
-      </button>
     </div>
     <div v-if="loading" class="login-form__field spinner">
       <div class="rect1"></div>
@@ -78,7 +78,9 @@ export default {
 .login-form {
   position: absolute;
   left: 0;
+  right: 0;
   z-index: 1;
+  margin: 5vh auto;
   width: 50vw;
   height: 50vh;
   background-color: var(--main-color);
