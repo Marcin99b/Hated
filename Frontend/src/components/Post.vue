@@ -13,7 +13,7 @@
       </div>
       </figure>
       <div class="post__content">{{shorterText}}</div>
-      <router-link class="post__read-more" v-if="isShorter" :to="postURL">Czytaj dalej</router-link>
+      <router-link class="post__read-more" v-if="isShorter" :to="postURL">Czytaj dalej &#8594;</router-link>
   </article>
 </template>
 
@@ -79,8 +79,8 @@ export default {
 .post {
   position: relative;
   z-index: 0;
+  height: auto;
   width: 100%;
-  min-height: 60vh;
   font-family: var(--main-font);
   background-color: #FFFFFF;
   box-sizing: border-box;
@@ -96,7 +96,7 @@ export default {
   display: flex;
   justify-content: flex-start;
   align-items: stretch;
-  margin-bottom: 35px;
+  margin-bottom: 28px;
 }
 .post__author-img {
   height: 50px;
@@ -143,6 +143,11 @@ export default {
   cursor: pointer;
 }
 .post__content {
-  font-size: 0.5em;
+  font-size: 0.45em;
+  line-height: 14px;
+  margin-bottom: 20px;
+}
+.post__read-more {
+  font-size: 16px;
 }
 </style>

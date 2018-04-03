@@ -1,11 +1,10 @@
 <template>
+<div class="login_container">
   <form class="login-form" @submit.prevent="login">
     <div class="login-form__field">
-      <label for="email">Email</label>
       <input name="email" v-model="user.email" autocomplete="current-password" type="email">
     </div>
     <div class="login-form__field">
-      <label for="password">Hasło</label>
       <input name="password" autocomplete="current-password" v-model="user.password" type="password">
     </div>
     <span class="error-message" v-show="error">Niepoprawny email lub hasło</span>
@@ -26,6 +25,7 @@
       <div class="rect5"></div>
     </div>
   </form>
+</div>
 </template>
 
 <script>
@@ -71,20 +71,24 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.login_container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.51);
+  z-index: 9999;
+}
 .login-form {
   position: absolute;
-  left: 0;
-  right: 0;
-  width: 50vw;
-  height: 50vh;
-  background-color: var(--main-color);
-  margin: 15vh auto 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  box-shadow: 2px 2px 5px gray;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: #FFFFFF;
+  max-width: 500px;
+  width: 100%;
+  padding: 20px 0 0 20px;
 }
 .login-form__field {
   margin: 1vh 0;
