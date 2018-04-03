@@ -1,5 +1,6 @@
 <template>
   <form class="login-form" @submit.prevent="login">
+    <span class="close fas fa-times-circle" aria-label="" @click="closeLoginModal"></span>
     <div class="login-form__field">
       <label for="email">Email</label>
       <input name="email" v-model="user.email" autocomplete="current-password" type="email">
@@ -9,14 +10,14 @@
       <input name="password" autocomplete="current-password" v-model="user.password" type="password">
     </div>
     <span class="error-message" v-show="error">Niepoprawny email lub hasło</span>
+      <button type="submit" class="global-button">
+        Zaloguj się
+      </button>
     <div class="login-form__field">
       <router-link to="/register">
       Nie masz konta?
       </router-link></div>
     <div class="login-form__field">
-      <button type="submit" class="global-button">
-        Zaloguj się
-      </button>
     </div>
     <div v-if="loading" class="login-form__field spinner">
       <div class="rect1"></div>
@@ -51,6 +52,9 @@ export default {
     login() {
       this.loading = true;
       this.$store.dispatch("login", this.user);
+    },
+    closeLoginModal() {
+      this.$bus.$emit("closeLoginModal");
     }
   },
   created() {
@@ -75,10 +79,11 @@ export default {
   position: absolute;
   left: 0;
   right: 0;
+  z-index: 1;
+  margin: 5vh auto;
   width: 50vw;
   height: 50vh;
   background-color: var(--main-color);
-  margin: 15vh auto 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -96,6 +101,15 @@ export default {
 }
 .error-message {
   font-size: 1rem;
+}
+.close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+.close:hover {
+  color: gray;
+  cursor: pointer;
 }
 /* Spinner */
 .spinner {

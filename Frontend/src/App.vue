@@ -56,6 +56,7 @@ html {
 }
 dialog {
   border: none;
+  width: 100vw;
 }
 * {
   box-sizing: border-box;
