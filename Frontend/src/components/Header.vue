@@ -56,32 +56,32 @@ export default {
   background-color: var(--main-color);
   color: white;
   box-shadow: 2px 2px 5px gray;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
 }
 .header__item {
   width: 11vw;
   padding: 0.6rem;
   text-align: center;
-  margin: 0 1vw;
+  margin: 0 0.5vw;
 }
 .header__item:hover:not(h1) {
   border: 2px solid white;
-  border-radius: 20px;
+  border-radius: 50px;
   text-decoration: none;
 }
 .header__heading {
-  margin-left: 5vw;
+  margin-left: 0.1vw;
   margin-right: auto;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
 }
 .header__login {
   background-color: white;
   color: var(--main-color);
-  margin-right: 5vw;
+  margin-right: 2vw;
   border: none;
-  border-radius: 20px;
+  border-radius: 50px;
   font-family: var(--main-font);
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   border: 2px solid transparent;
 }
 .header__login:hover,
