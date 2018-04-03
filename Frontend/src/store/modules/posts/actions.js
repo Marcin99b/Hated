@@ -16,19 +16,5 @@ export default {
     } catch (error) {
       //TODO: Sensowna obsługa błędów
     }
-  },
-  async like({ commit }, { postId, token }) {
-    try {
-      await Endpoints.like({ postId, token });
-    } catch (error) {
-      //TODO: Sensowna obsługa błędów
-    }
-  },
-  async unlike({ commit }, { postId, token }) {
-    try {
-      await Endpoints.unlike({ postId, token });
-    } catch (error) {
-      //TODO: Sensowna obsługa błędów
-    }
   }
 };

@@ -45,6 +45,8 @@ export default {
   --main-color: rgb(154, 3, 30);
   --main-font: "Lato", sans-serif;
   --button-font-size: 0.9rem;
+  --hand1: "Caveat", cursive;
+  --hand2: "Kalam", cursive;
 }
 body,
 html {

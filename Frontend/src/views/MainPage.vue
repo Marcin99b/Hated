@@ -51,11 +51,9 @@ export default {
 <style scoped>
 .posts {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50%;
-  box-sizing: border-box;
-  padding: 40px 70px;
-  background-color: #f6f6f6;
+  left: 0;
+  right: 0;
+  width: 50vw;
+  margin: 5vh auto;
 }
 </style>

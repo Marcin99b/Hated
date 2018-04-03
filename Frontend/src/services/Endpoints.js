@@ -15,15 +15,5 @@ export default {
   },
   async getSinglePost(postId) {
     return await Api().get(`/Posts/${postId}`);
-  },
-  async like({ postId, token }) {
-    return await Api().post(`/Likes/post${postId}/like`);
-  },
-  async unlike({ postId, token }) {
-    return await Api().post(`/Likes/post${postId}/dislike`, {
-      headers: {
-        Authentication: `Bearer ${token}`
-      }
-    });
   }
 };

@@ -22,7 +22,6 @@ export default {
   },
   created() {
     this.$store.dispatch("getSinglePost", this.postId);
-    console.log(this.postId);
   }
 };
 </script>
