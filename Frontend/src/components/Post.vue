@@ -46,27 +46,29 @@ export default {
         .slice(0, 10)
         .join(".");
     },
-    token() {
-      return this.$store.state.account.user.token.data;
+    user() {
+      return this.$store.state.account.user;
     }
   },
   methods: {
     like() {
-      if (!this.liked) {
-        console.log(this.token);
+      if (!this.liked && this.user.isLogged) {
         this.$store.dispatch("like", {
           postId: this.post.id,
-          token: this.token
+          token: this.user.token.data
         });
         this.post.countLikes++;
-      } else {
+        this.liked = !this.liked;
+      } else if (this.liked && this.user.isLogged) {
         this.$store.dispatch("unlike", {
           postId: this.post.id,
-          token: this.token
+          token: this.user.token.data
         });
         this.post.countLikes--;
+        this.liked = !this.liked;
+      } else {
+        alert("Jestęś niezalogowany, nie możesz dawać lajków!");
       }
-      this.liked = !this.liked;
     }
   }
 };

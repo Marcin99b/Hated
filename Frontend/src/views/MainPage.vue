@@ -38,6 +38,14 @@ export default {
       this.component = "Login";
       this.$refs.modal.setAttribute("open", "");
     });
+    this.$bus.$on("closeLoginModal", () => {
+      this.component = "";
+      this.$refs.modal.removeAttribute("open");
+    });
+    this.$bus.$on("openRegisterModal", () => {
+      this.component = "Register";
+      this.$refs.modal.setAttribute("open", "");
+    });
   },
   components: {
     Post,
