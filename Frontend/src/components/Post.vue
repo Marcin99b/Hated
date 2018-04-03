@@ -1,18 +1,32 @@
 <template>
   <article class="post">
+<<<<<<< HEAD
       {{post.id}}
       <figure class="post__author">
         <img src="http://placehold.it/200x200" alt="">
         <figcaption>{{ post.author.username }}</figcaption>
       </figure>
+=======
+      <figure class="post__author">
+        <img class="post__author-img" src="http://placehold.it/200x200" alt="">
+        <figcaption class="post__author-name">Jan Kowalski</figcaption>
+>>>>>>> wojtus_brancz
       <div class="post__date">
         {{moment([2018,2,12]).fromNow()}}
       </div>
       <div class="post__likes" @click="like">
+<<<<<<< HEAD
           <span v-if="liked" class="fas fa-heart"></span>
           <span v-else class="far fa-heart"></span>
           <span>{{post.countLikes}}</span>
       </div>
+=======
+        <span v-if="liked" class="fas fa-heart"></span>
+        <span v-else class="far fa-heart"></span>
+        <span>{{post.countLikes}}</span>
+      </div>
+      </figure>
+>>>>>>> wojtus_brancz
       <div class="post__content">{{shorterText}}</div>
       <router-link class="post__read-more" v-if="isShorter" :to="postURL">Czytaj dalej</router-link>
   </article>
@@ -82,13 +96,68 @@ export default {
   z-index: 0;
   width: 100%;
   min-height: 60vh;
-  font-family: var(--hand1);
-  background-image: url("https://cdn.discordapp.com/attachments/410524401986043926/416971153064722433/white-crumpled-paper-texture-for-background_1373-159.png");
-  border: 2px solid var(--main-color);
-  margin-bottom: 10vh;
-  padding: 0.5rem;
+  font-family: var(--main-font);
+  background-color: #FFFFFF;
+  box-sizing: border-box;
+  padding: 15px 30px;
+  margin-bottom: 2vw;
+  border-radius: 8px;
+  box-shadow: 0px 0px 0.5px 0px rgba(71, 70, 70, 0.918);
 }
 .post__read-more {
   color: black;
+}
+.post__author {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  margin-bottom: 35px;
+}
+.post__author-img {
+  height: 50px;
+  width: auto;
+  border-radius: 100%;
+  margin-right: 10px;
+}
+.post__author-name {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 12px;
+  position: relative;
+}
+.post__author-name::after {
+  position: absolute;
+  top: -3px;
+  right: -15px;
+  content: "";
+  background-color: #F6F6F6;
+  width: 2px;
+  height: 18px;
+  display: inline-block;
+}
+.post__date {
+  font-size: 14px;
+  margin-top: 10px;
+  margin-left: 30px;
+  position: relative;
+}
+.post__date::after {
+  position: absolute;
+  top: -3px;
+  right: -15px;
+  content: "";
+  background-color: #F6F6F6;
+  width: 2px;
+  height: 18px;
+  display: inline-block;
+}
+.post__likes {
+  font-size: 14px;
+  margin-top: 10px;
+  margin-left: 30px;
+  cursor: pointer;
+}
+.post__content {
+  font-size: 0.5em;
 }
 </style>
